@@ -1,0 +1,14 @@
+{
+	"category" : "ResourcesLive-Specifications",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "RlResourcesSpecification",
+	"pools" : [
+		 ],
+	"super" : "TestCase",
+	"type" : "normal" }

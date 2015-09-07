@@ -1,0 +1,14 @@
+{
+	"category" : "ResourcesLive-Persistence",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "ResourcesLiveDB",
+	"pools" : [
+		 ],
+	"super" : "SpFileDatabase",
+	"type" : "normal" }

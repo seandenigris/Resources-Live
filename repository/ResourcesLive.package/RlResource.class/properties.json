@@ -1,0 +1,14 @@
+{
+	"category" : "ResourcesLive-Core",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"file" ],
+	"name" : "RlResource",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }
