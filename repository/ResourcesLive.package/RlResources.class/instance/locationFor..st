@@ -1,4 +1,4 @@
 as yet unclassified
-locationFor: fileName
+locationFor: filename
 
-	^ self class libraryDirectory / 'Files' locationFor: fileName.
+	^ self class libraryDirectory / filename.

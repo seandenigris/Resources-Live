@@ -1,8 +1,9 @@
 as yet unclassified
-import: aFileReference
+import: resource
 
-	| destination resource |
-	destination := self locationFor: aFileReference basename.	
-	OSProcess command: 'mv ', aFileReference asCliString, ' ', destination asCliString.
-	resource := "Resource on:" destination.
+	| destinationFile sourceFile |
+	sourceFile := resource file.
+	destinationFile := self locationFor: sourceFile basename.	
+	sourceFile moveTo: destinationFile.
+	resource file: destinationFile.
 	^ resources add: resource.
