@@ -1,5 +1,5 @@
-as yet unclassified
-initialize
-
+protocol
+enable
+	<script>
 	self restoreLastBackup.
 	self enablePersistence.
