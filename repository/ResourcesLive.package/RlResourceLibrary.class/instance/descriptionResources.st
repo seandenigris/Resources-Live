@@ -7,7 +7,7 @@ descriptionResources
 			accessor: #resources;
 			label: 'Resources';
 			priority: 100;
-			default: OrderedCollection new; "no reason except it already is; via #initialize"
+			default: OrderedCollection new; "no reason for an OC specifically, except it already is; via #initialize"
 			"classes: { RlEmail };"
 			glmPresentation: #list;
 			yourself
