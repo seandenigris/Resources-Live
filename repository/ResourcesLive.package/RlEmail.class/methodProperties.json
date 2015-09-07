@@ -1,8 +1,8 @@
 {
 	"class" : {
-		"fileReaderServicesForFile:suffix:" : "SeanDeNigris 8/7/2015 17:25",
+		"fileReaderServicesForFile:suffix:" : "SeanDeNigris 8/19/2015 18:41",
+		"importFromFile:" : "SeanDeNigris 8/19/2015 18:41",
 		"initialize" : "SeanDeNigris 8/7/2015 17:27",
-		"inspectFromFile:" : "SeanDeNigris 8/11/2015 14:29",
-		"serviceInspectEmail" : "SeanDeNigris 8/7/2015 12:08" },
+		"serviceImportEmail" : "SeanDeNigris 8/19/2015 18:41" },
 	"instance" : {
 		 } }

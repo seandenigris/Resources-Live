@@ -1,7 +1,7 @@
 as yet unclassified
-inspectFromFile: aString 
+importFromFile: aString 
 	| instance |
 	instance := self new
 		file: aString asFileReference;
 		yourself.
-	RlResourceLibrary library import: instance.
+	RlResourceLibrary uniqueInstance import: instance.
