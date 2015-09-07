@@ -9,5 +9,5 @@ descriptionResources
 			priority: 100;
 			default: OrderedCollection new; "no reason except it already is; via #initialize"
 			"classes: { RlEmail };"
-			gtPresentation: [ :a | self gtInspectorResourcesIn: a ];
+			glmPresentation: #list;
 			yourself
