@@ -1,3 +1,3 @@
-as yet unclassified
+accessing
 pharoData
 	^ FileLocator home / 'Dropbox' / 'Pharo Data'

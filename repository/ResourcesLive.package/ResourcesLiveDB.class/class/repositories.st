@@ -1,4 +1,4 @@
-as yet unclassified
+override in subclasses
 repositories
 
 	^ { RlResourceLibrary uniqueInstance }.

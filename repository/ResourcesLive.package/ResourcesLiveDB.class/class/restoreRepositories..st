@@ -1,4 +1,4 @@
-as yet unclassified
+override in subclasses
 restoreRepositories: someRepositories
 
 	RlResourceLibrary restoreFrom: someRepositories first.
