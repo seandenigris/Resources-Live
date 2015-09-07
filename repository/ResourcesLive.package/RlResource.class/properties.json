@@ -6,7 +6,8 @@
 		 ],
 	"commentStamp" : "SeanDeNigris 8/11/2015 14:19",
 	"instvars" : [
-		"originalFile" ],
+		"originalFile",
+		"file" ],
 	"name" : "RlResource",
 	"pools" : [
 		 ],

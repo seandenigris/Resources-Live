@@ -1,0 +1,3 @@
+actions
+preview
+	file preview
