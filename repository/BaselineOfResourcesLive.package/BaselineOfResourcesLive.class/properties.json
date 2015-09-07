@@ -1,0 +1,14 @@
+{
+	"category" : "BaselineOfResourcesLive",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "BaselineOfResourcesLive",
+	"pools" : [
+		 ],
+	"super" : "BaselineOf",
+	"type" : "normal" }
