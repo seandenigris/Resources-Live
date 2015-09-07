@@ -4,9 +4,9 @@
 		 ],
 	"classvars" : [
 		 ],
-	"commentStamp" : "",
+	"commentStamp" : "SeanDeNigris 8/11/2015 14:19",
 	"instvars" : [
-		"file" ],
+		"originalFile" ],
 	"name" : "RlResource",
 	"pools" : [
 		 ],

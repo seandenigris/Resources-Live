@@ -2,7 +2,7 @@ as yet unclassified
 initialize
 	"self initialize"
 
-	self libraryDirectory ensureCreateDirectory.
-	self temporaryDirectory ensureCreateDirectory.
+	self folder ensureCreateDirectory.
+	self temporaryFolder ensureCreateDirectory.
 	ExternalDropHandler registerHandler: self defaultPdfHandler.
 	"FolderActions enable."

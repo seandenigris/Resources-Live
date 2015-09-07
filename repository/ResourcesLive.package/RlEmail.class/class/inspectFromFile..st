@@ -4,4 +4,4 @@ inspectFromFile: aString
 	instance := self new
 		file: aString asFileReference;
 		yourself.
-	RlResources library import: instance.
+	RlResourceLibrary library import: instance.

@@ -2,7 +2,7 @@ as yet unclassified
 testGetFilenameNoConflicts
 
 	| location tmp existingFile |
-	tmp := RlResources temporaryDirectory.
+	tmp := RlResourceLibrary temporaryFolder.
 	location := tmp locationFor: tmp / 'fileForTesting.ext'.
 	location basename should = 'fileForTesting.ext'.
 	

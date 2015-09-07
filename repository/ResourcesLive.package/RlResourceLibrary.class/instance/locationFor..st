@@ -1,4 +1,4 @@
 as yet unclassified
 locationFor: filename
 
-	^ self class libraryDirectory / filename.
+	^ self class folder / filename.

@@ -1,4 +1,4 @@
 as yet unclassified
 restoreRepositories: someRepositories
 
-	RlResources restoreFrom: someRepositories first.
+	RlResourceLibrary restoreFrom: someRepositories first.

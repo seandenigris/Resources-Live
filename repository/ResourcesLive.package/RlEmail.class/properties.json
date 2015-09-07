@@ -10,5 +10,5 @@
 	"name" : "RlEmail",
 	"pools" : [
 		 ],
-	"super" : "Object",
+	"super" : "RlResource",
 	"type" : "normal" }

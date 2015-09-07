@@ -1,0 +1,18 @@
+{
+	"class" : {
+		"defaultPdfHandler" : "SeanDeNigris 1/16/2012 12:32",
+		"folder" : "SeanDeNigris 8/11/2015 14:31",
+		"handleDroppedFileNamed:" : "SeanDeNigris 8/11/2015 14:29",
+		"initialize" : "SeanDeNigris 8/11/2015 14:31",
+		"restoreFrom:" : "SeanDeNigris 8/11/2015 14:30",
+		"temporaryFolder" : "SeanDeNigris 8/11/2015 14:31",
+		"uniqueInstance" : "SeanDeNigris 8/11/2015 14:30" },
+	"instance" : {
+		"import:" : "SeanDeNigris 8/11/2015 14:41",
+		"importAs:after:" : "SeanDeNigris 8/11/2015 14:29",
+		"initialize" : "SeanDeNigris 11/10/2011 19:25",
+		"locationFor:" : "SeanDeNigris 8/11/2015 14:31",
+		"nextID" : "SeanDeNigris 8/11/2015 14:39",
+		"resources" : "SeanDeNigris 8/10/2015 11:53",
+		"resources:" : "SeanDeNigris 8/10/2015 11:53",
+		"temporaryLocationFor:" : "SeanDeNigris 8/11/2015 14:31" } }

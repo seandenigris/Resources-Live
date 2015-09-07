@@ -1,4 +1,4 @@
 as yet unclassified
-libraryDirectory
+folder
 
 	^ ResourcesLiveDB backupDirectoryParent / 'Library'.

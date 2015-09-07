@@ -1,13 +1,13 @@
 {
 	"category" : "ResourcesLive-Core",
 	"classinstvars" : [
-		"library" ],
+		"uniqueInstance" ],
 	"classvars" : [
-		 ],
+		"LastID" ],
 	"commentStamp" : "",
 	"instvars" : [
 		"resources" ],
-	"name" : "RlResources",
+	"name" : "RlResourceLibrary",
 	"pools" : [
 		 ],
 	"super" : "Object",

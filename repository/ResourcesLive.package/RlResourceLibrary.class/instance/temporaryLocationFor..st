@@ -1,4 +1,4 @@
 as yet unclassified
 temporaryLocationFor: fileName
 
-	^ self class temporaryDirectory / fileName.
+	^ self class temporaryFolder / fileName.
