@@ -1,9 +1,9 @@
 as yet unclassified
-serviceImportEmail
+serviceImport
 
 	^ SimpleServiceEntry 
 		provider: self 
-		label: 'Import email'
+		label: 'Import ', (self name allButFirst: 2) asLowercase
 		selector: #importFromFile:
 		description: ''
 		buttonLabel: 'Import'

@@ -1,7 +1,10 @@
 {
 	"class" : {
+		"fileReaderServicesForFile:suffix:" : "SeanDeNigris 9/7/2015 15:26",
 		"for:" : "SeanDeNigris 8/25/2011 15:17",
-		"on:" : "SeanDeNigris 5/2/2012 23:32" },
+		"importFromFile:" : "SeanDeNigris 9/7/2015 15:24",
+		"on:" : "SeanDeNigris 5/2/2012 23:32",
+		"serviceImport" : "SeanDeNigris 9/7/2015 15:28" },
 	"instance" : {
 		"asMorph" : "SeanDeNigris 8/10/2015 10:42",
 		"descriptionOpen" : "SeanDeNigris 8/11/2015 14:49",

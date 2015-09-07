@@ -4,4 +4,4 @@ importFromFile: aString
 	instance := self new
 		file: aString asFileReference;
 		yourself.
-	RlResourceLibrary uniqueInstance import: instance.
+	^ RlResourceLibrary uniqueInstance import: instance.
