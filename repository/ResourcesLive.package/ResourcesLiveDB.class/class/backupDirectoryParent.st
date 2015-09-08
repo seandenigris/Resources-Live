@@ -1,3 +1,3 @@
 accessing
 backupDirectoryParent
-	^ self pharoData / 'ResourcesLive'
+	^ backupDirectoryParent ifNil: [ self pharoData  / 'ResourcesLive' ]
