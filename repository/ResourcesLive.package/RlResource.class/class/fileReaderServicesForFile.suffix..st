@@ -1,4 +1,4 @@
-as yet unclassified
+services
 fileReaderServicesForFile: fullName suffix: suffix
 	<fileService>
 	^ (self fileExtensions includes: suffix)

@@ -1,4 +1,4 @@
-as yet unclassified
+private
 locationFor: filename
 
 	^ self class folder / filename.

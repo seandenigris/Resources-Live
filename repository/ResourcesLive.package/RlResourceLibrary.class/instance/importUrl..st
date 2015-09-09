@@ -1,11 +1,9 @@
-as yet unclassified
+importing
 importUrl: aUrl
 
-	| data file class |
+	| data file |
 	data := aUrl retrieveContents.
 	file := FileLocator imageDirectory / 'tmp' / aUrl file.
 	file parent ensureCreateDirectory.
 	file writeStreamDo: [ : str | str binary; nextPutAll: data ].
-
-	class := RlResource allSubclasses detect: [ :e | e fileExtensions includes: file extension ].
-	^ class importFromFile: file.
+	^ self importFile: file

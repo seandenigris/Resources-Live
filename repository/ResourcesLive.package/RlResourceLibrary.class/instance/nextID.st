@@ -1,4 +1,4 @@
-as yet unclassified
+private
 nextID
 	^ LastID := LastID
 		ifNotNil: [ LastID + 1 ]

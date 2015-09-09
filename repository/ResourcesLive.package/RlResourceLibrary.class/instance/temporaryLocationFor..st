@@ -1,4 +1,4 @@
-as yet unclassified
+private
 temporaryLocationFor: fileName
 
 	^ self class temporaryFolder / fileName.
