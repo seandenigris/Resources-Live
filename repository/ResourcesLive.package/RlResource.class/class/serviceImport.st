@@ -4,6 +4,6 @@ serviceImport
 	^ SimpleServiceEntry 
 		provider: RlResourceLibrary uniqueInstance
 		label: 'Import ', (self name allButFirst: 2) asLowercase
-		selector: #import:
+		selector: #importFile:
 		description: ''
 		buttonLabel: 'Import'
