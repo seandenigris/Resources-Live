@@ -1,4 +1,7 @@
 private
 locationFor: filename
 
-	^ self class folder / filename.
+	| result |
+	result := self class folder / filename.
+	self assert: result exists not.
+	^ result
