@@ -6,7 +6,9 @@
 		"LastID" ],
 	"commentStamp" : "",
 	"instvars" : [
-		"resources" ],
+		"resources",
+		"folder",
+		"temporaryFolder" ],
 	"name" : "RlResourceLibrary",
 	"pools" : [
 		 ],

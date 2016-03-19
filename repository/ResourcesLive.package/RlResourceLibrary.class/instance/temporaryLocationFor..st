@@ -1,4 +1,4 @@
 private
 temporaryLocationFor: fileName
 
-	^ self class temporaryFolder / fileName.
+	^ self temporaryFolder / fileName.
