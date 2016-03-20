@@ -2,7 +2,7 @@ importing
 import: resource moving: shouldMove
 
 	| destinationFile sourceFile |
-	sourceFile := resource file.
+	sourceFile := resource asRlResource file.
 	destinationFile := self locationFor: sourceFile basename.	
 	self assert: destinationFile exists not.
 	shouldMove

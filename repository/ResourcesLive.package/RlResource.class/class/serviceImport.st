@@ -5,7 +5,7 @@ serviceImport
 	entry := SimpleServiceEntry 
 		provider: RlResourceLibrary uniqueInstance
 		label: 'Import ', (self name allButFirst: 2) asLowercase
-		selector: #importFile:
+		selector: #import:
 		description: ''
 		buttonLabel: 'Import'.
 	^ entry

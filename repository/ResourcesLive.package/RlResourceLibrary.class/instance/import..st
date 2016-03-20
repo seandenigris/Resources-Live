@@ -1,4 +1,4 @@
 importing
-import: resource
+import: resourceable
 
-	self import: resource moving: true
+	^ self import: resourceable moving: self doesMoveByDefault
