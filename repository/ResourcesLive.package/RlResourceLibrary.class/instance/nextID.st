@@ -1,5 +1,4 @@
 private
 nextID
-	^ LastID := LastID
-		ifNotNil: [ LastID + 1 ]
-		ifNil: [ 1 ]
+	self lastID: self lastID + 1.
+	^ self lastID printStringHex

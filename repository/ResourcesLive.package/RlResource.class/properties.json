@@ -7,7 +7,9 @@
 	"commentStamp" : "SeanDeNigris 8/11/2015 14:19",
 	"instvars" : [
 		"originalFile",
-		"file" ],
+		"file",
+		"source",
+		"importTimestamp" ],
 	"name" : "RlResource",
 	"pools" : [
 		 ],

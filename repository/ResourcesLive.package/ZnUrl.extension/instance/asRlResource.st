@@ -6,3 +6,5 @@ asRlResource
 	file parent ensureCreateDirectory.
 	self saveContentsToFile: file.
 	^ file asRlResource
+		source: self;
+		yourself

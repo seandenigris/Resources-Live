@@ -9,7 +9,8 @@
 		"resources",
 		"folder",
 		"temporaryFolder",
-		"doesMoveByDefault" ],
+		"doesMoveByDefault",
+		"lastID" ],
 	"name" : "RlResourceLibrary",
 	"pools" : [
 		 ],

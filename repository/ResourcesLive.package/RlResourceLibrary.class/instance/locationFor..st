@@ -7,7 +7,7 @@ locationFor: filename
 		ifFalse: [ sameFilename ]
 		ifTrue: [ 
 			| uniqueBase |
-			uniqueBase := self nextID asString, ' (', sameFilename base, ')'.
+			uniqueBase := self nextID, ' (', sameFilename base, ')'.
 			self folder / uniqueBase, sameFilename extension ].
 	self assert: result exists not.
 	^ result
