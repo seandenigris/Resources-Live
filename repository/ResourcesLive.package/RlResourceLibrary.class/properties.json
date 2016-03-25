@@ -1,9 +1,9 @@
 {
 	"category" : "ResourcesLive-Core",
 	"classinstvars" : [
-		"uniqueInstance" ],
+		 ],
 	"classvars" : [
-		"LastID" ],
+		"UniqueInstance" ],
 	"commentStamp" : "",
 	"instvars" : [
 		"resources",

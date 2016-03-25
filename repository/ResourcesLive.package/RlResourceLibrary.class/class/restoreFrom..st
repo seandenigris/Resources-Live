@@ -1,4 +1,3 @@
 as yet unclassified
-restoreFrom: aResources
-	
-	uniqueInstance := aResources.
+restoreFrom: anObject
+	self uniqueInstance: anObject
