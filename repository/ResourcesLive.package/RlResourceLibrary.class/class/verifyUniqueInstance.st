@@ -2,8 +2,9 @@ as yet unclassified
 verifyUniqueInstance
 	<script>
 
+	| resources d sourced duplicates  |
+
 	"Find resources from the same source (i.e. URL)"
-	| resources d sourced duplicates |
 	resources := RlResourceLibrary uniqueInstance resources.
 	d := Dictionary new.
 	sourced := resources reject: [ :e | e source isNil ].
@@ -15,4 +16,4 @@ verifyUniqueInstance
 	duplicates := d values select: [ :col | col size > 1 ].
 	
 	"Find objects appearing multiple times"
-	self assert: resources size = resources asIdentitySet size
+	self assert: resources size = resources asIdentitySet size.
