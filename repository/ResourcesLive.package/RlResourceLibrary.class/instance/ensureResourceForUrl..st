@@ -4,7 +4,6 @@ ensureResourceForUrl: aUrl
 		detect: [ :r | r source = aUrl ]
 		ifNone: [ 
 			| preDownload toImport resource |
-			Halt now.
 			preDownload := self inbox / aUrl file.
 			toImport := preDownload exists
 				ifTrue: [ preDownload ]
