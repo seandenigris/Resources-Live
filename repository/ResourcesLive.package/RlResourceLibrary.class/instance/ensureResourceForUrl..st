@@ -1,7 +1,7 @@
 accessing
 ensureResourceForUrl: aUrl
 	^ self resources
-		detect: [ :r | r source = aUrl ]
+		detect: [ :r | r source equals: aUrl ]
 		ifNone: [ 
 			| preDownload toImport resource |
 			preDownload := self inbox / aUrl file.
