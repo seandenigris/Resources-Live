@@ -2,6 +2,6 @@ printing
 printOn: aStream
 	aStream
 		nextPutAll: self className;
-		nextPut: $(;
-		nextPutAll: self file basename;
-		nextPut: $)
+		nextPut: $(.
+	self file ifNotNil: [ :f | aStream nextPutAll: f basename ].
+	aStream nextPut: $)
