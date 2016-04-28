@@ -1,11 +1,11 @@
-services
+file services
 serviceImport
 
 	| entry |
 	entry := SimpleServiceEntry 
-		provider: RlResourceLibrary uniqueInstance
-		label: 'Import ', (self name allButFirst: 2) asLowercase
-		selector: #import:
+		provider: self
+		label: 'Import as resource'
+		selector: #handleDroppedFileNamed:
 		description: ''
 		buttonLabel: 'Import'.
 	^ entry

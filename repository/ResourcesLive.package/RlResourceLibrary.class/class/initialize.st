@@ -4,5 +4,5 @@ initialize
 
 	self folder ensureCreateDirectory.
 	self temporaryFolder ensureCreateDirectory.
-	ExternalDropHandler registerHandler: self defaultPdfHandler.
+	FileServices registerFileReader: self
 	"FolderActions enable."

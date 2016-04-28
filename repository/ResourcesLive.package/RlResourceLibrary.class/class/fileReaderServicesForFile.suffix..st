@@ -1,6 +1,6 @@
-services
+file services
 fileReaderServicesForFile: fullName suffix: suffix
 	<fileService>
-	^ (self fileExtensions includes: suffix)
+	^ (RlResource allFileExtensions includes: suffix)
 		ifTrue: [ { self serviceImport } ]
 		ifFalse: [ {} ].

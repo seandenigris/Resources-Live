@@ -1,3 +1,3 @@
 as yet unclassified
 fileExtensions
-	^ { 'mp3' }
+	^ #('mp3')
