@@ -4,5 +4,4 @@ initialize
 
 	self folder ensureCreateDirectory.
 	self temporaryFolder ensureCreateDirectory.
-	FileServices registerFileReader: self
 	"FolderActions enable."
