@@ -1,3 +1,3 @@
 *ResourcesLive
 showInFinder
-	NBMacShell run: 'open --reveal ', (self fullName surroundedBy: '"')
+	LibC system: 'open --reveal ', (self fullName surroundedBy: '"')

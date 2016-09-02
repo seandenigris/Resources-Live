@@ -9,7 +9,8 @@
 		"originalFile",
 		"file",
 		"source",
-		"importTimestamp" ],
+		"importTimestamp",
+		"metadata" ],
 	"name" : "RlResource",
 	"pools" : [
 		 ],

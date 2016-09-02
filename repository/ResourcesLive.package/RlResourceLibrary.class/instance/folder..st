@@ -1,4 +1,4 @@
 private
 folder: aFolder
-	self resources do: [ :e | e moveInto: aFolder ].
+	self resources do: [ :e | e moveFileInto: aFolder ].
 	folder := aFolder

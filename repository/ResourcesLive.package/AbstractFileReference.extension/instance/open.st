@@ -1,3 +1,3 @@
 *ResourcesLive
 open
-	NBMacShell open: self fullName
+	LibC system: 'open "', self fullName, '"'
