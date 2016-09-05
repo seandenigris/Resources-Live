@@ -1,0 +1,3 @@
+protocol
+initialize
+	self setUp.
