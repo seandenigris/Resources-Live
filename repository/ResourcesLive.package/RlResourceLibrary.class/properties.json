@@ -1,18 +1,19 @@
 {
-	"category" : "ResourcesLive-Core",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		"UniqueInstance" ],
 	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ResourcesLive-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"UniqueInstance"
+	],
 	"instvars" : [
 		"resources",
 		"folder",
 		"temporaryFolder",
 		"doesMoveByDefault",
-		"lastID" ],
+		"lastID"
+	],
 	"name" : "RlResourceLibrary",
-	"pools" : [
-		 ],
-	"super" : "Object",
-	"type" : "normal" }
+	"type" : "normal"
+}

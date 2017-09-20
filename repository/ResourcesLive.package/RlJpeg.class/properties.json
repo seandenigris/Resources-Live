@@ -1,14 +1,11 @@
 {
-	"category" : "ResourcesLive-Core",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "",
-	"instvars" : [
-		 ],
-	"name" : "RlJpeg",
-	"pools" : [
-		 ],
 	"super" : "RlResource",
-	"type" : "normal" }
+	"category" : "ResourcesLive-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "RlJpeg",
+	"type" : "normal"
+}

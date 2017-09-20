@@ -1,14 +1,13 @@
 {
+	"commentStamp" : "SeanDeNigris 8/11/2015 19:15",
+	"super" : "SpFileDatabase",
 	"category" : "ResourcesLive-Persistence",
 	"classinstvars" : [
-		"backupDirectoryParent" ],
-	"classvars" : [
-		 ],
-	"commentStamp" : "SeanDeNigris 8/11/2015 19:15",
-	"instvars" : [
-		 ],
+		"backupDirectoryParent"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
 	"name" : "ResourcesLiveDB",
-	"pools" : [
-		 ],
-	"super" : "SpFileDatabase",
-	"type" : "normal" }
+	"type" : "normal"
+}

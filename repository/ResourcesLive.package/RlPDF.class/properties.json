@@ -1,14 +1,11 @@
 {
-	"category" : "ResourcesLive-Core",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "",
-	"instvars" : [
-		 ],
-	"name" : "RlPDF",
-	"pools" : [
-		 ],
 	"super" : "RlResource",
-	"type" : "normal" }
+	"category" : "ResourcesLive-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "RlPDF",
+	"type" : "normal"
+}

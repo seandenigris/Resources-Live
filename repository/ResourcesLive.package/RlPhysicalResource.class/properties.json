@@ -1,15 +1,14 @@
 {
-	"category" : "ResourcesLive-Core",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "",
+	"super" : "RlResource",
+	"category" : "ResourcesLive-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
 	"instvars" : [
 		"description",
-		"location" ],
+		"location"
+	],
 	"name" : "RlPhysicalResource",
-	"pools" : [
-		 ],
-	"super" : "RlResource",
-	"type" : "normal" }
+	"type" : "normal"
+}

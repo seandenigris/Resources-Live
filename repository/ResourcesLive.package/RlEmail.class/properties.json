@@ -1,14 +1,13 @@
 {
-	"category" : "ResourcesLive-Core",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "",
-	"instvars" : [
-		"timestamp" ],
-	"name" : "RlEmail",
-	"pools" : [
-		 ],
 	"super" : "RlResource",
-	"type" : "normal" }
+	"category" : "ResourcesLive-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"timestamp"
+	],
+	"name" : "RlEmail",
+	"type" : "normal"
+}

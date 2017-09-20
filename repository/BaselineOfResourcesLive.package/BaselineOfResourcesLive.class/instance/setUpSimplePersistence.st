@@ -1,3 +1,3 @@
-as yet unclassified
+baselines
 setUpSimplePersistence
-	SpFileDatabase mainProjectName: (self class name allButFirst: 'BaselineOf' size)
+	SpFileDatabase register: self
