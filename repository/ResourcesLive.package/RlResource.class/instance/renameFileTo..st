@@ -1,4 +1,4 @@
-as yet unclassified
+actions
 renameFileTo: aString
 	| target |
 	target := self file parent / aString.
