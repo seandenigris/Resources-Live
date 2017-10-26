@@ -1,4 +1,4 @@
-as yet unclassified
+instance creation
 uniqueInstance
 
 	^ UniqueInstance ifNil: [ UniqueInstance := self new ].

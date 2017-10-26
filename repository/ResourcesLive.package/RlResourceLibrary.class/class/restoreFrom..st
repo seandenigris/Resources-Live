@@ -1,3 +1,3 @@
-as yet unclassified
+persistence
 restoreFrom: anObject
 	self uniqueInstance: anObject

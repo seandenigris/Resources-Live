@@ -1,4 +1,4 @@
-as yet unclassified
+tokens
 temporary
 
 	^ self new

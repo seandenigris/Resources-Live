@@ -1,4 +1,4 @@
-as yet unclassified
+private
 folder
 
 	^ (ResourcesLiveDB backupDirectoryParent / 'Library') ensureCreateDirectory.
