@@ -2,5 +2,5 @@ magritte
 descriptionPreview
 	<magritteActionDescription>
 	^ MAActionDescription new
-			selector: #preview;
-			yourself
+		action: #preview;
+		yourself
