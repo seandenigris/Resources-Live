@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ResourcesLive-Core",
+	"classinstvars" : [
+		"current"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"inputFile",
+		"outputFile",
+		"command",
+		"somet"
+	],
+	"name" : "RlPdfToImageConverter",
+	"type" : "normal"
+}

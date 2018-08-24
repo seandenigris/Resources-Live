@@ -1,0 +1,3 @@
+private
+commandTemplate
+	self subclassResponsibility
