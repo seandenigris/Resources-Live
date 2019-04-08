@@ -6,9 +6,9 @@ baseline: spec
 		spec
 			baseline: 'SimplePersistence' with: [
 				spec
-					repository: 'github://seandenigris/Simple-Persistence:master/repository';
+					repository: 'github://seandenigris/Simple-Persistence';
 					postLoadDoIt: #setUpSimplePersistence ];
 			baseline: 'PharoEnhancements' with: [
-				spec repository: 'github://seandenigris/Pharo-Enhancements:master/src' ].
+				spec repository: 'github://seandenigris/Pharo-Enhancements' ].
 		spec package: #ResourcesLive with: [
 				spec requires: #('SimplePersistence' 'PharoEnhancements'). ]. ].
