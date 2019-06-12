@@ -1,5 +1,6 @@
 importing
 import: resourceable moving: shouldMove
+	"Either move or copy the resource into the proper location"
 
 	| destinationFile sourceFile resource |
 	resource := resourceable asRlResource.

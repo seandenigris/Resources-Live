@@ -1,5 +1,6 @@
 importing
 importInPlace: resourceable
+	"Do not move or copy the file"
 
 	| resource |
 	resource := resourceable asRlResource.
