@@ -1,6 +1,6 @@
 file services
-handleDroppedFileNamed: aString
+handleDroppedFileNamed: aFileReference
 
 	| resource |
-	resource := RlResourceLibrary uniqueInstance import: aString asFileReference.
+	resource := self import: aFileReference.
 	resource asMorph openInWorld.
