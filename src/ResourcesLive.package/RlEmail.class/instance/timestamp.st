@@ -1,3 +1,3 @@
 accessing
 timestamp
-	^ self mailMessage timestamp
+	^ timestamp ifNil: [ self mailMessage timestamp ]

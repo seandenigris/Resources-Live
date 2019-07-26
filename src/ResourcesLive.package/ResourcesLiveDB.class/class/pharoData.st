@@ -1,3 +1,3 @@
 accessing
 pharoData
-	^ FileLocator home / 'Dropbox' / 'Pharo Data'
+	^ FileLocator home / 'Dynabook' / 'User Data'

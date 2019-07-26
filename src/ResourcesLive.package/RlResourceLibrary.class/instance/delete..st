@@ -1,4 +1,4 @@
 deleting
 delete: resource
-	self resources remove: resource.
+	self remove: resource.
 	resource file delete

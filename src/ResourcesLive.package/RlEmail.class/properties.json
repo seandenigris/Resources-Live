@@ -5,7 +5,9 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"timestamp"
+	],
 	"name" : "RlEmail",
 	"type" : "normal"
 }
