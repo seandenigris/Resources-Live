@@ -2,5 +2,5 @@ tokens
 temporary
 
 	^ self new
-		folder: (FileLocator imageDirectory / DateAndTime now asString asLegalSelector) ensureCreateDirectory;
+		basicFolder: (FileLocator imageDirectory / DateAndTime now asString asFilename) ensureCreateDirectory;
 		yourself
