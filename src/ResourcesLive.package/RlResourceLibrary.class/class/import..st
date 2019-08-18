@@ -1,4 +1,4 @@
-file services
+convenience
 import: aFileReference
 
-	^ RlResourceLibrary uniqueInstance import: aFileReference.
+	^ self uniqueInstance import: aFileReference.

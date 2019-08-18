@@ -5,7 +5,7 @@ serviceImport
 	entry := SimpleServiceEntry 
 		provider: self
 		label: 'Import as resource'
-		selector: #handleDroppedFileNamed:
+		selector: #handleDroppedFile:
 		description: ''
 		buttonLabel: 'Import'.
 	^ entry

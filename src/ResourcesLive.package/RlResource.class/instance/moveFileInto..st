@@ -1,3 +1,3 @@
 actions
 moveFileInto: aFolder
-	self moveTo: aFolder / self basename
+	self moveFileTo: aFolder / self file basename
