@@ -1,6 +1,7 @@
 accessing
 properFilename
 	| msg rawFilename safeFilename filenameNoSpaces extension |
+	properFilename ifNotNil: [ ^ properFilename ].
 	msg := self mailMessage.
 	"Makes filename too long:
 	fromTokens := MailAddressTokenizer tokensIn: msg from.
@@ -21,4 +22,4 @@ properFilename
 		copyReplaceAll: ' '
 		with: '_'.
 	extension := '.eml'.
-	^ (filenameNoSpaces truncateTo: 31 - extension size) , extension
+	^ properFilename := (filenameNoSpaces truncateTo: 31 - extension size) , extension
