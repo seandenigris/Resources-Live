@@ -1,3 +1,0 @@
-actions
-open
-	file open

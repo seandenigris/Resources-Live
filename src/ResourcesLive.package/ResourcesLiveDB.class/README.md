@@ -1,1 +1,0 @@
-Because I am used as a component of other systems, which require me to be persisted together with their objects in order to preserve references in the object graph, I must be manually enabled via `self enable`.

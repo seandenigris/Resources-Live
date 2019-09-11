@@ -1,3 +1,0 @@
-baselines
-setUpSimplePersistence
-	SpFileDatabase register: self

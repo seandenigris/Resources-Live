@@ -1,3 +1,0 @@
-actions
-showInFinder
-	file showInFinder

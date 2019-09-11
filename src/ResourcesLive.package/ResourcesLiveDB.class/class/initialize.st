@@ -1,3 +1,0 @@
-protocol
-initialize
-	self setUp.

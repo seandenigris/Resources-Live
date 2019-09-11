@@ -1,3 +1,0 @@
-actions
-preview
-	file preview
