@@ -1,7 +1,7 @@
 Class {
 	#name : #RlMp3,
 	#superclass : #RlResource,
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #'file types' }

@@ -10,7 +10,7 @@ Class {
 	#classInstVars : [
 		'current'
 	],
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #converting }

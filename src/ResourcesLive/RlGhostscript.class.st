@@ -1,7 +1,7 @@
 Class {
 	#name : #RlGhostscript,
 	#superclass : #Object,
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #accessing }

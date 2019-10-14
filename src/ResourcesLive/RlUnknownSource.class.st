@@ -1,7 +1,7 @@
 Class {
 	#name : #RlUnknownSource,
 	#superclass : #Object,
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #'as yet unclassified' }

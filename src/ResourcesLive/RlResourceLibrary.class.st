@@ -11,7 +11,7 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #'file services' }
@@ -132,6 +132,27 @@ RlResourceLibrary >> basicFolder: aFolder [
 	folder := aFolder
 ]
 
+{ #category : #utilities }
+RlResourceLibrary >> checkForMissingFiles [
+	^ self resources reject: [ :e | e file exists ]
+]
+
+{ #category : #utilities }
+RlResourceLibrary >> checkForOrphans [
+	| files orphans |
+	files := self folder allFiles.
+	orphans := files select: [ :f | self resources noneSatisfy: [ :r | r file resolve = f ] ].
+	^ orphans
+	"
+	Useful snippets for dealing with returned files:
+	
+	orphans collect: #parent as: Set.
+	orphans := orphans reject: [ :e | e basename = '.DS_Store' or: [ f isContainedBy: self folder / 'Orphans' ] ].
+	orphans select: [ :e | e parent resolve = interestingDirectoryReference ].
+	problems do: [ :e | e moveTo: self folder / 'Orphans' ]
+	"
+]
+
 { #category : #deleting }
 RlResourceLibrary >> delete: resource [
 	self remove: resource.
@@ -141,7 +162,8 @@ RlResourceLibrary >> delete: resource [
 { #category : #deleting }
 RlResourceLibrary >> deleteAll [
 	self resources do: [ :e | e file delete ].
-	self folder delete
+	self folder delete.
+	resources removeAll
 ]
 
 { #category : #magritte }
@@ -170,34 +192,25 @@ RlResourceLibrary >> doesMoveByDefault: aBoolean [
 ]
 
 { #category : #accessing }
-RlResourceLibrary >> ensureResourceForUrl: aUrl [
-	^ self resources
-		detect: [ :r | r source equals: aUrl ]
-		ifNone: [ 
-			| preDownload toImport resource |
-			preDownload := self inbox / aUrl file.
-			toImport := preDownload exists
-				ifTrue: [ preDownload ]
-				ifFalse: [ aUrl ].
-			resource := self import: toImport.
-			resource
-				source: aUrl;
-				yourself ]
-]
+RlResourceLibrary >> ensureResourceForUrl: aUrlOrCommand [
+"Questions:
+	- What does it do if it finds the resource, but in a different location, and is using a move strategy? It could be dangerous to just move it out from underneath someone else
+"
 
-{ #category : #accessing }
-RlResourceLibrary >> ensureResourceForUrl: aUrl in: subFolder [
+	| url |
+	self flag: 'maybe the argument has to be a command because how else would we treat predownloads consistently?'.
+	url := aUrlOrCommand asUrl.
 	^ self resources
-		detect: [ :r | r source equals: aUrl ]
+		detect: [ :r | r source equals: url ]
 		ifNone: [ 
 			| preDownload toImport resource |
-			preDownload := self inbox / aUrl file.
+			preDownload := self inbox / url rlFilename.
 			toImport := preDownload exists
-				ifTrue: [ preDownload ]
-				ifFalse: [ aUrl ].
+				ifTrue: [ aUrlOrCommand copy resource: preDownload; yourself ]
+				ifFalse: [ aUrlOrCommand ].
 			resource := self import: toImport.
 			resource
-				source: aUrl;
+				source: url;
 				yourself ]
 ]
 
@@ -207,37 +220,38 @@ RlResourceLibrary >> folder [
 ]
 
 { #category : #importing }
-RlResourceLibrary >> import: resourceable [
+RlResourceLibrary >> import: anObject [
 
-	^ self import: resourceable moving: self doesMoveByDefault
+	^ anObject importInto: self
 ]
 
 { #category : #importing }
-RlResourceLibrary >> import: resourceable moving: shouldMove [
+RlResourceLibrary >> import: convertibleToResource into: location moving: shouldMove [
 	"Either move or copy the resource into the proper location"
 
 	| destinationFile sourceFile resource |
-	resource := resourceable asRlResource.
+	resource := convertibleToResource asRlResource.
 	sourceFile := resource file.
-	destinationFile := self locationFor: sourceFile basename.	
+	destinationFile := self locationFor: sourceFile basename in: location.
 	self assert: destinationFile exists not.
+	destinationFile parent ensureCreateDirectory.
 	shouldMove
 		ifTrue: [	 sourceFile moveTo: destinationFile ]
 		ifFalse: [ sourceFile copyTo: destinationFile ].
 	resource
 		file: destinationFile;
 		originalFile: sourceFile asFileReference;
-		importTimestamp: DateAndTime now translateToUTC.
+		importTimestamp: (DateAndTime now - 1 day) translateToUTC.
 	^ resources add: resource.
 ]
 
 { #category : #importing }
-RlResourceLibrary >> importInPlace: resourceable [
+RlResourceLibrary >> importInPlace: convertibleToResource [
 	"Do not move or copy the file"
 
 	| resource |
-	resource := resourceable asRlResource.
-	resource importTimestamp: DateAndTime now translateToUTC.
+	resource := convertibleToResource asRlResource.
+	resource importTimestamp: (DateAndTime now - 1 day) translateToUTC.
 	^ resources add: resource.
 ]
 
@@ -264,17 +278,18 @@ RlResourceLibrary >> lastID: aNumber [
 ]
 
 { #category : #private }
-RlResourceLibrary >> locationFor: filename [
+RlResourceLibrary >> locationFor: filename in: location [
 
-	| sameFilename result |
-	sameFilename := self folder / filename.
-	result := sameFilename exists
+	| sameFilename result targetFolder |
+	targetFolder := self folder rlAppend: location.
+	sameFilename := targetFolder / filename.
+	result := sameFilename. "exists
 		ifFalse: [ sameFilename ]
 		ifTrue: [ 
 			| uniqueBase |
 			uniqueBase := self nextID, ' (', sameFilename base, ')'.
 			self folder / uniqueBase, sameFilename extension ].
-	self assert: result exists not.
+	self assert: result exists not."
 	^ result
 ]
 
