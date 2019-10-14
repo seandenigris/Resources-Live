@@ -12,7 +12,7 @@ Class {
 
 { #category : #accessing }
 ResourcesLiveDB class >> backupDirectoryParent [
-	^ backupDirectoryParent ifNil: [ FileLocator dynabookUserData / 'ResourcesLive' ]
+	^ backupDirectoryParent ifNil: [ FileLocator dynabookData / 'ResourcesLive' ]
 ]
 
 { #category : #accessing }
