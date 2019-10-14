@@ -12,7 +12,7 @@ Class {
 
 { #category : #accessing }
 ResourcesLiveDB class >> backupDirectoryParent [
-	^ backupDirectoryParent ifNil: [ self pharoData  / 'ResourcesLive' ]
+	^ backupDirectoryParent ifNil: [ FileLocator dynabookUserData / 'ResourcesLive' ]
 ]
 
 { #category : #accessing }
@@ -23,11 +23,6 @@ ResourcesLiveDB class >> backupDirectoryParent: folder [
 { #category : #protocol }
 ResourcesLiveDB class >> initialize [
 	self setUp.
-]
-
-{ #category : #accessing }
-ResourcesLiveDB class >> pharoData [
-	^ FileLocator home / 'Dynabook' / 'User Data'
 ]
 
 { #category : #'override in subclasses' }
