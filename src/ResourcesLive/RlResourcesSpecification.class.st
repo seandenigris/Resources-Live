@@ -1,7 +1,7 @@
 Class {
 	#name : #RlResourcesSpecification,
 	#superclass : #TestCase,
-	#category : #'ResourcesLive-Specifications'
+	#category : 'ResourcesLive-Specifications'
 }
 
 { #category : #'as yet unclassified' }

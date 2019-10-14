@@ -5,7 +5,7 @@ Class {
 		'description',
 		'location'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core'
 }
 
 { #category : #'file types' }

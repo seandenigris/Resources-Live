@@ -11,7 +11,7 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core'
 }
 
 { #category : #'file services' }

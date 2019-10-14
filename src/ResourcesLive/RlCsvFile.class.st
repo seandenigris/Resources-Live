@@ -1,7 +1,7 @@
 Class {
 	#name : #RlCsvFile,
 	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core'
 }
 
 { #category : #accessing }
