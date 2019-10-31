@@ -87,7 +87,7 @@ RlPdfToImageConverter >> outputFile [
 
 { #category : #accessing }
 RlPdfToImageConverter >> somet [
-	^ self maLazyFromDescriptionOf: #somet
+	^ self maLazyFrom: self descriptionSomet
 ]
 
 { #category : #accessing }
