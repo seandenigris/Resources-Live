@@ -24,13 +24,13 @@ A typical use case is to have a resource library particular to your project. E.g
 2. Set up serialization
 
     ```
-MyProjectDb class>>repositories
+    MyProjectDb class>>repositories
     	^ { MyProject repo1. MyProject repo2. ResourcesLiveDB repositories }.
     ```
 3. Set Up materialization
 
     ```
-MyProjectDb class>>restoreRepositories: someRepositories
+    MyProjectDb class>>restoreRepositories: someRepositories
     	"..."
     	ResourcesLiveDB restoreRepositories: someRepositories last
     ```
