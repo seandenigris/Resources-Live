@@ -80,6 +80,11 @@ RlResourceLibrary class >> serviceImport [
 		yourself
 ]
 
+{ #category : #persistence }
+RlResourceLibrary class >> spData [
+	^ self uniqueInstance
+]
+
 { #category : #tokens }
 RlResourceLibrary class >> temporary [
 

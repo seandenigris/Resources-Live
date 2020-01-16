@@ -26,13 +26,7 @@ ResourcesLiveDB class >> initialize [
 ]
 
 { #category : #'override in subclasses' }
-ResourcesLiveDB class >> repositories [
+ResourcesLiveDB class >> schema [
 
-	^ { RlResourceLibrary uniqueInstance }.
-]
-
-{ #category : #'override in subclasses' }
-ResourcesLiveDB class >> restoreRepositories: someRepositories [
-
-	RlResourceLibrary restoreFrom: someRepositories first.
+	^ { RlResourceLibrary }.
 ]
