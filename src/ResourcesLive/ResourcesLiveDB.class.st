@@ -7,7 +7,7 @@ Class {
 	#classInstVars : [
 		'backupDirectoryParent'
 	],
-	#category : 'ResourcesLive-Persistence'
+	#category : #'ResourcesLive-Persistence'
 }
 
 { #category : #accessing }
@@ -18,11 +18,6 @@ ResourcesLiveDB class >> backupDirectoryParent [
 { #category : #accessing }
 ResourcesLiveDB class >> backupDirectoryParent: folder [
 	backupDirectoryParent := folder
-]
-
-{ #category : #protocol }
-ResourcesLiveDB class >> initialize [
-	self setUp.
 ]
 
 { #category : #'override in subclasses' }
