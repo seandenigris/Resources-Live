@@ -256,7 +256,7 @@ RlResourceLibrary >> importInPlace: convertibleToResource [
 
 	| resource |
 	resource := convertibleToResource asRlResource.
-	resource importTimestamp: (DateAndTime now - 1 day) translateToUTC.
+	resource importTimestamp: DateAndTime rlImportTimestamp.
 	^ resources add: resource.
 ]
 
