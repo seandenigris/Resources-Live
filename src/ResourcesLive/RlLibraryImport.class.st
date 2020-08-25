@@ -2,10 +2,10 @@ Class {
 	#name : #RlLibraryImport,
 	#superclass : #Object,
 	#instVars : [
-		'resource',
 		'library',
 		'location',
-		'shouldMoveVsCopy'
+		'shouldMoveVsCopy',
+		'resourceable'
 	],
 	#category : #'ResourcesLive-Core'
 }
@@ -13,12 +13,12 @@ Class {
 { #category : #private }
 RlLibraryImport >> asUrl [
 	"Make me polymorphic with URL to simplify importation process for library. In the use case considered (`#ensureResourceForUrl:`), `#resource` will always be a bare URL. It does not seem needed at this time to account for the possibility that it is already `aResource`"
-	^ self resource
+	^ self resourceable
 ]
 
 { #category : #private }
 RlLibraryImport >> execute [
-	^ self library import: self resource into: self location moving: self shouldMoveVsCopy
+	^ self library import: self resourceable into: self location moving: self shouldMoveVsCopy
 ]
 
 { #category : #accessing }
@@ -45,19 +45,14 @@ RlLibraryImport >> location: anObject [
 RlLibraryImport >> printOn: aStream [
 	aStream
 		nextPutAll: 'Import ';
-		print: self resource;
+		print: self resourceable;
 		nextPutAll: ' into ';
 		print: self location.
 ]
 
 { #category : #accessing }
-RlLibraryImport >> resource [
-	^ resource
-]
-
-{ #category : #accessing }
-RlLibraryImport >> resource: anObject [
-	resource := anObject
+RlLibraryImport >> resourceable [
+	^ resourceable
 ]
 
 { #category : #'as yet unclassified' }
