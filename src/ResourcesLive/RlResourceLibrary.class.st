@@ -226,6 +226,7 @@ RlResourceLibrary >> folder [
 
 { #category : #importing }
 RlResourceLibrary >> import: anObject [
+	"For the simplest case, when you don't care where the file ends up living on disk, you can just pass a file reference. For more control, pass a command object. See senders of the double-dispatch message below for the built in option(s) or define your own"
 
 	^ anObject rlImportInto: self
 ]
