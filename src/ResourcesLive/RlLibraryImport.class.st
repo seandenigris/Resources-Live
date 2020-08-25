@@ -21,14 +21,6 @@ RlLibraryImport >> execute [
 	^ self library import: self resource into: self location moving: self shouldMoveVsCopy
 ]
 
-{ #category : #'as yet unclassified' }
-RlLibraryImport >> importInto: aRlResourceLibrary [
-	"See method comment in Object (same message)"
-	^ self
-		library: aRlResourceLibrary;
-		execute.
-]
-
 { #category : #accessing }
 RlLibraryImport >> library [
 	^ library
@@ -66,6 +58,14 @@ RlLibraryImport >> resource [
 { #category : #accessing }
 RlLibraryImport >> resource: anObject [
 	resource := anObject
+]
+
+{ #category : #'as yet unclassified' }
+RlLibraryImport >> rlImportInto: aRlResourceLibrary [
+	"See method comment in Object (same message)"
+	^ self
+		library: aRlResourceLibrary;
+		execute.
 ]
 
 { #category : #accessing }

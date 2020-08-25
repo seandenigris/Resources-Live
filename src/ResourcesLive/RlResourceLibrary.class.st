@@ -11,7 +11,7 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #'file services' }
@@ -227,7 +227,7 @@ RlResourceLibrary >> folder [
 { #category : #importing }
 RlResourceLibrary >> import: anObject [
 
-	^ anObject importInto: self
+	^ anObject rlImportInto: self
 ]
 
 { #category : #importing }
