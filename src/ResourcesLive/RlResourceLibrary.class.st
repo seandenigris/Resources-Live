@@ -1,3 +1,20 @@
+"
+Frequently, the filesystem is an implementation detail which you should never be forced to deal with directly. For example, you probably don't ''really'' care whether your music is in ==~/Music== or ==~/Documents/Music== or ""a symlink to one of these, but physically elsewhere"". The point is: you want to play your music! 
+
+I relieve you of the burden of crawling down into this low level, non-user-friendly context - the user equivalent of C - and empower you to think and act in your domain of interest that is represented by these files.
+
+Instead of writing:
+[[[language=smalltalk
+LibC system: 'afplay ', ('/path/to/song.mp3' asFileReference fullName surroundedBy: '""')
+]]]
+You can simply write:
+[[[language=smalltalk
+anMP3 play
+]]]
+Ahhhhhh...  wasn't that nice?! I feel more relaxed already :)
+!Importing
+The main entry point is ${method:RlResourceLibrary>>#import:}$ - check out its comment.
+"
 Class {
 	#name : #RlResourceLibrary,
 	#superclass : #Object,
@@ -211,7 +228,7 @@ RlResourceLibrary >> ensureResourceForUrl: aUrlOrCommand [
 			| preDownload toImport resource |
 			preDownload := self inbox / url rlFilename.
 			toImport := preDownload exists
-				ifTrue: [ aUrlOrCommand copy resource: preDownload; yourself ]
+				ifTrue: [ aUrlOrCommand copy resourceable: preDownload; yourself ]
 				ifFalse: [ aUrlOrCommand ].
 			resource := self import: toImport.
 			resource
@@ -226,7 +243,7 @@ RlResourceLibrary >> folder [
 
 { #category : #importing }
 RlResourceLibrary >> import: anObject [
-	"For the simplest case, when you don't care where the file ends up living on disk, you can just pass a file reference. For more control, pass a command object. See senders of the double-dispatch message below for the built in option(s) or define your own"
+	"For the simplest case, when you don't care where the file ends up living on disk, you can just pass a file reference. For more control, pass a command object; RlLibraryImport is built in or define your own"
 
 	^ anObject rlImportInto: self
 ]

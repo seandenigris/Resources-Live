@@ -55,6 +55,12 @@ RlLibraryImport >> resourceable [
 	^ resourceable
 ]
 
+{ #category : #accessing }
+RlLibraryImport >> resourceable: convertibleToResource [
+	"convertibleToResource - must respond to #asRlResource, see implementors"
+	resourceable := convertibleToResource
+]
+
 { #category : #'as yet unclassified' }
 RlLibraryImport >> rlImportInto: aRlResourceLibrary [
 	"See method comment in Object (same message)"
