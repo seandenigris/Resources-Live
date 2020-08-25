@@ -7,7 +7,7 @@ Class {
 	#classInstVars : [
 		'backupDirectoryParent'
 	],
-	#category : #'ResourcesLive-Persistence'
+	#category : 'ResourcesLive-Persistence'
 }
 
 { #category : #accessing }

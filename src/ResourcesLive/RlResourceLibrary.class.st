@@ -288,13 +288,13 @@ RlResourceLibrary >> locationFor: filename in: location [
 	| sameFilename result targetFolder |
 	targetFolder := self folder rlAppend: location.
 	sameFilename := targetFolder / filename.
-	result := sameFilename. "exists
+	result := sameFilename exists
 		ifFalse: [ sameFilename ]
 		ifTrue: [ 
 			| uniqueBase |
 			uniqueBase := self nextID, ' (', sameFilename base, ')'.
 			self folder / uniqueBase, sameFilename extension ].
-	self assert: result exists not."
+	self assert: result exists not.
 	^ result
 ]
 

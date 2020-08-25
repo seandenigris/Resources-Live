@@ -1,3 +1,6 @@
+"
+An eml file (aka mhtml) is described [here](https://en.wikipedia.org/wiki/MHTML)
+"
 Class {
 	#name : #RlEmail,
 	#superclass : #RlResource,
@@ -119,11 +122,10 @@ RlEmail >> printOn: aStream [
 
 { #category : #accessing }
 RlEmail >> properFilename [
-	| extension |
+	| extension basename |
 	extension := '.eml'.
-	^ (self displayString, extension) asFilename 
-			copyReplaceAll: ' '
-			with: '_'.
+	basename := self displayString collect: [ :c | (#($.$ ) includes: c) ifFalse: [ c ] ifTrue: [ $_ ] ].
+	^ (basename, extension) asFilename
 ]
 
 { #category : #accessing }
