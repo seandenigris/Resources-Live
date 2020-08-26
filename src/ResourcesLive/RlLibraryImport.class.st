@@ -1,3 +1,10 @@
+"
+I am a command which imports files into an ${class:RlResourceLibrary}$. As a convenience, I accept several object types which specify what to import - see ${method:RlLibraryImport>>#resourceable:}$.  The only other thing you ''need'' to supply is the ${method:RlLibraryImport>>#library:|label=library}$ I should target. 
+
+I have several other optional arguments that you can set if you need more control for a particular scenario:
+- The relative ${method:RlLibraryImport>>#location:|label=location}$ inside my filesystem where the file should be kept. While not at all necessary, there are times when this might be desirable e.g. 
+- The ${method:RlLibraryImport>>#shouldMoveVsCopy|label=strategy}$ (copy or move) I should use to bring the file under my control. Eventually, ""do nothing"" i.e. ""leave the file in place"" will be added, simplifying the library API.
+"
 Class {
 	#name : #RlLibraryImport,
 	#superclass : #Object,
@@ -12,7 +19,7 @@ Class {
 
 { #category : #private }
 RlLibraryImport >> asUrl [
-	"Make me polymorphic with URL to simplify importation process for library. In the use case considered (`#ensureResourceForUrl:`), `#resource` will always be a bare URL. It does not seem needed at this time to account for the possibility that it is already `aResource`"
+	"Make me polymorphic with URL to simplify the importation process for the library. In the use case considered (`#ensureResourceForUrl:`), `#resourceable` will always be a bare URL. It does not seem needed at this time to account for the possibility that it is already `aResource`"
 	^ self resourceable
 ]
 
