@@ -1,7 +1,15 @@
+"
+!Installation
+On Mac, you can install via Homebrew like this:
+[[[language=shell
+brew install imagemagick
+]]]
+
+"
 Class {
 	#name : #RlImageMagick,
 	#superclass : #Object,
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #accessing }
