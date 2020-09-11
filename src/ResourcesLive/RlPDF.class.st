@@ -20,5 +20,13 @@ RlPDF >> gtFigureFor: aView [
 	^ aView explicit
 		title: 'Picture';
 		priority: 10;
-		stencil: [ GtFileUtility imageElementFromFileReference: self vsImageFile ]
+		stencil: [ GtFileUtility imageElementFromFileReference: self imageFile ]
+]
+
+{ #category : #accessing }
+RlPDF >> imageFile [
+	| outputRoot images |
+	outputRoot := Tempfile endingWith: '_rlpdf'.
+	images := RlPdfImages convert: self to: outputRoot.
+	^ images first
 ]
