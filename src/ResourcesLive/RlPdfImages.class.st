@@ -1,5 +1,5 @@
 "
-A utility from the *Poplar>https://poppler.freedesktop.org* PDF Rendering library
+I am a wrapper for ==pdfimages==, an open-source command-line utility for extracting images from PDF files. I handle only raster images, not vector images *(per the imagemagick forums>https://imagemagick.org/discourse-server/viewtopic.php?p=131715&sid=7d4ead65c1b80614d9afb52ed274059f#p131715*). I am utility from the *Poplar>https://poppler.freedesktop.org* PDF Rendering library. For more info, see *my wikipedia page>https://en.wikipedia.org/wiki/Pdfimages*.
 !Installation
 On Mac, can be installed via Homebrew like so:
 [[[language=shell
@@ -28,27 +28,23 @@ RlPdfImages class >> convert: inputFile to: outputFolder [
 	^ self new
 		inputFile: inputFile;
 		outputRoot: outputFolder;
-		run
+		run;
+		images
 ]
 
 { #category : #accessing }
 RlPdfImages class >> example [
 	<gtExample>
-	| inputJpeg tempFolder outputRoot command outputFile |
+	| inputJpeg tempFolder outputRoot images |
 	tempFolder := (FileLocator temp / DateAndTime totalSeconds asString) ensureCreateDirectory.
 	inputJpeg := FileLocator localDirectory / 'iceberg' / 'seandenigris' / 'Resources-Live'/ 'example support' / 'jpg.pdf'.
 	outputRoot := tempFolder / 'out'.
-	outputFile := outputRoot parent / (outputRoot basename, '-000.jpg').
-	
-	command := RlPdfImages new
-		inputFile: inputJpeg;
-		outputRoot:outputRoot;
-		yourself.
 		
 	[ 
-		command run.
-		self assert: outputFile exists.
-	] ensure: [ outputFile delete ].
+		images := RlPdfImages convert: inputJpeg to: outputRoot.
+		self assert: images size = 1.
+		self assert: images first exists.
+	] ensure: [ images first delete ].
 ]
 
 { #category : #converting }
@@ -56,8 +52,8 @@ RlPdfImages >> commandString [
 
 	^ self commandTemplate
 		format:
-			{(#input -> self inputFile fullName).
-			(#output -> self outputRoot fullName)} asDictionary
+			{(#input -> self inputFile asFileReference fullName).
+			(#output -> self outputRoot asFileReference fullName)} asDictionary
 ]
 
 { #category : #converting }
@@ -72,7 +68,7 @@ RlPdfImages >> commandTemplate [
 		-ccitt         : write CCITT images as CCITT files
 		-all           : equivalent to -png -tiff -j -jp2 -jbig2 -ccitt"
 
-	^ self class binary, ' -j "{input}" "{output}"'
+	^ self class binary, ' -j -p "{input}" "{output}"'
 ]
 
 { #category : #views }
@@ -84,14 +80,25 @@ RlPdfImages >> gtCLIViewFor: aView [
 		
 ]
 
+{ #category : #convenience }
+RlPdfImages >> images [
+	^ self outputRoot parent filesMatching: self outputRoot basename, '*'
+	"Note: Image basenames are of the form `{root}-{page#}-{image#}`, where:
+		- #'s are padded with zeroes to three digits
+		- page #'s start at 1
+		- image #'s start at 0
+	For example, for image 0 from page 1, if returned as a JPEG, would end in 001-000.jpg"
+]
+
 { #category : #accessing }
 RlPdfImages >> inputFile [
 	^ inputFile
 ]
 
 { #category : #accessing }
-RlPdfImages >> inputFile: anObject [
-	inputFile := anObject
+RlPdfImages >> inputFile: convertibleToFile [
+	"convertibleToFile - should respond to #asFileReference"
+	inputFile := convertibleToFile
 ]
 
 { #category : #accessing }
@@ -100,9 +107,10 @@ RlPdfImages >> outputRoot [
 ]
 
 { #category : #accessing }
-RlPdfImages >> outputRoot: aFileReference [
-	"Where to save. A suffix will be applied by the library."
-	outputRoot := aFileReference
+RlPdfImages >> outputRoot: convertibleToFile [
+	"Where to save. A suffix will be applied by the library.
+	convertibleToFile - should respond to #asFileReference"
+	outputRoot := convertibleToFile
 ]
 
 { #category : #converting }

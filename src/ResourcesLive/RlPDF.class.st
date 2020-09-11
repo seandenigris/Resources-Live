@@ -13,3 +13,12 @@ Class {
 RlPDF class >> fileExtensions [
 	^ #('pdf')
 ]
+
+{ #category : #accessing }
+RlPDF >> gtFigureFor: aView [
+	<gtView>
+	^ aView explicit
+		title: 'Picture';
+		priority: 10;
+		stencil: [ GtFileUtility imageElementFromFileReference: self vsImageFile ]
+]
