@@ -30,7 +30,7 @@ RlPDF >> gtFigureFor: aView [
 RlPDF >> imageFile [
 	| outputRoot images |
 	imageCache ifNotNil: [ ^ imageCache ].
-	outputRoot := Tempfile endingWith: '_rlpdf'.
+	outputRoot := Tempfile withPrefix: 'rlpdf_'.
 	images := RlPdfImages convert: self to: outputRoot.
 	^ imageCache := images first
 ]
