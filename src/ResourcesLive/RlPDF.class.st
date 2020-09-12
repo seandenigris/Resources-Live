@@ -6,6 +6,9 @@ The use case supported is when each page is an image e.g. a scanned book. The ${
 Class {
 	#name : #RlPDF,
 	#superclass : #RlResource,
+	#instVars : [
+		'imageCache'
+	],
 	#category : #'ResourcesLive-Core'
 }
 
@@ -26,7 +29,8 @@ RlPDF >> gtFigureFor: aView [
 { #category : #accessing }
 RlPDF >> imageFile [
 	| outputRoot images |
+	imageCache ifNotNil: [ ^ imageCache ].
 	outputRoot := Tempfile endingWith: '_rlpdf'.
 	images := RlPdfImages convert: self to: outputRoot.
-	^ images first
+	^ imageCache := images first
 ]
