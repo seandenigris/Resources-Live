@@ -1,5 +1,5 @@
 "
-I am a wrapper for ==pdfimages==, an open-source command-line utility for extracting images from PDF files. I handle only raster images, not vector images *(per the imagemagick forums>https://imagemagick.org/discourse-server/viewtopic.php?p=131715&sid=7d4ead65c1b80614d9afb52ed274059f#p131715*). I am utility from the *Poplar>https://poppler.freedesktop.org* PDF Rendering library. For more info, see *my wikipedia page>https://en.wikipedia.org/wiki/Pdfimages*.
+I am a wrapper for ==pdfimages==, an open-source command-line utility for extracting images from PDF files. I extract the raw images, so images e.g. that were rotated by the PDF will be extracted in their original orientation. I handle only raster images, not vector images *(per the imagemagick forums>https://imagemagick.org/discourse-server/viewtopic.php?p=131715&sid=7d4ead65c1b80614d9afb52ed274059f#p131715*). I am utility from the *Poplar>https://poppler.freedesktop.org* PDF Rendering library. For more info, see *my wikipedia page>https://en.wikipedia.org/wiki/Pdfimages*.
 !Installation
 On Mac, can be installed via Homebrew like so:
 [[[language=shell
@@ -115,8 +115,6 @@ RlPdfImages >> outputRoot: convertibleToFile [
 
 { #category : #converting }
 RlPdfImages >> run [
-
-	| command returnValue |
 	self shell runWaitAndAssert: self commandString
 ]
 

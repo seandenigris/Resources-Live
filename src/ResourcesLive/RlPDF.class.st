@@ -27,6 +27,11 @@ RlPDF >> gtFigureFor: aView [
 ]
 
 { #category : #accessing }
+RlPDF >> imageCache [
+	^ imageCache
+]
+
+{ #category : #accessing }
 RlPDF >> imageFile [
 	| outputRoot images |
 	imageCache ifNotNil: [ ^ imageCache ].
