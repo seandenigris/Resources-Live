@@ -1,7 +1,7 @@
 Class {
 	#name : #BaselineOfResourcesLive,
 	#superclass : #BaselineOf,
-	#category : 'BaselineOfResourcesLive'
+	#category : #BaselineOfResourcesLive
 }
 
 { #category : #baselines }
@@ -11,17 +11,10 @@ BaselineOfResourcesLive >> baseline: spec [
 	spec for: #'common' do: [
 		spec
 			baseline: 'SimplePersistence' with: [
-				spec
-					repository: 'github://seandenigris/Simple-Persistence';
-					postLoadDoIt: #setUpSimplePersistence ];
+				spec repository: 'github://seandenigris/Simple-Persistence' ];
 			baseline: 'PharoEnhancements' with: [
 				spec repository: 'github://seandenigris/Pharo-Enhancements' ].
 		spec package: #ResourcesLive with: [
 				spec requires: #('SimplePersistence' 'PharoEnhancements'). ]. ].
 
-]
-
-{ #category : #baselines }
-BaselineOfResourcesLive >> setUpSimplePersistence [
-	SpFileDatabase register: self
 ]
