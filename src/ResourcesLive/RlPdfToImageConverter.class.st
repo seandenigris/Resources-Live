@@ -3,19 +3,20 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'inputFile',
-		'outputFile',
-		'command',
-		'somet'
+		'outputFile'
 	],
 	#classInstVars : [
 		'current'
 	],
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Utilities'
 }
 
 { #category : #converting }
 RlPdfToImageConverter class >> convert: inputFile to: outputFile [
-	self current new convert: inputFile to: outputFile.
+	self new
+		inputFile: inputFile;
+		outputFile: outputFile;
+		convert
 ]
 
 { #category : #private }
@@ -36,11 +37,6 @@ RlPdfToImageConverter >> command [
 			(#output -> self outputFile asFileReference fullName) } asDictionary.
 ]
 
-{ #category : #accessing }
-RlPdfToImageConverter >> command: anObject [
-	command := anObject
-]
-
 { #category : #private }
 RlPdfToImageConverter >> commandTemplate [
 	self subclassResponsibility
@@ -48,18 +44,7 @@ RlPdfToImageConverter >> commandTemplate [
 
 { #category : #converting }
 RlPdfToImageConverter >> convert [
-	| p |
-	p := PipeableOSProcess waitForCommand: self command.
-	self assert: p succeeded
-]
-
-{ #category : #converting }
-RlPdfToImageConverter >> convert: anInputFile to: anOutputFile [
-	"Convenience method"
-
-	self inputFile: anInputFile.
-	self outputFile: anOutputFile.
-	self convert.
+	self shell ensureSucceeds: self command.
 ]
 
 { #category : #'accessing-magritte' }
@@ -72,12 +57,29 @@ RlPdfToImageConverter >> descriptionCommand [
 		yourself
 ]
 
-{ #category : #'accessing-magritte' }
-RlPdfToImageConverter >> descriptionSomet [
-	<magritteDescription>
-	^ MAStringDescription new
-		accessor: #somet;
-		yourself
+{ #category : #converting }
+RlPdfToImageConverter >> ensureSucceeds: aString [
+	| exitStatus |
+	exitStatus := LibC system: aString.
+	self assert: exitStatus equals: 0
+]
+
+{ #category : #views }
+RlPdfToImageConverter >> gtCLIViewFor: aView [
+	<gtView>
+	^ aView text 
+		title: 'CLI';
+		text: self command
+]
+
+{ #category : #accessing }
+RlPdfToImageConverter >> inputFile [
+	^ inputFile
+]
+
+{ #category : #accessing }
+RlPdfToImageConverter >> inputFile: anObject [
+	inputFile := anObject
 ]
 
 { #category : #accessing }
@@ -86,11 +88,12 @@ RlPdfToImageConverter >> outputFile [
 ]
 
 { #category : #accessing }
-RlPdfToImageConverter >> somet [
-	^ self maLazyFrom: self descriptionSomet
+RlPdfToImageConverter >> outputFile: anObject [
+	outputFile := anObject
 ]
 
-{ #category : #accessing }
-RlPdfToImageConverter >> somet: anObject [
-	somet := anObject
+{ #category : #converting }
+RlPdfToImageConverter >> shell [
+	"Hook for later delegation to a library"
+	^ self
 ]

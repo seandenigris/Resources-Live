@@ -14,7 +14,7 @@ Class {
 		'inputFile',
 		'outputRoot'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : #'ResourcesLive-Utilities'
 }
 
 { #category : #accessing }
@@ -37,7 +37,7 @@ RlPdfImages class >> example [
 	<gtExample>
 	| inputJpeg tempFolder outputRoot images |
 	tempFolder := (FileLocator temp / DateAndTime totalSeconds asString) ensureCreateDirectory.
-	inputJpeg := FileLocator localDirectory / 'iceberg' / 'seandenigris' / 'Resources-Live'/ 'example support' / 'jpg.pdf'.
+	inputJpeg := BaselineOfResourcesLive exampleSupportFolder / 'jpg.pdf'.
 	outputRoot := tempFolder / 'out'.
 		
 	[ 

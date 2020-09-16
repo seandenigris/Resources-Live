@@ -12,6 +12,12 @@ Class {
 	#category : #'ResourcesLive-Core'
 }
 
+{ #category : #accessing }
+RlPDF class >> exampleReceipt [
+	<gtExample>
+	^ self on: BaselineOfResourcesLive exampleSupportFolder / 'Receipt_cash.pdf'
+]
+
 { #category : #'file types' }
 RlPDF class >> fileExtensions [
 	^ #('pdf')
@@ -23,7 +29,16 @@ RlPDF >> gtFigureFor: aView [
 	^ aView explicit
 		title: 'Picture';
 		priority: 10;
-		stencil: [ GtFileUtility imageElementFromFileReference: self imageFile ]
+		stencil: [ 
+			BlZoomableElement new
+				addChild: (GtFileUtility imageElementFromFileReference: self imageFile) ]
+]
+
+{ #category : #accessing }
+RlPDF >> hocr [
+	"See ${class:Hocr}$ comment"
+
+	^ hocr ifNil: [ hocr := Tesseract hocr: self ].
 ]
 
 { #category : #accessing }

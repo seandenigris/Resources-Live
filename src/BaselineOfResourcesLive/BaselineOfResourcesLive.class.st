@@ -4,6 +4,11 @@ Class {
 	#category : #BaselineOfResourcesLive
 }
 
+{ #category : #accessing }
+BaselineOfResourcesLive class >> exampleSupportFolder [
+	^ FileLocator localDirectory / 'iceberg' / 'seandenigris' / 'Resources-Live'/ 'example support'
+]
+
 { #category : #baselines }
 BaselineOfResourcesLive >> baseline: spec [
 	<baseline>
