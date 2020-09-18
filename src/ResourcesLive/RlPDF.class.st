@@ -26,12 +26,16 @@ RlPDF class >> fileExtensions [
 { #category : #accessing }
 RlPDF >> gtFigureFor: aView [
 	<gtView>
-	^ aView explicit
+	^ aView pannable
 		title: 'Picture';
 		priority: 10;
 		stencil: [ 
-			BlZoomableElement new
-				addChild: (GtFileUtility imageElementFromFileReference: self imageFile) ]
+			| imageElement |
+			imageElement := GtFileUtility imageElementFromFileReference: self imageFile.
+			imageElement forceLayout.
+		imageElement 
+			constraintsDo: [:c | c horizontal exact: imageElement width. c vertical exact: imageElement height ];
+			yourself ]
 ]
 
 { #category : #accessing }

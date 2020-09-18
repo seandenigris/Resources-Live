@@ -23,11 +23,11 @@ RlPdfImages class >> binary [
 ]
 
 { #category : #convenience }
-RlPdfImages class >> convert: inputFile to: outputFolder [
+RlPdfImages class >> convert: inputFile to: outputRoot [
 
 	^ self new
 		inputFile: inputFile;
-		outputRoot: outputFolder;
+		outputRoot: outputRoot;
 		run;
 		images
 ]
