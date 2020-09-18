@@ -115,6 +115,7 @@ RlPdfImages >> outputRoot: convertibleToFile [
 
 { #category : #converting }
 RlPdfImages >> run [
+	self outputRoot asFileReference parent ensureCreateDirectory. "pdfimages will fail if it doesn't exist"
 	self shell runWaitAndAssert: self commandString
 ]
 
