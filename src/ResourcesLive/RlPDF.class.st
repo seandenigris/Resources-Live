@@ -15,7 +15,7 @@ Class {
 { #category : #accessing }
 RlPDF class >> exampleReceipt [
 	<gtExample>
-	^ self on: BaselineOfResourcesLive exampleSupportFolder / 'Receipt_cash.pdf'
+	^ self on: self exampleSupportFolder / 'Receipt_cash.pdf'
 ]
 
 { #category : #'file types' }

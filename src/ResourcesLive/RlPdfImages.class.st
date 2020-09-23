@@ -26,7 +26,7 @@ RlPdfImages class >> binary [
 RlPdfImages class >> convert: inputFile to: outputRoot [
 
 	^ self new
-		inputFile: inputFile;
+		input: inputFile;
 		outputRoot: outputRoot;
 		run;
 		images
@@ -91,14 +91,14 @@ RlPdfImages >> images [
 ]
 
 { #category : #accessing }
-RlPdfImages >> inputFile [
-	^ inputFile
+RlPdfImages >> input: convertibleToFile [
+	"convertibleToFile - should respond to #asFileReference"
+	inputFile := convertibleToFile
 ]
 
 { #category : #accessing }
-RlPdfImages >> inputFile: convertibleToFile [
-	"convertibleToFile - should respond to #asFileReference"
-	inputFile := convertibleToFile
+RlPdfImages >> inputFile [
+	^ inputFile
 ]
 
 { #category : #accessing }

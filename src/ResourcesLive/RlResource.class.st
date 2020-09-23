@@ -17,12 +17,17 @@ Class {
 		'importTimestamp',
 		'metadata'
 	],
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #'as yet unclassified' }
 RlResource class >> allFileExtensions [
 	^ self subclasses flatCollect: [ :klass | klass fileExtensions ]
+]
+
+{ #category : #accessing }
+RlResource class >> exampleSupportFolder [
+	^ BaselineOfResourcesLive exampleSupportFolder
 ]
 
 { #category : #'file types' }

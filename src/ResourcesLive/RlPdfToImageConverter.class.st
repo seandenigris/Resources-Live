@@ -14,7 +14,7 @@ Class {
 { #category : #converting }
 RlPdfToImageConverter class >> convert: inputFile to: outputFile [
 	self new
-		inputFile: inputFile;
+		input: inputFile;
 		outputFile: outputFile;
 		convert
 ]
@@ -73,13 +73,13 @@ RlPdfToImageConverter >> gtCLIViewFor: aView [
 ]
 
 { #category : #accessing }
-RlPdfToImageConverter >> inputFile [
-	^ inputFile
+RlPdfToImageConverter >> input: anObject [
+	inputFile := anObject
 ]
 
 { #category : #accessing }
-RlPdfToImageConverter >> inputFile: anObject [
-	inputFile := anObject
+RlPdfToImageConverter >> inputFile [
+	^ inputFile
 ]
 
 { #category : #accessing }
