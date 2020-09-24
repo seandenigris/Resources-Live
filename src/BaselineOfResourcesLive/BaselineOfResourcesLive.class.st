@@ -15,11 +15,13 @@ BaselineOfResourcesLive >> baseline: spec [
 
 	spec for: #'common' do: [
 		spec
+			baseline: 'PharoEnhancements' with: [
+				spec repository: 'github://seandenigris/Pharo-Enhancements' ];
 			baseline: 'SimplePersistence' with: [
 				spec repository: 'github://seandenigris/Simple-Persistence' ];
-			baseline: 'PharoEnhancements' with: [
-				spec repository: 'github://seandenigris/Pharo-Enhancements' ].
+			baseline: 'Superuser' with: [
+				spec repository: 'github://seandenigris/Superuser' ].
 		spec package: #ResourcesLive with: [
-				spec requires: #('SimplePersistence' 'PharoEnhancements'). ]. ].
+				spec requires: #('PharoEnhancements' 'SimplePersistence' 'Superuser'). ]. ].
 
 ]
