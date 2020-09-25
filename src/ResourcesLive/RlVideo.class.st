@@ -4,10 +4,19 @@ Class {
 	#category : #'ResourcesLive-Core'
 }
 
-{ #category : #accessing }
+{ #category : #examples }
 RlVideo class >> example [
 	<gtExample>
 	^ (self exampleSupportFolder / 'gt.mov') asRlResource.
+]
+
+{ #category : #examples }
+RlVideo class >> exampleWidth [
+	<gtExample>
+	| width |
+	width := self example width.
+	self assert: width equals: 716.
+	^ width
 ]
 
 { #category : #accessing }
@@ -19,6 +28,7 @@ RlVideo class >> fileExtensions [
 RlVideo >> animatedGifCreator [
 	^ RlConvertVideoToAnimatedGIF new
 		input: self;
+		gifWidth: self width;
 		yourself.
 
 ]
@@ -33,4 +43,18 @@ RlVideo >> ensureSucceeds: aString [
 { #category : #accessing }
 RlVideo >> shell [
 	^ self
+]
+
+{ #category : #accessing }
+RlVideo >> width [
+	| info matches |
+	"Adapted from https://stackoverflow.com/a/7362274"
+	info := SuGenericUnixCommand new
+		template: 'ffmpeg -i "{inputFile}"';
+		argumentSource: { #inputFile -> self file fullName } asDictionary;
+		redirectErrorsToOutput;
+		output.
+	matches := info allRegexMatches: '([1-9]\d*)x(\d+)'.
+	self assert: matches size equals: 1.
+	^ (matches first copyUpTo: $x) asNumber
 ]
