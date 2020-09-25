@@ -11,6 +11,18 @@ The next pain point is where real-life categories aren't cleanly separated. Let'
 
 So we're mixing two concepts. What a digital thing is, and what it represents in the real world. ResourcesLive is an attempt to disentangle these two. It's mission is to handle the first - the digital entity, the file - magically for the user, although the user should be able to customize if they really care. It then models the second concept - what the digital thing represents in the real world - on it's own terms. So an image file might have #edit and #view capabilities, a sound can be #play-ed, etc.
 
+## Installation
+The target platform where it's most likely to work well is latest Pharo/GToolkit.
+
+```smalltalk
+EpMonitor current disable.
+Metacello new
+	baseline: 'ResourcesLive';
+	repository: 'github://seandenigris/ResourcesLive';
+	load.
+EpMonitor current enable
+```
+
 ### Usage
 A typical use case is to have a resource library particular to your project. E.g. a library of mp3 files for a music app. We'll take that example, and assume you're using SimplePersistence to store your data.
 
