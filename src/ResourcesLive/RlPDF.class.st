@@ -28,7 +28,7 @@ RlPDF >> gtFigureFor: aView [
 	<gtView>
 	^ aView pannable
 		title: 'Picture';
-		priority: 10;
+		priority: 1;
 		stencil: [ 
 			| imageElement |
 			imageElement := GtFileUtility imageElementFromFileReference: self imageFile.
@@ -43,8 +43,18 @@ RlPDF >> gtHocrFor: aView [
 	<gtView>
 	^ aView forward
 		title: 'hOCR';
+		priority: 2;
 		object: [ self hocr ];
 		view: #gtLinesFor:
+]
+
+{ #category : #accessing }
+RlPDF >> gtOCRFor: aView [
+	<gtView>
+	^ aView text
+		title: 'OCR';
+		priority: 3;
+		text: [ self ocr ]
 ]
 
 { #category : #accessing }
@@ -66,4 +76,11 @@ RlPDF >> imageFile [
 	outputRoot := Tempfile withPrefix: 'rlpdf_'.
 	images := RlPdfImages convert: self to: outputRoot.
 	^ imageCache := images first
+]
+
+{ #category : #accessing }
+RlPDF >> ocr [
+	"See ${class:Hocr}$ comment"
+
+	^ Tesseract ocr: self.
 ]

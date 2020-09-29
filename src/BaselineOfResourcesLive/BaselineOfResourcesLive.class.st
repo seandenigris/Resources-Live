@@ -20,8 +20,11 @@ BaselineOfResourcesLive >> baseline: spec [
 			baseline: 'SimplePersistence' with: [
 				spec repository: 'github://seandenigris/Simple-Persistence' ];
 			baseline: 'Superuser' with: [
-				spec repository: 'github://seandenigris/Superuser' ].
+				spec repository: 'github://seandenigris/Superuser' ];
+			baseline: 'Tesseract' with: [
+				spec
+					repository: 'github://seandenigris/Tesseract-St' ].
 		spec package: #ResourcesLive with: [
-				spec requires: #('PharoEnhancements' 'SimplePersistence' 'Superuser'). ]. ].
+				spec requires: #('PharoEnhancements' 'SimplePersistence' 'Superuser' 'Tesseract'). ]. ].
 
 ]
