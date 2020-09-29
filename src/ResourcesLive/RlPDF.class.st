@@ -39,10 +39,19 @@ RlPDF >> gtFigureFor: aView [
 ]
 
 { #category : #accessing }
+RlPDF >> gtHocrFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'hOCR';
+		object: [ self hocr ];
+		view: #gtLinesFor:
+]
+
+{ #category : #accessing }
 RlPDF >> hocr [
 	"See ${class:Hocr}$ comment"
 
-	^ hocr ifNil: [ hocr := Tesseract hocr: self ].
+	^ Tesseract hocr: self.
 ]
 
 { #category : #accessing }
