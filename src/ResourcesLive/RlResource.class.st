@@ -25,6 +25,11 @@ RlResource class >> allFileExtensions [
 	^ self subclasses flatCollect: [ :klass | klass fileExtensions ]
 ]
 
+{ #category : #testing }
+RlResource class >> doesSpecificallyHandle: file [
+	^ self allSubclasses anySatisfy: [ :cls | cls isClassFor: file ]
+]
+
 { #category : #accessing }
 RlResource class >> exampleSupportFolder [
 	^ BaselineOfResourcesLive exampleSupportFolder
@@ -33,6 +38,11 @@ RlResource class >> exampleSupportFolder [
 { #category : #'file types' }
 RlResource class >> fileExtensions [
 	self subclassResponsibility
+]
+
+{ #category : #testing }
+RlResource class >> isClassFor: file [
+	^ self fileExtensions includes: file extension
 ]
 
 { #category : #'as yet unclassified' }
@@ -54,7 +64,7 @@ RlResource class >> newClass: aSymbol forExtensions: aCollection [
 RlResource class >> on: file [
 	| class |
 	class := self allSubclasses
-		detect: [ :e | e fileExtensions includes: file extension ]
+		detect: [ :e | e isClassFor: file ]
 		ifNone: [ self ].
 	^ class new
 		file: file;
