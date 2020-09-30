@@ -61,7 +61,7 @@ RlPDF >> gtOCRFor: aView [
 RlPDF >> hocr [
 	"See ${class:Hocr}$ comment"
 
-	^ Tesseract hocr: self.
+	^ Smalltalk tools ocr hocr: self.
 ]
 
 { #category : #accessing }
@@ -80,7 +80,5 @@ RlPDF >> imageFile [
 
 { #category : #accessing }
 RlPDF >> ocr [
-	"See ${class:Hocr}$ comment"
-
-	^ Tesseract ocr: self.
+	^ Smalltalk tools ocr ocr: self.
 ]
