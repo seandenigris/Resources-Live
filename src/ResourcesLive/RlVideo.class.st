@@ -34,18 +34,6 @@ RlVideo >> animatedGifCreator [
 ]
 
 { #category : #accessing }
-RlVideo >> ensureSucceeds: aString [
-	| exitStatus |
-	exitStatus := LibC system: aString.
-	self assert: exitStatus equals: 0
-]
-
-{ #category : #accessing }
-RlVideo >> shell [
-	^ self
-]
-
-{ #category : #accessing }
 RlVideo >> width [
 	| info matches |
 	"Adapted from https://stackoverflow.com/a/7362274"
