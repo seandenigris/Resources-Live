@@ -48,13 +48,7 @@ RlPDF >> gtFigureFor: aView [
 	^ aView pannable
 		title: 'Picture';
 		priority: 1;
-		stencil: [ 
-			| imageElement |
-			imageElement := GtFileUtility imageElementFromFileReference: self imageFile.
-			imageElement forceLayout.
-		imageElement 
-			constraintsDo: [:c | c horizontal exact: imageElement width. c vertical exact: imageElement height ];
-			yourself ]
+		stencil: [ self asElement ]
 ]
 
 { #category : #accessing }
