@@ -11,12 +11,13 @@ RlVideo class >> example [
 ]
 
 { #category : #examples }
-RlVideo class >> exampleWidth [
+RlVideo class >> exampleExtent [
 	<gtExample>
-	| width |
-	width := self example width.
-	self assert: width equals: 716.
-	^ width
+	| extent |
+	extent := self example extent.
+	self assert: extent x equals: 716.
+	self assert: extent y equals: 720.
+	^ extent
 ]
 
 { #category : #accessing }
@@ -28,21 +29,14 @@ RlVideo class >> fileExtensions [
 RlVideo >> animatedGifCreator [
 	^ RlConvertVideoToAnimatedGIF new
 		input: self;
-		gifWidth: self width;
+		gifWidth: self extent x;
 		yourself.
 
 ]
 
 { #category : #accessing }
-RlVideo >> width [
-	| info matches |
-	"Adapted from https://stackoverflow.com/a/7362274"
-	info := SuGenericUnixCommand new
-		template: 'ffmpeg -i "{inputFile}"';
-		argumentSource: { #inputFile -> self file fullName } asDictionary;
-		redirectErrorsToOutput;
-		output.
-	matches := info allRegexMatches: '([1-9]\d*)x(\d+)'.
-	self assert: matches size equals: 1.
-	^ (matches first copyUpTo: $x) asNumber
+RlVideo >> extent [
+	^ RlVisualDimensioner new
+		input: self;
+		extent
 ]
