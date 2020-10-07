@@ -36,5 +36,22 @@ BaselineOfResourcesLive >> baseline: spec [
 				spec
 					requires: #('Magritte' 'NeoCSV' "for RlCsvFile" 'PharoEnhancements' 'SimplePersistence' 'Soup' "for RlHTML" 'Superuser' 'Tempfile');
 					includes: #('Tesseract'). ]. ].
+	spec for: #'GToolkit' do: [	
+		spec 
+			package: #'ResourcesLive-GToolkit' with: [
+				spec requires: #('ResourcesLive'). ];
+			package: #ResourcesLive with: [
+				spec includes: #('ResourcesLive-GToolkit') ]. ].
+]
 
+{ #category : #accessing }
+BaselineOfResourcesLive >> customProjectAttributes [
+	^ self isGTImage
+			ifFalse: [ #() ]
+			ifTrue: [ #(GToolkit) ]
+]
+
+{ #category : #testing }
+BaselineOfResourcesLive >> isGTImage [
+	^ RPackageOrganizer default packageNames anySatisfy: [ :pn | pn beginsWith: 'GToolkit-' ]
 ]

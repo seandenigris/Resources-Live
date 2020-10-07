@@ -23,32 +23,13 @@ RlPDF class >> fileExtensions [
 	^ #('pdf')
 ]
 
-{ #category : #Bloc }
-RlPDF >> asElement [
-	| container image |
-	container := BlElement new
-		size: self imageFile asRlResource extent;
-		yourself.
-	image := GtFileUtility imageElementFromFileReference: self imageFile.
-	container addChild: image.
-	^ container.
-]
-
-{ #category : #Bloc }
-RlPDF >> asElementHighlightingWords [
-	| result |
-	result := self asElement.
-	self hocr words do: [ :w | result addChild: w asElement ].
-	^ result
-]
-
 { #category : #accessing }
 RlPDF >> gtFigureFor: aView [
 	<gtView>
-	^ aView pannable
+	^ aView pannable"explicit"
 		title: 'Picture';
 		priority: 1;
-		stencil: [ self asElement ]
+		stencil: [ self asElementHighlightingWords ]
 ]
 
 { #category : #accessing }

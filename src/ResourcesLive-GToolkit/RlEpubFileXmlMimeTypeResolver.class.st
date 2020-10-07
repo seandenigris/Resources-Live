@@ -1,7 +1,7 @@
 Class {
 	#name : #RlEpubFileXmlMimeTypeResolver,
 	#superclass : #GtFileMimeTypeResolver,
-	#category : #'ResourcesLive-EPUB'
+	#category : #'ResourcesLive-GToolkit'
 }
 
 { #category : #public }
