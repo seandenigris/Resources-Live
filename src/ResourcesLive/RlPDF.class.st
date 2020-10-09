@@ -26,10 +26,10 @@ RlPDF class >> fileExtensions [
 { #category : #accessing }
 RlPDF >> gtFigureFor: aView [
 	<gtView>
-	^ aView pannable"explicit"
+	^ aView pannable
 		title: 'Picture';
 		priority: 1;
-		stencil: [ self asElementHighlightingWords ]
+		stencil: [ self asElement ]
 ]
 
 { #category : #accessing }
