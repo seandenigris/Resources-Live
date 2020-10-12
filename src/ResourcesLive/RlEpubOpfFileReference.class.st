@@ -63,9 +63,9 @@ RlEpubOpfFileReference >> manifest [
 	'It's the source of ID's to everything else... A list of all the files included in the package... Every file in the ePub must be listed in the manifest.' - per http://apex.infogridpacific.com/df/ePubSpineOrder-packaging10.html
 	
 	Reference: http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#TOC2.3"
-	| authorNodes |
-	authorNodes := (XMLDOMParser parse: self contents) xpath: '//manifest[1]/*'. "XPath adapted from https://stackoverflow.com/a/44157593/424245"
-	^ authorNodes asArray
+	| nodes |
+	nodes := (XMLDOMParser parse: self contents) xpath: '//manifest[1]/*'. "XPath adapted from https://stackoverflow.com/a/44157593/424245"
+	^ nodes asArray
 ]
 
 { #category : #accessing }
@@ -83,10 +83,51 @@ RlEpubOpfFileReference >> publisher [
 ]
 
 { #category : #accessing }
+RlEpubOpfFileReference >> spine [
+	"
+	'' - per http://apex.infogridpacific.com/df/ePubSpineOrder-packaging10.html
+	
+	Reference: http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#???"
+
+	| nodes |
+	nodes := self xml xpath: '//spine[1]/*'.	"XPath adapted from https://stackoverflow.com/a/44157593/424245"
+	^ nodes collect: [ :n | 
+		| manifestItem |
+		manifestItem := self manifest detect: [ :i | (i attributeAt: #id) = (n attributeAt: #idref) ].
+		self parent / (manifestItem attributeAt: #href) ] as: Array
+]
+
+{ #category : #accessing }
 RlEpubOpfFileReference >> title [
 	| matchingNodes |
 	"Per http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#TOC2.2.1 :
 		Must include at least one title element. Can implement algorithm to determine most appropriate, or consider either the first or all elements most appropriate"
 	matchingNodes := (XMLDOMParser parse: self contents) // 'dc:title'.
 	^ (matchingNodes collect: [ :n | n stringValue ]) first
+]
+
+{ #category : #accessing }
+RlEpubOpfFileReference >> viewSpineFile: aFileReference [
+	| someXml nodes doc |
+	someXml := XMLDOMParser parse: aFileReference contents.
+	nodes := someXml xpath: '//body[1]/div/*'.
+	doc := PRDocument new
+		add:
+			(PRHeader
+				withAll: {(PRText content: nodes first stringValue)}
+				level: 2);
+		add:
+			(PRHeader
+				withAll: {(PRText content: nodes second stringValue)}
+				level: 2);
+		yourself.
+	(nodes allButFirst: 2)
+		do:
+			[ :p | doc add: (PRParagraph new add: (PRText content: p stringValue)) ].
+	^ GtDocumenter forText: (PRPillarWriter write: doc)
+]
+
+{ #category : #accessing }
+RlEpubOpfFileReference >> xml [
+	^ XMLDOMParser parse: self contents
 ]
