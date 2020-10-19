@@ -17,6 +17,28 @@ RlhOCRElement >> addImage [
 ]
 
 { #category : #accessing }
+RlhOCRElement >> addShortcuts [
+	| shortcutFields |
+	shortcutFields := self client magritteDescription children select: [ :e | e hasProperty: #shortcut ].
+	shortcutFields do: [ :desc | 
+		| keySelector key keyCombo shortcut |
+		keySelector := desc propertyAt: #shortcut.
+		key := BlKeyboardKey perform: keySelector.
+		keyCombo := BlKeyCombination builder
+			key: key;
+			build.
+		shortcut := BlShortcut new
+			combination: keyCombo;
+			action: [ :anEvent :aShortcut | 
+				| selectedText |
+				selectedText := (self selection first userData at: #node) string.
+				self client
+					write: (desc fromString: selectedText) 
+					using: desc. ].
+		self addShortcut: shortcut ]
+]
+
+{ #category : #accessing }
 RlhOCRElement >> add_hOCR [
 	self client hocr words do: [ :w | 
 		| wordElement |
@@ -49,7 +71,18 @@ RlhOCRElement >> client: anObject [
 	self size: client imageFile asRlResource extent.
 	self addImage.
 	self add_hOCR.
+	self addShortcuts.
 	^ self
+]
+
+{ #category : #accessing }
+RlhOCRElement >> initialize [
+	super initialize.
+	
+	"Get keyboard focus for shortcuts - now and on future clicks"
+	self 
+		when: BlClickEvent do: [ self requestFocus ];
+		requestFocus.
 ]
 
 { #category : #accessing }
