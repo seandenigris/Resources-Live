@@ -30,10 +30,8 @@ RlhOCRElement >> addShortcuts [
 		shortcut := BlShortcut new
 			combination: keyCombo;
 			action: [ :anEvent :aShortcut | 
-				| selectedText |
-				selectedText := (self selection first userData at: #node) string.
 				self client
-					write: (desc fromString: selectedText) 
+					write: (desc fromString: self selectedText) 
 					using: desc. ].
 		self addShortcut: shortcut ]
 ]
@@ -83,6 +81,11 @@ RlhOCRElement >> initialize [
 	self 
 		when: BlClickEvent do: [ self requestFocus ];
 		requestFocus.
+]
+
+{ #category : #accessing }
+RlhOCRElement >> selectedText [
+	^ (self selection first userData at: #node) string
 ]
 
 { #category : #accessing }
