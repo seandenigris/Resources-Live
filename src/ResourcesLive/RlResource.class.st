@@ -123,6 +123,11 @@ RlResource >> descriptionShowInFinder [
 		yourself
 ]
 
+{ #category : #accessing }
+RlResource >> displayName [
+	^ (self className allButFirst: 2) piecesCutWhereCamelCase joinUsing: Character space
+]
+
 { #category : #'as yet unclassified' }
 RlResource >> ensureFileCopiedInto: folder asBase: base [
 	| reference |

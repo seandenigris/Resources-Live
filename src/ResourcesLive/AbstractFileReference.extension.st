@@ -8,10 +8,13 @@ AbstractFileReference >> asRlResource [
 { #category : #'*ResourcesLive' }
 AbstractFileReference >> gtRlResourceFor: aView inContext: aContext [
 	<gtView>
+	| resource |
 	(RlResource doesSpecificallyHandle: self)
 		ifFalse: [ ^ aView empty ].
+		
+	resource := self asRlResource.
 	^ aView composite
-		title: 'Resource';
+		title: resource displayName;
 		priority: 1;
-		views: (self asRlResource gtViewsInContext: aContext)
+		views: (resource gtViewsInContext: aContext)
 ]
