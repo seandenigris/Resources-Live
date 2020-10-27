@@ -7,7 +7,7 @@ Class {
 { #category : #testing }
 RlImage class >> isClassFor: file [
 	"I'm abstract"
-	^ self ~= RlImage
+	^ self ~= RlImage and: [ super isClassFor: file ]
 ]
 
 { #category : #accessing }
