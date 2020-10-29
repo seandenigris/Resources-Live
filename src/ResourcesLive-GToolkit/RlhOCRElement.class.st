@@ -29,10 +29,8 @@ RlhOCRElement >> addShortcuts [
 			build.
 		shortcut := BlShortcut new
 			combination: keyCombo;
-			action: [ :anEvent :aShortcut | 
-				self client
-					write: (desc fromString: self selectedText) 
-					using: desc. ].
+			action: [ :anEvent :aShortcut | self applySelectedTextTo: desc ];
+			yourself.
 		self addShortcut: shortcut ]
 ]
 
@@ -55,6 +53,18 @@ RlhOCRElement >> add_hOCR [
 			yourself.
 			self addChild: wordElement ].
 	self addEventHandler: self selectionHandler
+]
+
+{ #category : #accessing }
+RlhOCRElement >> applySelectedTextTo: desc [
+	"Adaptation of MADescription>>#validate:, which is the main access point to validation i.e. all roads (e.g. mementos, forms) ultimately end up here. We're partially reimplementing instead of sending it ourselves because Magritte does not seem to really be set up to interact with element descriptions individually, but through their containers. In this case, the container supplies the proper validator for the domain object"
+
+	[ self client magritteDescription validator
+		on: (desc fromString: self selectedText)
+		description: desc ]
+			on: MAError
+			do: [ Halt now. "Try to OCR again based on desc" ].
+	self client write: (desc fromString: self selectedText) using: desc
 ]
 
 { #category : #accessing }
