@@ -58,13 +58,22 @@ RlhOCRElement >> add_hOCR [
 { #category : #accessing }
 RlhOCRElement >> applySelectedTextTo: desc [
 	"Adaptation of MADescription>>#validate:, which is the main access point to validation i.e. all roads (e.g. mementos, forms) ultimately end up here. We're partially reimplementing instead of sending it ourselves because Magritte does not seem to really be set up to interact with element descriptions individually, but through their containers. In this case, the container supplies the proper validator for the domain object"
-
-	[ self client magritteDescription validator
-		on: (desc fromString: self selectedText)
-		description: desc ]
+	| value |
+	[ 
+		value := desc fromString: self selectedText.
+		self client magritteDescription validator
+			on: value
+			description: desc ]
 			on: MAError
-			do: [ Halt now. "Try to OCR again based on desc" ].
-	self client write: (desc fromString: self selectedText) using: desc
+			do: [ 
+				| correctedHocr correctedWord |
+				correctedHocr := Smalltalk tools ocr newHocr
+					characterWhitelist: (desc propertyAt: #whitelist);
+					client: self client;
+					run.
+				correctedWord := correctedHocr words detect: [ :w | w boundingBox = (self selection first userData at: #node) boundingBox ]. 
+				value := desc fromString: correctedWord string ].
+	self client write: value using: desc
 ]
 
 { #category : #accessing }

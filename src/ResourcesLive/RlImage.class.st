@@ -16,3 +16,17 @@ RlImage >> extent [
 			input: self;
 			extent
 ]
+
+{ #category : #accessing }
+RlImage >> gtFigureFor: aView [
+	<gtView>
+	^ aView pannable
+		title: 'Picture';
+		priority: 1;
+		stencil: [ 
+			| image |
+			image := GtFileUtility imageElementFromFileReference: self file.
+			BlElement new
+				addChild: image;
+				yourself ]
+]
