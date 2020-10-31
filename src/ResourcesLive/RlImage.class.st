@@ -13,7 +13,7 @@ RlImage class >> isClassFor: file [
 { #category : #accessing }
 RlImage >> extent [
 	^ Su_ffmpeg new
-		argumentSource: { #inputFile -> self } asDictionary;
+		argumentSource: { #inputFile -> self file } asDictionary;
 		extent
 ]
 

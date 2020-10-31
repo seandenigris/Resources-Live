@@ -60,12 +60,14 @@ RlhOCRElement >> applySelectedTextTo: desc [
 	"Adaptation of MADescription>>#validate:, which is the main access point to validation i.e. all roads (e.g. mementos, forms) ultimately end up here. We're partially reimplementing instead of sending it ourselves because Magritte does not seem to really be set up to interact with element descriptions individually, but through their containers. In this case, the container supplies the proper validator for the domain object"
 
 	| value |
-	[ value := desc fromString: self selectedText.
-	self client magritteDescription validator on: value description: desc ]
+	[ 
+		value := desc fromString: self selectedText.
+		self client magritteDescription validator on: value description: desc
+	]
 		on: MAError
-		do: [ | inputFile ocr |
-			inputFile := Tempfile
-				withSuffix: self client tesseractInputFile extension.
+		do: [ 
+			| inputFile ocr |
+			inputFile := Tempfile withSuffix: self client tesseractInputFile extension.
 			SuImageMagick
 				crop: self client tesseractInputFile
 				to: (self selection first userData at: #node) boundingBox
