@@ -12,9 +12,9 @@ RlImage class >> isClassFor: file [
 
 { #category : #accessing }
 RlImage >> extent [
-	^ RlVisualDimensioner new
-			input: self;
-			extent
+	^ Su_ffmpeg new
+		argumentSource: { #inputFile -> self } asDictionary;
+		extent
 ]
 
 { #category : #accessing }

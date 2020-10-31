@@ -58,21 +58,25 @@ RlhOCRElement >> add_hOCR [
 { #category : #accessing }
 RlhOCRElement >> applySelectedTextTo: desc [
 	"Adaptation of MADescription>>#validate:, which is the main access point to validation i.e. all roads (e.g. mementos, forms) ultimately end up here. We're partially reimplementing instead of sending it ourselves because Magritte does not seem to really be set up to interact with element descriptions individually, but through their containers. In this case, the container supplies the proper validator for the domain object"
+
 	| value |
-	[ 
-		value := desc fromString: self selectedText.
-		self client magritteDescription validator
-			on: value
-			description: desc ]
-			on: MAError
-			do: [ 
-				| correctedHocr correctedWord |
-				correctedHocr := Smalltalk tools ocr newHocr
-					characterWhitelist: (desc propertyAt: #whitelist);
-					client: self client;
-					run.
-				correctedWord := correctedHocr words detect: [ :w | w boundingBox = (self selection first userData at: #node) boundingBox ]. 
-				value := desc fromString: correctedWord string ].
+	[ value := desc fromString: self selectedText.
+	self client magritteDescription validator on: value description: desc ]
+		on: MAError
+		do: [ | inputFile ocr |
+			inputFile := Tempfile
+				withSuffix: self client tesseractInputFile extension.
+			SuImageMagick
+				crop: self client tesseractInputFile
+				to: (self selection first userData at: #node) boundingBox
+				as: inputFile.
+			ocr := Smalltalk tools ocr new
+				isHocr: false;
+				segmentationMode: TeSegmentationMode word;
+				client: inputFile.
+			desc propertyAt: #whitelist ifPresent: [ :wl | ocr characterWhitelist: wl ].
+			value := desc fromString: ocr run trim ].
+	Halt now.
 	self client write: value using: desc
 ]
 
