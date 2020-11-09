@@ -8,12 +8,24 @@ Class {
 }
 
 { #category : #accessing }
+RlInPlaceImportStrategy class >> example [
+	<gtExample>
+	| file library |
+	file := Tempfile new.
+	library := RlResourceLibrary new.
+	library import
+		resourceable: file;
+		strategy: RlInPlaceImportStrategy;
+		execute.
+	self assert: library resources atRandom file asFileReference equals: file asFileReference
+	
+]
+
+{ #category : #accessing }
 RlInPlaceImportStrategy class >> importFor: aClient [
-	| resource |
-	client := aClient.
-	resource := client resourceable asRlResource.
-	self prepareResource: resource.
-	^ client library resources add: resource
+	^ self new
+		client: aClient;
+		import
 ]
 
 { #category : #accessing }
