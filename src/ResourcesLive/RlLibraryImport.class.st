@@ -11,10 +11,10 @@ Class {
 	#instVars : [
 		'library',
 		'location',
-		'shouldMoveVsCopy',
-		'resourceable'
+		'resourceable',
+		'strategy'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : #'ResourcesLive-Importing'
 }
 
 { #category : #private }
@@ -25,7 +25,7 @@ RlLibraryImport >> asUrl [
 
 { #category : #private }
 RlLibraryImport >> execute [
-	^ self library import: self resourceable into: self location moving: self shouldMoveVsCopy
+	^ self strategy importFor: self.
 ]
 
 { #category : #accessing }
@@ -68,7 +68,7 @@ RlLibraryImport >> resourceable: convertibleToResource [
 	resourceable := convertibleToResource
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'api - polymorphism' }
 RlLibraryImport >> rlImportInto: aRlResourceLibrary [
 	"See method comment in Object (same message)"
 	^ self
@@ -77,11 +77,11 @@ RlLibraryImport >> rlImportInto: aRlResourceLibrary [
 ]
 
 { #category : #accessing }
-RlLibraryImport >> shouldMoveVsCopy [
-	^ shouldMoveVsCopy ifNil: [ self library doesMoveByDefault ]
+RlLibraryImport >> strategy [
+	^ strategy ifNil: [ self library defaultImportStrategy ]
 ]
 
 { #category : #accessing }
-RlLibraryImport >> shouldMoveVsCopy: anObject [
-	shouldMoveVsCopy := anObject
+RlLibraryImport >> strategy: anObject [
+	strategy := anObject
 ]

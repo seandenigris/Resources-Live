@@ -175,6 +175,13 @@ RlResourceLibrary >> checkForOrphans [
 	"
 ]
 
+{ #category : #accessing }
+RlResourceLibrary >> clean [
+	self shouldBeImplemented.
+	"This is a stub for future development. The idea here is that there could be different rules or policies to save disk space e.g. compress certain files/types, move to external storage, etc. Here are a list of possible avenues:
+		- Deprecated Launcher templates. The only obvious use case for having these around, beyond one or two for each platform/major-version, is to chase bugs i.e. search through successive prior versions until you find one without a bug. I can't think of a time when this was urgent, and in fact it happens rarely enough that I can't even remember the last time I had to do this. Even then, one *could probably* just download them again. Also, the older they are, the less relevant e.g. it might make sense to have a bunch for the actively developed Pharo version, but P8? P7?..."
+]
+
 { #category : #deleting }
 RlResourceLibrary >> delete: resource [
 	self remove: resource.
@@ -242,40 +249,26 @@ RlResourceLibrary >> folder [
 ]
 
 { #category : #importing }
+RlResourceLibrary >> import [
+	"Return a command for importing into this library"
+
+	^ RlLibraryImport new
+		library: self;
+		yourself
+]
+
+{ #category : #convencience }
 RlResourceLibrary >> import: anObject [
 	"For the simplest case, when you don't care where the file ends up living on disk, you can just pass a file reference. For more control, pass a command object; RlLibraryImport is built in (see class comment) or define your own"
-
+	self flag: 'Now that we have #import that returns a command object, not sure we need this to take anything other than a resource as an argument, but maybe it''s important to allow the resource to customize its own import?'.
 	^ anObject rlImportInto: self
 ]
 
 { #category : #importing }
-RlResourceLibrary >> import: convertibleToResource into: location moving: shouldMove [
-	"Either move or copy the resource into the proper location"
+RlResourceLibrary >> importAll: aCollection [
+	"See #import: comment"
 
-	| destinationFile sourceFile resource |
-	resource := convertibleToResource asRlResource.
-	sourceFile := resource file.
-	destinationFile := self locationFor: sourceFile basename in: location.
-	self assert: destinationFile exists not.
-	destinationFile parent ensureCreateDirectory.
-	shouldMove
-		ifTrue: [	 sourceFile moveTo: destinationFile ]
-		ifFalse: [ sourceFile copyTo: destinationFile ].
-	resource
-		file: destinationFile;
-		originalFile: sourceFile asFileReference;
-		importTimestamp: (DateAndTime now - 1 day) translateToUTC.
-	^ resources add: resource.
-]
-
-{ #category : #importing }
-RlResourceLibrary >> importInPlace: convertibleToResource [
-	"Do not move or copy the file"
-
-	| resource |
-	resource := convertibleToResource asRlResource.
-	resource importTimestamp: DateAndTime rlImportTimestamp.
-	^ resources add: resource.
+	aCollection do: [ :e | self import: e ]
 ]
 
 { #category : #accessing }

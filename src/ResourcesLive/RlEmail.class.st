@@ -52,7 +52,11 @@ RlEmail class >> importDownloadFolderNamed: folderName [
 			target := targetFolder / e file basename.
 			e file verifiedMoveTo: target.
 			e file: target ].
-	emails do: [ :e | RlResourceLibrary uniqueInstance importInPlace: e ].
+	emails do: [ :e | 
+		RlResourceLibrary uniqueInstance import
+	resourceable: e;
+	strategy: RlInPlaceImportStrategy;
+	execute ].
 	^ RlResourceLibrary uniqueInstance resources select: [ :e | e metadata includes: folderName ]
 ]
 

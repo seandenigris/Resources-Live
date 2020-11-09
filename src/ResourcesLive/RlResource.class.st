@@ -20,7 +20,7 @@ Class {
 	#category : #'ResourcesLive-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RlResource class >> allFileExtensions [
 	^ self subclasses flatCollect: [ :klass | klass fileExtensions ]
 ]
@@ -42,10 +42,12 @@ RlResource class >> fileExtensions [
 
 { #category : #testing }
 RlResource class >> isClassFor: file [
-	^ self fileExtensions includes: file extension
+	^ (self fileExtensions includes: file extension) and: [ 
+		"This is inefficient, but not sure how to iterate subclasses depth-first. Aske don Discord - Pharo general channel 11/5/2020"
+		self allSubclasses noneSatisfy: [ :sc | sc isClassFor: file ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'code generation' }
 RlResource class >> newClass: aSymbol forExtensions: aCollection [
 	"self newClass: #RlCsvFile forExtensions: #('csv')"
 	| newClass fileExtensionsMethod targetPackage |
