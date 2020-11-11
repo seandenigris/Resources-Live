@@ -25,11 +25,12 @@ RlEPUB class >> fileExtensions [
 ]
 
 { #category : #views }
-RlEPUB >> gtFileFor: aView inContext: aContext [
+RlEPUB >> gtArchiveFor: aView [
 	<gtView>
-	^ aView composite
-		title: 'File';
-		views: (self file gtViewsInContext: aContext)
+	^ aView forward
+		title: 'Archive';
+		object: [ self file ];
+		view: #gtInspectorZipItemsIn:
 		
 ]
 
