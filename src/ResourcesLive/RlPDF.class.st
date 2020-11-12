@@ -65,11 +65,15 @@ RlPDF >> imageCache [
 
 { #category : #accessing }
 RlPDF >> imageFile [
-	| outputRoot images |
+	| outputFile images |
 	imageCache ifNotNil: [ ^ imageCache ].
-	outputRoot := Tempfile withPrefix: 'rlpdf_'.
-	images := RlPdfImages convert: self to: outputRoot.
-	^ imageCache := images first
+	outputFile := Tempfile withPrefix: 'rlpdf_' andSuffix: '.jpg'.
+	SuImageMagick convertForOCR
+		argumentAt: #inputFile put: self file;
+		argumentAt: #outputFile put: outputFile;
+		argumentAt: #pageRange put: (1 to: 1);
+		run.
+	^ imageCache := outputFile
 ]
 
 { #category : #accessing }

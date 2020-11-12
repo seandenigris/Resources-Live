@@ -26,7 +26,7 @@ RlImage >> gtFigureFor: aView [
 		stencil: [ 
 			| image |
 			image := GtFileUtility imageElementFromFileReference: self file.
-			BlElement new
-				addChild: image;
+			image
+				size: self extent;
 				yourself ]
 ]
