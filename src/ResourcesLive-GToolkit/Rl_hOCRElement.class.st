@@ -1,5 +1,5 @@
 Class {
-	#name : #RlhOCRElement,
+	#name : #'Rl_hOCRElement',
 	#superclass : #BlElement,
 	#instVars : [
 		'selectionHandler',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #accessing }
-RlhOCRElement >> addImage [
+Rl_hOCRElement >> addImage [
 	| image |
 	image := GtFileUtility
 		imageElementFromFileReference: self client imageFile.
@@ -17,7 +17,7 @@ RlhOCRElement >> addImage [
 ]
 
 { #category : #accessing }
-RlhOCRElement >> addShortcuts [
+Rl_hOCRElement >> addShortcuts [
 	| shortcutFields |
 	shortcutFields := self client magritteDescription children select: [ :e | e hasProperty: #shortcut ].
 	shortcutFields do: [ :desc | 
@@ -35,7 +35,7 @@ RlhOCRElement >> addShortcuts [
 ]
 
 { #category : #accessing }
-RlhOCRElement >> add_hOCR [
+Rl_hOCRElement >> add_hOCR [
 	self client hocr words do: [ :w | 
 		| wordElement |
 		wordElement := w asElement
@@ -56,7 +56,7 @@ RlhOCRElement >> add_hOCR [
 ]
 
 { #category : #accessing }
-RlhOCRElement >> applySelectedTextTo: desc [
+Rl_hOCRElement >> applySelectedTextTo: desc [
 	"Adaptation of MADescription>>#validate:, which is the main access point to validation i.e. all roads (e.g. mementos, forms) ultimately end up here. We're partially reimplementing instead of sending it ourselves because Magritte does not seem to really be set up to interact with element descriptions individually, but through their containers. In this case, the container supplies the proper validator for the domain object"
 
 	| value |
@@ -83,23 +83,26 @@ RlhOCRElement >> applySelectedTextTo: desc [
 ]
 
 { #category : #accessing }
-RlhOCRElement >> client [
+Rl_hOCRElement >> client [
 	^ client
 ]
 
 { #category : #accessing }
-RlhOCRElement >> client: anObject [
+Rl_hOCRElement >> client: anObject [
 	client := anObject.
 	self removeChildren.
 	self size: client imageFile asRlResource extent.
 	self addImage.
-	self add_hOCR.
+	self client wants_hOCR ifTrue: [ self add_hOCR ]. "If the client doesn't need OCR, don't waste time on it [1]"
 	self addShortcuts.
 	^ self
+	
+	"
+	1. The motivation was a credit card statement for which the OCR was useless - containing hundreds of tiny 'words' that were not actual words - and did nothing but slow the system down significantly"
 ]
 
 { #category : #accessing }
-RlhOCRElement >> initialize [
+Rl_hOCRElement >> initialize [
 	super initialize.
 	
 	"Get keyboard focus for shortcuts - now and on future clicks"
@@ -109,16 +112,16 @@ RlhOCRElement >> initialize [
 ]
 
 { #category : #accessing }
-RlhOCRElement >> selectedText [
+Rl_hOCRElement >> selectedText [
 	^ (self selection first userData at: #node) string
 ]
 
 { #category : #accessing }
-RlhOCRElement >> selection [
+Rl_hOCRElement >> selection [
 	^ self selectionHandler selected_hOCR
 ]
 
 { #category : #accessing }
-RlhOCRElement >> selectionHandler [
+Rl_hOCRElement >> selectionHandler [
 	^ selectionHandler ifNil: [ selectionHandler := RlBlOcrSelectionHandler new ]
 ]

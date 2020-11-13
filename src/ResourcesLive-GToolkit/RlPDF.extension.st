@@ -2,7 +2,7 @@ Extension { #name : #RlPDF }
 
 { #category : #'*ResourcesLive-GToolkit' }
 RlPDF >> asElement [
-	^ RlhOCRElement new
+	^ Rl_hOCRElement new
 		client: self;
 		yourself.
 ]

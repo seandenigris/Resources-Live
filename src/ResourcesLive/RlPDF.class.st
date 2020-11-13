@@ -80,3 +80,8 @@ RlPDF >> imageFile [
 RlPDF >> ocr [
 	^ Smalltalk tools ocr ocr: self.
 ]
+
+{ #category : #accessing }
+RlPDF >> wants_hOCR [
+	^ true
+]
