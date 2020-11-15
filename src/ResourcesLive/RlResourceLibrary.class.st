@@ -182,6 +182,11 @@ RlResourceLibrary >> clean [
 		- Deprecated Launcher templates. The only obvious use case for having these around, beyond one or two for each platform/major-version, is to chase bugs i.e. search through successive prior versions until you find one without a bug. I can't think of a time when this was urgent, and in fact it happens rarely enough that I can't even remember the last time I had to do this. Even then, one *could probably* just download them again. Also, the older they are, the less relevant e.g. it might make sense to have a bunch for the actively developed Pharo version, but P8? P7?..."
 ]
 
+{ #category : #accessing }
+RlResourceLibrary >> defaultImportStrategy [
+	^ RlMoveImportStrategy
+]
+
 { #category : #deleting }
 RlResourceLibrary >> delete: resource [
 	self remove: resource.
