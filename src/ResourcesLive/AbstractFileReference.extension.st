@@ -18,3 +18,17 @@ AbstractFileReference >> gtRlResourceFor: aView inContext: aContext [
 		priority: 1;
 		views: (resource gtViewsInContext: aContext)
 ]
+
+{ #category : #'*ResourcesLive' }
+AbstractFileReference >> rlAppend: location [
+
+	| absoluteLocation isFSMagicStringGrenade |
+	"Guard against FS magic"
+	isFSMagicStringGrenade := location isString and: [ #('/') includes: location ].
+	isFSMagicStringGrenade ifTrue: [ ^ self error: 'Appending / to aFileLoctor brings you to the root dir!' ].
+	
+	absoluteLocation := self resolve: location.
+	self assert: ((self contains: absoluteLocation ) or: [ self = absoluteLocation ]).
+	
+	^ absoluteLocation
+]
