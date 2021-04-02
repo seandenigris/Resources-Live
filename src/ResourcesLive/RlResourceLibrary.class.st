@@ -43,7 +43,7 @@ RlResourceLibrary class >> fileReaderServicesForFile: fullName suffix: suffix [
 RlResourceLibrary class >> folder [
 
 	| folder |
-	self flag: 'workaround Pharo bug resolving during ensureCreateDirectory'.
+	self flag: 'workaround Pharo bug resolving during ensureCreateDirectory. Fixed in P9'.
 	folder := ResourcesLiveDB backupDirectoryParent / 'Library'.
 	folder ensureCreateDirectory.
 	^ folder
