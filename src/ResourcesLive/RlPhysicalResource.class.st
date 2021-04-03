@@ -5,7 +5,7 @@ Class {
 		'description',
 		'location'
 	],
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #'file types' }
@@ -63,4 +63,13 @@ RlPhysicalResource >> printOn: aStream [
 		nextPutAll: self description;
 		nextPutAll: ' @ ';
 		nextPutAll: self location
+]
+
+{ #category : #importing }
+RlPhysicalResource >> rlImportInto: aRlResourceLibrary [
+	
+	self importTimestamp: DateAndTime rlImportTimestamp.
+	aRlResourceLibrary resources add: self.
+	
+	"Implmentation note: cobbled together from RlInPlaceImportStrategy>>#import"
 ]
