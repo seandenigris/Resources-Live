@@ -257,15 +257,6 @@ RlResourceLibrary >> folder [
 	^ folder ifNil: [ self class folder ]
 ]
 
-{ #category : #accessing }
-RlResourceLibrary >> gtViewResourcesOn: aView [
-	<gtView>
-	^ aView list
-		title: 'Resources' translated;
-		priority: 1;
-		items: [ self resources ]
-]
-
 { #category : #importing }
 RlResourceLibrary >> import [
 	"Return a command for importing into this library"
