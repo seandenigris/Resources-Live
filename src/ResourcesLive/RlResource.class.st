@@ -30,11 +30,6 @@ RlResource class >> doesSpecificallyHandle: file [
 	^ self allSubclasses anySatisfy: [ :cls | cls isClassFor: file ]
 ]
 
-{ #category : #accessing }
-RlResource class >> exampleSupportFolder [
-	^ BaselineOfResourcesLive exampleSupportFolder
-]
-
 { #category : #'file types' }
 RlResource class >> fileExtensions [
 	self subclassResponsibility
