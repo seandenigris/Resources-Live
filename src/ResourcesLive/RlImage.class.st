@@ -12,7 +12,7 @@ RlImage class >> isClassFor: file [
 
 { #category : #accessing }
 RlImage >> extent [
-	^ Su_ffmpeg new
+	^ SuFfmpeg new
 		argumentAt: #inputFile put: self file;
 		extent
 ]

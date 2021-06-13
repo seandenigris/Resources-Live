@@ -27,7 +27,7 @@ RlVideo class >> fileExtensions [
 
 { #category : #accessing }
 RlVideo >> animatedGifCreator [
-	^ Su_ffmpeg convertingVideoToAnimatedGIF
+	^ SuFfmpeg convertingVideoToAnimatedGIF
 		argumentAt: #inputFile put: self asFileReference;
 		argumentAt: #gifWidth put: self extent x;
 		yourself.
@@ -36,7 +36,7 @@ RlVideo >> animatedGifCreator [
 
 { #category : #accessing }
 RlVideo >> extent [
-	^ Su_ffmpeg new
+	^ SuFfmpeg new
 		argumentAt: #inputFile put: self file;
 		extent
 ]

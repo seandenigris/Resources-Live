@@ -26,7 +26,7 @@ RlMp3 class >> fileExtensions [
 
 { #category : #utilities }
 RlMp3 class >> merger [
-	^ Su_mp3cat new.
+	^ SuMp3cat new.
 	
 	"Implementation note: NB. There is some info online about simply using cat, but that did not work for me. Others have had problems as well, apparently due to corrupted metainfo. Finder only played through the portion from the first file even though the combined file size was about right."
 ]

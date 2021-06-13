@@ -1,5 +1,5 @@
 Class {
-	#name : #'Rl_hOCRElement',
+	#name : #RlHOCRElement,
 	#superclass : #BlElement,
 	#instVars : [
 		'selectionHandler',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #accessing }
-Rl_hOCRElement >> addImage [
+RlHOCRElement >> addImage [
 	| image |
 	image := GtFileUtility
 		imageElementFromFileReference: self client imageFile.
@@ -17,7 +17,7 @@ Rl_hOCRElement >> addImage [
 ]
 
 { #category : #accessing }
-Rl_hOCRElement >> addShortcuts [
+RlHOCRElement >> addShortcuts [
 	| shortcutFields |
 	shortcutFields := self client magritteDescription children select: [ :e | e hasProperty: #shortcut ].
 	shortcutFields do: [ :desc | 
@@ -35,7 +35,7 @@ Rl_hOCRElement >> addShortcuts [
 ]
 
 { #category : #accessing }
-Rl_hOCRElement >> add_hOCR [
+RlHOCRElement >> add_hOCR [
 	self client hocr words do: [ :w | 
 		| wordElement |
 		wordElement := w asElement
@@ -56,7 +56,7 @@ Rl_hOCRElement >> add_hOCR [
 ]
 
 { #category : #accessing }
-Rl_hOCRElement >> applySelectedTextTo: desc [
+RlHOCRElement >> applySelectedTextTo: desc [
 	"Adaptation of MADescription>>#validate:, which is the main access point to validation i.e. all roads (e.g. mementos, forms) ultimately end up here. We're partially reimplementing instead of sending it ourselves because Magritte does not seem to really be set up to interact with element descriptions individually, but through their containers. In this case, the container supplies the proper validator for the domain object"
 
 	| value |
@@ -83,12 +83,12 @@ Rl_hOCRElement >> applySelectedTextTo: desc [
 ]
 
 { #category : #accessing }
-Rl_hOCRElement >> client [
+RlHOCRElement >> client [
 	^ client
 ]
 
 { #category : #accessing }
-Rl_hOCRElement >> client: anObject [
+RlHOCRElement >> client: anObject [
 	client := anObject.
 	self removeChildren.
 	self size: client imageFile asRlResource extent.
@@ -102,7 +102,7 @@ Rl_hOCRElement >> client: anObject [
 ]
 
 { #category : #accessing }
-Rl_hOCRElement >> initialize [
+RlHOCRElement >> initialize [
 	super initialize.
 	
 	"Get keyboard focus for shortcuts - now and on future clicks"
@@ -112,16 +112,16 @@ Rl_hOCRElement >> initialize [
 ]
 
 { #category : #accessing }
-Rl_hOCRElement >> selectedText [
+RlHOCRElement >> selectedText [
 	^ (self selection first userData at: #node) string
 ]
 
 { #category : #accessing }
-Rl_hOCRElement >> selection [
+RlHOCRElement >> selection [
 	^ self selectionHandler selected_hOCR
 ]
 
 { #category : #accessing }
-Rl_hOCRElement >> selectionHandler [
+RlHOCRElement >> selectionHandler [
 	^ selectionHandler ifNil: [ selectionHandler := RlBlOcrSelectionHandler new ]
 ]
