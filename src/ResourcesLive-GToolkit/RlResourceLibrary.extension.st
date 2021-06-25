@@ -7,9 +7,8 @@ RlResourceLibrary >> gtViewResourcesOn: aView [
 		title: 'Resources' translated;
 		priority: 5;
 		items: [ self resources ];
-		column: 'Type' text: [ :res | res class name allButFirst: 2 ] width: 125;
-		column: 'File' text: [ :res | res file fullName ]";
-		column: 'Phone' text: [ :aContact | aContact telephone ]"
+		column: 'Type' text: [ :res | (res class name allButFirst: 2) normalizeCamelCase ] width: 125;
+		column: 'File' text: [ :res | res file fullName ]
 ]
 
 { #category : #'*ResourcesLive-GToolkit' }

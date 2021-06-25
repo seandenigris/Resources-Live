@@ -152,6 +152,24 @@ RlResourceLibrary class >> verifyUniqueInstance [
 	self assert: resources size = resources asIdentitySet size.
 ]
 
+{ #category : #utilities }
+RlResourceLibrary >> absorbLibrary: aLibrary [
+	"You may want to backup your original library first!"
+	
+	"This would cause an error due to trying to move multiple files to the same destination"
+	| orphans |
+	aLibrary duplicates ifNotEmpty: [ :col | self error: 'Duplicates in original library (pointing to same file)' ].
+	
+	"Not a deal breaker, but might be a good opportunity to let someone know about this"
+	orphans := aLibrary checkForOrphanFiles.
+	
+	aLibrary moveFolder: self folder.
+	self resources addAll: aLibrary resources.
+	
+	"Should be a warning, but I don't know how to signal one lol"
+	orphans ifNotEmpty: [ :col | self error: 'Orphan files in original library' ].
+]
+
 { #category : #private }
 RlResourceLibrary >> basicFolder: aFolder [
 	"If you want to also move all the resources, send #moveFolder:"
@@ -164,11 +182,9 @@ RlResourceLibrary >> checkForMissingFiles [
 ]
 
 { #category : #utilities }
-RlResourceLibrary >> checkForOrphans [
-	| files orphans |
-	files := self folder allFiles.
-	orphans := files select: [ :f | self resources noneSatisfy: [ :r | r file resolve = f ] ].
-	^ orphans
+RlResourceLibrary >> checkForOrphanFiles [
+	^ self folder allFiles select: [ :f | self resources noneSatisfy: [ :r | r file ifNil: [ false ] ifNotNil: [ :rf | rf resolve = f ] ] ].
+	
 	"
 	Useful snippets for dealing with returned files:
 	
@@ -229,6 +245,13 @@ RlResourceLibrary >> doesMoveByDefault: aBoolean [
 	doesMoveByDefault := aBoolean
 ]
 
+{ #category : #utilities }
+RlResourceLibrary >> duplicates [
+	| groups |
+	groups := self resources groupedBy: [ :e | e file ifNotNil: [ :f | f basename ] ifNil: [ e hash ] ].
+	^  groups select: [ :v | v size > 1 ]
+]
+
 { #category : #accessing }
 RlResourceLibrary >> ensureResourceForUrl: aUrlOrCommand [
 "Questions:
@@ -254,6 +277,7 @@ RlResourceLibrary >> ensureResourceForUrl: aUrlOrCommand [
 
 { #category : #private }
 RlResourceLibrary >> folder [
+	"To change the folder, see #basicFolder: or #moveFolder:"
 	^ folder ifNil: [ self class folder ]
 ]
 
