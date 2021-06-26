@@ -1,11 +1,14 @@
 "
 I represent electronic documents in a domain-centered, file system agnostic way.
 
-### Responsibilities
+# Responsibilities
+
 - know where the file came from
 
-## Collaborators
+# Collaborators
+
 - ResourceLibrary
+
 "
 Class {
 	#name : #RlResource,

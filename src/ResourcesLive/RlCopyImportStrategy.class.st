@@ -1,5 +1,6 @@
 "
 I copy the resource's file into the library; leaving a copy in its original location.
+
 "
 Class {
 	#name : #RlCopyImportStrategy,

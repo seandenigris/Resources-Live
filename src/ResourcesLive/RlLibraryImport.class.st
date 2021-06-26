@@ -1,12 +1,13 @@
 "
-I am a command which imports files into an ${class:RlResourceLibrary}$. As a convenience, I accept several object types which specify what to import - see ${method:RlLibraryImport>>#resourceable:}$.  The only other thing you ''need'' to supply is the ${method:RlLibraryImport>>#library:|label=library}$ I should target. 
+I am a command which imports files into an {{gtClass:RlResourceLibrary}}. As a convenience, I accept several object types which specify what to import - see {{gtMethod:RlLibraryImport>>#resourceable:}}.  The only other thing you *need* to supply is the {{gtMethod:RlLibraryImport>>#library:|label=library}} I should target. 
 
 I have several other optional arguments that you can set if you need more control for a particular scenario:
-- The relative ${method:RlLibraryImport>>#location:|label=location}$ inside the target library's filesystem where the file should be kept. While not at all necessary, there are times when this might be desirable
-- The ${method:RlLibraryImport>>#strategy:|label=strategy}$ I should use to bring the file under my control. The built-in options are:
-[[[
+- The relative {{gtMethod:RlLibraryImport>>#location:|label=location}} inside the target library's filesystem where the file should be kept. While not at all necessary, there are times when this might be desirable
+- The {{gtMethod:RlLibraryImport>>#strategy:|label=strategy}} I should use to bring the file under my control. The built-in options are:
+```
 RlInPlaceImportStrategy withAllSubclasses
-]]]
+```
+
 "
 Class {
 	#name : #RlLibraryImport,

@@ -1,7 +1,8 @@
 "
-Per *http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm*:
-==An XML Document that describes an OPS Publication and references all files used by the OPS Publication that are not part of the OPF Package Document itself. It identifies all other files in the Publication and provides descriptive information about them. The OPF Package Document is defined by this specification and is valid to the OPF Package Schema defined herein.
-The ""root file"" of the OPF Package Document should use the .opf extension. This XML file may refer to other XML files via XML’s general entity mechanism, but those files must not use the .opf file extension. This construction could be used to simplify the creation of OPF Package Documents for very large Publications. However, the most common case is for the OPF Package Document to be a single XML file using the .opf extension.==
+Per <http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm>:
+`An XML Document that describes an OPS Publication and references all files used by the OPS Publication that are not part of the OPF Package Document itself. It identifies all other files in the Publication and provides descriptive information about them. The OPF Package Document is defined by this specification and is valid to the OPF Package Schema defined herein.
+The ""root file"" of the OPF Package Document should use the .opf extension. This XML file may refer to other XML files via XML’s general entity mechanism, but those files must not use the .opf file extension. This construction could be used to simplify the creation of OPF Package Documents for very large Publications. However, the most common case is for the OPF Package Document to be a single XML file using the .opf extension.`
+
 "
 Class {
 	#name : #RlEpubOpfFileReference,

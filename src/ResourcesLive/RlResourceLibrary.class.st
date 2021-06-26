@@ -1,19 +1,20 @@
 "
-Frequently, the filesystem is an implementation detail which you should never be forced to deal with directly. For example, you probably don't ''really'' care whether your music is in ==~/Music== or ==~/Documents/Music== or ""a symlink to one of these, but physically elsewhere"". The point is: you want to play your music! 
+Frequently, the filesystem is an implementation detail which you should never be forced to deal with directly. For example, you probably don't *really* care whether your music is in `~/Music` or `~/Documents/Music` or ""a symlink to one of these, but physically elsewhere"". The point is: you want to play your music! 
 
 I relieve you of the burden of crawling down into this low level, non-user-friendly context - the user equivalent of C - and empower you to think and act in your domain of interest that is represented by these files.
 
 Instead of writing:
-[[[language=smalltalk
+```language=smalltalk
 LibC system: 'afplay ', ('/path/to/song.mp3' asFileReference fullName surroundedBy: '""')
-]]]
+```
 You can simply write:
-[[[language=smalltalk
+```language=smalltalk
 anMP3 play
-]]]
+```
 Ahhhhhh...  wasn't that nice?! I feel more relaxed already :)
-!Importing
-The main entry point is ${method:RlResourceLibrary>>#import:}$ - check out its comment.
+# Importing
+The main entry point is {{gtMethod:RlResourceLibrary>>#import:}} - check out its comment.
+
 "
 Class {
 	#name : #RlResourceLibrary,

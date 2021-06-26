@@ -1,10 +1,10 @@
 "
-!File Format
-!!Version 2.0.1
+# File Format
+## Version 2.0.1
 A zip archive with the following...
-!!!Metadata
-The OPF file, traditionally named ==content.opf==, houses the EPUB book's metadata, file manifest, and linear reading order
-!!!TOC
+### Metadata
+The OPF file, traditionally named `content.opf`, houses the EPUB book's metadata, file manifest, and linear reading order
+### TOC
 
 "
 Class {
