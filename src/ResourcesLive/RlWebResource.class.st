@@ -1,10 +1,11 @@
 Class {
 	#name : #RlWebResource,
-	#superclass : #RlResource,
+	#superclass : #Object,
 	#instVars : [
+		'url',
 		'description'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : #'ResourcesLive-Non-File'
 }
 
 { #category : #'file types' }
@@ -15,7 +16,7 @@ RlWebResource class >> fileExtensions [
 { #category : #accessing }
 RlWebResource >> citation [
 	^ QuWebCitation new
-		source: self
+		source: self url
 		yourself
 ]
 
@@ -46,7 +47,7 @@ RlWebResource >> printOn: aStream [
 	aStream
 		nextPutAll: self description;
 		nextPutAll: ' @ ';
-		print: self source
+		print: self url
 ]
 
 { #category : #importing }
@@ -56,4 +57,14 @@ RlWebResource >> rlImportInto: aRlResourceLibrary [
 	aRlResourceLibrary resources add: self.
 	
 	"Implmentation note: cobbled together from RlInPlaceImportStrategy>>#import"
+]
+
+{ #category : #accessing }
+RlWebResource >> url [
+	^ url
+]
+
+{ #category : #accessing }
+RlWebResource >> url: anObject [
+	url := anObject
 ]
