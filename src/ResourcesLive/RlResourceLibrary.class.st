@@ -282,6 +282,30 @@ RlResourceLibrary >> folder [
 	^ folder ifNil: [ self class folder ]
 ]
 
+{ #category : #accessing }
+RlResourceLibrary >> gtGtSpotterFor: aStep [
+	<gtSearch>
+	^ aStep listProcessor
+		priority: 5;
+		title: 'Resources';
+		allCandidates: [ self resources ];
+		filter: GtFilterSubstrings;
+		candidatesLimit: 7;
+		itemName:[ :aResource | (aResource file relativeTo: self folder) fullName ] 
+]
+
+{ #category : #accessing }
+RlResourceLibrary >> gtGtSpotterTypeFor: aStep [
+	<gtSearch>
+	^ aStep listProcessor
+		priority: 5;
+		title: 'Types';
+		allCandidates: [ self resources collectAsSet: #class ];
+		filter: GtFilterSubstrings;
+		candidatesLimit: 7;
+		send: [ :cls | self resources select: [ :r | r class = cls ] ]
+]
+
 { #category : #importing }
 RlResourceLibrary >> import [
 	"Return a command for importing into this library"
