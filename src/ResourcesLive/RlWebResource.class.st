@@ -1,6 +1,6 @@
 Class {
 	#name : #RlWebResource,
-	#superclass : #Object,
+	#superclass : #MAObject,
 	#instVars : [
 		'url',
 		'description'
@@ -13,6 +13,11 @@ RlWebResource class >> fileExtensions [
 	^ #()
 ]
 
+{ #category : #testing }
+RlWebResource class >> isAbstract [
+	^ false
+]
+
 { #category : #accessing }
 RlWebResource >> citation [
 	^ QuWebCitation new
@@ -22,7 +27,7 @@ RlWebResource >> citation [
 
 { #category : #accessing }
 RlWebResource >> description [
-	^ description
+	^ self maLazyInstVarUsing: self descriptionDescription
 ]
 
 { #category : #accessing }
@@ -48,15 +53,6 @@ RlWebResource >> printOn: aStream [
 		nextPutAll: self description;
 		nextPutAll: ' @ ';
 		print: self url
-]
-
-{ #category : #importing }
-RlWebResource >> rlImportInto: aRlResourceLibrary [
-	
-	self importTimestamp: DateAndTime rlImportTimestamp.
-	aRlResourceLibrary resources add: self.
-	
-	"Implmentation note: cobbled together from RlInPlaceImportStrategy>>#import"
 ]
 
 { #category : #accessing }

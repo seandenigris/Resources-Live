@@ -53,7 +53,7 @@ RlPdfToImageConverter >> descriptionCommand [
 	<gtInspectorPresentationOrder: 1>
 	^ MAStringDescription new
 		accessor: #command;
-		readonly: true;
+		readOnly: true;
 		yourself
 ]
 
