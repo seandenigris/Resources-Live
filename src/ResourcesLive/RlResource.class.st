@@ -40,7 +40,7 @@ RlResource class >> fileExtensions [
 
 { #category : #testing }
 RlResource class >> isAbstract [
-	^ self ~= RlResource
+	^ self = RlResource
 ]
 
 { #category : #testing }
