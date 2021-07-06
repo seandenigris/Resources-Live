@@ -39,6 +39,11 @@ RlResource class >> fileExtensions [
 ]
 
 { #category : #testing }
+RlResource class >> isAbstract [
+	^ self ~= RlResource
+]
+
+{ #category : #testing }
 RlResource class >> isClassFor: file [
 	^ (self fileExtensions includes: file extension) and: [ 
 		"This is inefficient, but not sure how to iterate subclasses depth-first. Asked on Discord - Pharo general channel 11/5/2020"
