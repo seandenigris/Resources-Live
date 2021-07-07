@@ -4,6 +4,11 @@ Class {
 	#category : #'ResourcesLive-Core'
 }
 
+{ #category : #accessing }
+RlImage class >> fileExtensions [
+	^ #()
+]
+
 { #category : #testing }
 RlImage class >> isClassFor: file [
 	"I'm abstract"
