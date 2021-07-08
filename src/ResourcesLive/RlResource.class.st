@@ -40,7 +40,8 @@ RlResource class >> fileExtensions [
 
 { #category : #testing }
 RlResource class >> isAbstract [
-	^ self = RlResource
+	"We use this class for unknown file extensions, to provide basic functionality"
+	^ false
 ]
 
 { #category : #testing }
@@ -196,7 +197,12 @@ RlResource >> moveFileTo: reference [
 
 { #category : #actions }
 RlResource >> open [
-	file open
+	self file peOpen
+]
+
+{ #category : #accessing }
+RlResource >> openWith: application [
+	self file suOpenWith: application
 ]
 
 { #category : #accessing }
@@ -250,6 +256,13 @@ RlResource >> source [
 { #category : #accessing }
 RlResource >> source: anObject [
 	source := anObject
+]
+
+{ #category : #accessing }
+RlResource >> suOpenWith: application [
+	"To be polymorphic with FS"
+	
+	self openWith: application
 ]
 
 { #category : #accessing }

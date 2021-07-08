@@ -1,6 +1,8 @@
 Class {
 	#name : #RlVideo,
 	#superclass : #RlResource,
+	#traits : 'RlTPlayable',
+	#classTraits : 'RlTPlayable classTrait',
 	#category : #'ResourcesLive-Core'
 }
 
@@ -22,7 +24,7 @@ RlVideo class >> exampleExtent [
 
 { #category : #accessing }
 RlVideo class >> fileExtensions [
-	^ #('mov' 'mp4')
+	^ #('mov' 'mp4' 'm4v')
 ]
 
 { #category : #accessing }

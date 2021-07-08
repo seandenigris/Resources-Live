@@ -87,5 +87,6 @@ RlLibraryImport >> strategy [
 
 { #category : #accessing }
 RlLibraryImport >> strategy: anObject [
+	"See: RlInPlaceImportStrategy withAllSubclasses"
 	strategy := anObject
 ]
