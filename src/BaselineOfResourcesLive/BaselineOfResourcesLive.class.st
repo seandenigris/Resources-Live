@@ -70,9 +70,9 @@ BaselineOfResourcesLive >> baseline: spec [
 				spec
 					repository: 'github://seandenigris/Tesseract-St' ].
 		spec package: #ResourcesLive with: [
-				spec
-					requires: #('Magritte' 'NeoCSV' "for RlCsvFile" 'PharoEnhancements' 'SimplePersistence' 'Soup' "for RlHTML" 'Superuser' 'Tempfile');
-					includes: #('Tesseract'). ]. ].
+			spec
+				requires: #('Magritte' 'NeoCSV' "for RlCsvFile" 'PharoEnhancements' 'SimplePersistence' 'Soup' "for RlHTML" 'Superuser' 'Tempfile');
+				includes: #('Tesseract'). ]. ].
 	spec for: #'GToolkit' do: [	
 		spec 
 			package: #'ResourcesLive-GToolkit' with: [
