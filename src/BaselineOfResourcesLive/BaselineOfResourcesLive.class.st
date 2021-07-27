@@ -84,7 +84,7 @@ BaselineOfResourcesLive >> baseline: spec [
 { #category : #accessing }
 BaselineOfResourcesLive >> customProjectAttributes [
 	^ self isGTImage
-			ifFalse: [ #() ]
+			ifFalse: [ #(notGToolkit) ]
 			ifTrue: [ #(GToolkit) ]
 ]
 
