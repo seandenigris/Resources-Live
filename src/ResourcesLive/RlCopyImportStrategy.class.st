@@ -18,8 +18,8 @@ RlCopyImportStrategy >> prepareResource: resource [
 	| sourceFile destinationFile |
 	super prepareResource: resource.
 	sourceFile := resource file.
-	destinationFile := self client library locationFor: sourceFile basename in: self client location.
-	self assert: destinationFile exists not.
+	destinationFile := self client library locationFor: resource in: self client location.
+	destinationFile exists ifTrue: [ self error ].
 	destinationFile parent ensureCreateDirectory.
 	self importFile: sourceFile to: destinationFile.
 	resource

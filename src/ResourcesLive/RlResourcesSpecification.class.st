@@ -1,25 +1,25 @@
 Class {
 	#name : #RlResourcesSpecification,
 	#superclass : #TestCase,
-	#category : 'ResourcesLive-Specifications'
+	#category : #'ResourcesLive-Specifications'
 }
 
 { #category : #'as yet unclassified' }
 RlResourcesSpecification >> testGetFilenameNoConflicts [
 
-	| location tmp existingFile |
-	tmp := RlResourceLibrary temporaryFolder.
-	location := tmp locationFor: tmp / 'fileForTesting.ext' in: tmp.
-	location basename should = 'fileForTesting.ext'.
+	| location tmp existingFile lib |
+	lib := RlResourceLibrary temporary.
+	location := lib locationFor: (lib temporaryFolder / 'fileForTesting.ext') asRlResource in: lib folder.
+	location basename should equal: 'fileForTesting.ext'.
 	
-	existingFile := (tmp / 'existingFile.ext') ensureFile.
-	location := tmp locationFor: tmp / 'existingFile.ext' in: tmp.
-	location basename should = 'existingFile.2.ext'.
+	existingFile := (lib folder / 'existingFile.ext') ensureCreateFile.
+	location := lib locationFor: existingFile asRlResource in: lib folder.
+	location basename should equal: 'existingFile.2.ext'.
 	existingFile delete.
 	
-	existingFile := (tmp / 'existingFile.ext.ext2') ensureFile.
-	location := tmp locationFor: tmp / 'existingFile.ext.ext2' in: tmp.
-	location basename should = 'existingFile.2.ext.ext2'.
+	existingFile := (lib folder / 'existingFile.ext.ext2') ensureCreateFile.
+	location := lib locationFor: existingFile asRlResource in: lib folder.
+	location basename should equal: 'existingFile.2.ext.ext2'.
 	existingFile delete.
 
 ]

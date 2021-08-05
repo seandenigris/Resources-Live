@@ -352,11 +352,11 @@ RlResourceLibrary >> lastID: aNumber [
 ]
 
 { #category : #private }
-RlResourceLibrary >> locationFor: filename in: location [
+RlResourceLibrary >> locationFor: resource in: location [
 
 	| sameFilename result targetFolder |
-	targetFolder := self folder rlAppend: location.
-	sameFilename := targetFolder / filename.
+	targetFolder := (self folder  / resource class name) ensureCreateDirectory rlAppend: location.
+	sameFilename := targetFolder / resource file basename.
 	result := sameFilename exists
 		ifFalse: [ sameFilename ]
 		ifTrue: [ 
