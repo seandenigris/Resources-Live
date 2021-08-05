@@ -306,15 +306,6 @@ RlResourceLibrary >> gtGtSpotterTypeFor: aStep [
 		send: [ :cls | self resources select: [ :r | r class = cls ] ]
 ]
 
-{ #category : #importing }
-RlResourceLibrary >> import [
-	"Return a command for importing into this library"
-
-	^ RlLibraryImport new
-		library: self;
-		yourself
-]
-
 { #category : #convencience }
 RlResourceLibrary >> import: anObject [
 	"For the simplest case, when you don't care where the file ends up living on disk, you can just pass a file reference. For more control, pass a command object; RlLibraryImport is built in (see class comment) or define your own"
@@ -327,6 +318,15 @@ RlResourceLibrary >> importAll: aCollection [
 	"See #import: comment"
 
 	aCollection do: [ :e | self import: e ]
+]
+
+{ #category : #importing }
+RlResourceLibrary >> importer [
+	"Return a command for importing into this library"
+
+	^ RlLibraryImport new
+		library: self;
+		yourself
 ]
 
 { #category : #accessing }
