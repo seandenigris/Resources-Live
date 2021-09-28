@@ -1,10 +1,10 @@
 Class {
-	#name : #RlResourcesSpecification,
-	#superclass : #TestCase,
-	#category : #'ResourcesLive-Specifications'
+	#name : 'RlResourcesSpecification',
+	#superclass : 'TestCase',
+	#category : 'ResourcesLive-Specifications'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResourcesSpecification >> testGetFilenameNoConflicts [
 
 	| location tmp existingFile lib |

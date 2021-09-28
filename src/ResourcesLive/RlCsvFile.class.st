@@ -1,15 +1,15 @@
 Class {
-	#name : #RlCsvFile,
-	#superclass : #RlResource,
+	#name : 'RlCsvFile',
+	#superclass : 'RlResource',
 	#category : 'ResourcesLive-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlCsvFile class >> fileExtensions [
 	^ #('csv')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlCsvFile >> asArraysOfStrings [
 	^ self file readStreamDo: [ :str | 
 		| r |
@@ -17,7 +17,7 @@ RlCsvFile >> asArraysOfStrings [
 		r upToEnd ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlCsvFile >> newRecordClassNamed: aSymbol inPackage: packageName [
 	| reader fieldNames |
 	self flag: 'Seems incomplete; are fields supposed to be set up automatically?'.

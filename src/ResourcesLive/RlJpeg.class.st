@@ -1,16 +1,16 @@
 Class {
-	#name : #RlJPEG,
-	#superclass : #RlImage,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlJPEG',
+	#superclass : 'RlImage',
+	#category : 'ResourcesLive-Core'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 RlJPEG class >> example [
 	<gtExample>
 	^ RlJPEG on: RlPDF exampleReceipt imageFile
 ]
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlJPEG class >> fileExtensions [
 	^ #('jpg')
 ]

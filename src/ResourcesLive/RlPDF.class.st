@@ -5,26 +5,26 @@ The use case supported is when each page is an image e.g. a scanned book. The {{
 
 "
 Class {
-	#name : #RlPDF,
-	#superclass : #RlResource,
+	#name : 'RlPDF',
+	#superclass : 'RlResource',
 	#instVars : [
 		'imageCache'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF class >> exampleReceipt [
 	<gtExample>
 	^ self on: self exampleSupportFolder / 'Receipt_cash.pdf'
 ]
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlPDF class >> fileExtensions [
 	^ #('pdf')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> gtFigureFor: aView [
 	<gtView>
 	^ aView pannable
@@ -33,7 +33,7 @@ RlPDF >> gtFigureFor: aView [
 		stencil: [ self asElement ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> gtHocrFor: aView [
 	<gtView>
 	^ aView forward
@@ -43,7 +43,7 @@ RlPDF >> gtHocrFor: aView [
 		view: #gtLinesFor:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> gtOCRFor: aView [
 	<gtView>
 	^ aView text
@@ -52,19 +52,19 @@ RlPDF >> gtOCRFor: aView [
 		text: [ self ocr ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> hocr [
 	"See ${class:Hocr}$ comment"
 
 	^ Smalltalk tools ocr hocr: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> imageCache [
 	^ imageCache
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> imageFile [
 	| outputFile images |
 	imageCache ifNotNil: [ ^ imageCache ].
@@ -77,12 +77,12 @@ RlPDF >> imageFile [
 	^ imageCache := outputFile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> ocr [
 	^ Smalltalk tools ocr ocr: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> wants_hOCR [
 	^ true
 ]

@@ -1,13 +1,13 @@
 Class {
-	#name : #RlInPlaceImportStrategy,
-	#superclass : #Object,
+	#name : 'RlInPlaceImportStrategy',
+	#superclass : 'Object',
 	#instVars : [
 		'client'
 	],
-	#category : #'ResourcesLive-Importing'
+	#category : 'ResourcesLive-Importing'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlInPlaceImportStrategy class >> example [
 	<gtExample>
 	| file library |
@@ -21,24 +21,24 @@ RlInPlaceImportStrategy class >> example [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlInPlaceImportStrategy class >> importFor: aClient [
 	^ self new
 		client: aClient;
 		import
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlInPlaceImportStrategy >> client [
 	^ client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlInPlaceImportStrategy >> client: anObject [
 	client := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlInPlaceImportStrategy >> import [
 	| resource |
 	resource := self client resourceable asRlResource.
@@ -46,7 +46,7 @@ RlInPlaceImportStrategy >> import [
 	^ self client library resources add: resource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlInPlaceImportStrategy >> prepareResource: resource [ 
 	resource importTimestamp: DateAndTime rlImportTimestamp.
 ]

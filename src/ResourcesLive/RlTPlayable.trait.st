@@ -1,57 +1,57 @@
 Trait {
-	#name : #RlTPlayable,
-	#category : #ResourcesLive
+	#name : 'RlTPlayable',
+	#category : 'ResourcesLive'
 }
 
-{ #category : #playing }
+{ #category : 'playing' }
 RlTPlayable >> isPlaying [
 
 	^ self player isPlaying: self.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 RlTPlayable >> pause [
 
 	self player pause.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 RlTPlayable >> play [
 	
 	self player play.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 RlTPlayable >> playSpeedFactor [
 
 	^ self player playSpeedFactor.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 RlTPlayable >> playSpeedFactor: aNumber [
 
 	^ self player playSpeedFactor: aNumber.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 RlTPlayable >> position [
 
 	^ self player position.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 RlTPlayable >> position: aDuration [
 
 	self player position: aDuration.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 RlTPlayable >> skipAhead: aDuration [
 
 	self player skipAhead: aDuration.
 ]
 
-{ #category : #playing }
+{ #category : 'playing' }
 RlTPlayable >> skipBack: aDuration [
 
 	self player skipBack: aDuration.

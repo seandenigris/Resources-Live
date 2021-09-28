@@ -1,1 +1,1 @@
-Package { #name : #'ResourcesLive-GToolkit' }
+Package { #name : 'ResourcesLive-GToolkit' }

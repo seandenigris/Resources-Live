@@ -3,17 +3,17 @@ I copy the resource's file into the library; leaving a copy in its original loca
 
 "
 Class {
-	#name : #RlCopyImportStrategy,
-	#superclass : #RlInPlaceImportStrategy,
-	#category : #'ResourcesLive-Importing'
+	#name : 'RlCopyImportStrategy',
+	#superclass : 'RlInPlaceImportStrategy',
+	#category : 'ResourcesLive-Importing'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlCopyImportStrategy >> importFile: sourceFile to: destinationFile [
 	sourceFile copyTo: destinationFile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlCopyImportStrategy >> prepareResource: resource [
 	| sourceFile destinationFile |
 	super prepareResource: resource.

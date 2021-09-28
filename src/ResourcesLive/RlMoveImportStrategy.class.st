@@ -1,10 +1,10 @@
 Class {
-	#name : #RlMoveImportStrategy,
-	#superclass : #RlCopyImportStrategy,
-	#category : #'ResourcesLive-Importing'
+	#name : 'RlMoveImportStrategy',
+	#superclass : 'RlCopyImportStrategy',
+	#category : 'ResourcesLive-Importing'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlMoveImportStrategy >> importFile: sourceFile to: destinationFile [
 	sourceFile moveTo: destinationFile
 ]

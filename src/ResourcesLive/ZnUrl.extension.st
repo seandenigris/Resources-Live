@@ -1,6 +1,6 @@
-Extension { #name : #ZnUrl }
+Extension { #name : 'ZnUrl' }
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 ZnUrl >> asRlResource [
 
 	| file |
@@ -12,7 +12,7 @@ ZnUrl >> asRlResource [
 		yourself
 ]
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 ZnUrl >> rlFilename [
 	^ self isFilePath
 		ifTrue: [ self file ]

@@ -1,6 +1,6 @@
-Extension { #name : #DateAndTime }
+Extension { #name : 'DateAndTime' }
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 DateAndTime class >> rlImportTimestamp [
 	^ self now translateToUTC
 ]

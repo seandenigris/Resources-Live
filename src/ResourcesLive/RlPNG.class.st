@@ -1,10 +1,10 @@
 Class {
-	#name : #RlPNG,
-	#superclass : #RlImage,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlPNG',
+	#superclass : 'RlImage',
+	#category : 'ResourcesLive-Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlPNG class >> fileExtensions [
 	^ #('png')
 ]

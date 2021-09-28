@@ -11,8 +11,8 @@ I represent electronic documents in a domain-centered, file system agnostic way.
 
 "
 Class {
-	#name : #RlResource,
-	#superclass : #MAObject,
+	#name : 'RlResource',
+	#superclass : 'MAObject',
 	#instVars : [
 		'originalFile',
 		'file',
@@ -20,38 +20,38 @@ Class {
 		'importTimestamp',
 		'metadata'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource class >> allFileExtensions [
 	^ self subclasses flatCollect: [ :klass | klass fileExtensions ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RlResource class >> doesSpecificallyHandle: file [
 	^ self allSubclasses anySatisfy: [ :cls | cls isClassFor: file ]
 ]
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlResource class >> fileExtensions [
 	self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RlResource class >> isAbstract [
 	"We use this class for unknown file extensions, to provide basic functionality"
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RlResource class >> isClassFor: file [
 	^ (self fileExtensions includes: file extension) and: [ 
 		"This is inefficient, but not sure how to iterate subclasses depth-first. Asked on Discord - Pharo general channel 11/5/2020"
 		self allSubclasses noneSatisfy: [ :sc | sc isClassFor: file ] ]
 ]
 
-{ #category : #'code generation' }
+{ #category : 'code generation' }
 RlResource class >> newClass: aSymbol forExtensions: aCollection [
 	"self newClass: #RlCsvFile forExtensions: #('csv')"
 	| newClass fileExtensionsMethod targetPackage |
@@ -66,7 +66,7 @@ RlResource class >> newClass: aSymbol forExtensions: aCollection [
 	^ newClass
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RlResource class >> on: file [
 	| class |
 	class := self allSubclasses
@@ -77,12 +77,12 @@ RlResource class >> on: file [
 		yourself.
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 RlResource >> asFileReference [
 	^ self file
 ]
 
-{ #category : #'*ResourcesLive-Morphic' }
+{ #category : '*ResourcesLive-Morphic' }
 RlResource >> asMorph [
 	
 	| morph openButton builder controls |
@@ -100,12 +100,12 @@ RlResource >> asMorph [
 	^ morph.
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 RlResource >> asRlResource [
 	^ self
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 RlResource >> descriptionOpen [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -113,7 +113,7 @@ RlResource >> descriptionOpen [
 		yourself
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 RlResource >> descriptionPreview [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -121,7 +121,7 @@ RlResource >> descriptionPreview [
 		yourself
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 RlResource >> descriptionShowInFinder [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -129,12 +129,12 @@ RlResource >> descriptionShowInFinder [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> displayName [
 	^ (self className allButFirst: 2) piecesCutWhereCamelCase joinUsing: Character space
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResource >> ensureFileCopiedInto: folder asBase: base [
 	| reference |
 	reference := folder / base, self class fileExtensions first.
@@ -142,85 +142,85 @@ RlResource >> ensureFileCopiedInto: folder asBase: base [
 	self verifiedCopyFileTo: reference
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResource >> ensureFileCopiedTo: reference [
 	reference exists ifTrue: [ ^ self ].
 	self verifiedCopyFileTo: reference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> file [
 	^ file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> file: anObject [
 	file := anObject
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 RlResource >> import [
 
 	RlResourceLibrary uniqueInstance import: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> importTimestamp [
 	^ importTimestamp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> importTimestamp: anObject [
 	importTimestamp := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> metadata [
 	^ metadata ifNil: [ metadata := OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> metadata: anObject [
 	metadata := anObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> moveFileInto: aFolder [
 	self moveFileTo: aFolder / self file basename
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> moveFileTo: reference [
 	self file moveTo: reference.
 	self file: reference. "This line is needed due to FS bug: https://github.com/pharo-project/pharo/issues/4453"
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> open [
 	self file peOpen
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> openWith: application [
 	self file suOpenWith: application
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> originalFile [
 	^ originalFile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> originalFile: anObject [
 	originalFile := anObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> preview [
 	file preview
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RlResource >> printOn: aStream [
 	aStream
 		nextPutAll: self className;
@@ -229,53 +229,53 @@ RlResource >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> renameFileTo: aString [
 	| target |
 	target := self file parent / aString.
 	self moveFileTo: target
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResource >> setFile: aDirectoryEntryFile [ 
 
 	file := aDirectoryEntryFile.
 	^ self.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> showInFinder [
 	file showInFinder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> source [
 	^ source
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> source: anObject [
 	source := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> suOpenWith: application [
 	"To be polymorphic with FS"
 	
 	self openWith: application
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> subfolder [
 	^ subfolder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> subfolder: anObject [
 	subfolder := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResource >> thumbnail [
 
 	| tempFilePath commandTemplate command thumbnail |
@@ -287,13 +287,13 @@ RlResource >> thumbnail [
 	^ thumbnail 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResource >> verifiedCopyFileTo: reference [
 	self file verifiedCopyTo: reference.
 	self file: reference.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResource >> verifiedMoveFileTo: reference [
 	self file verifiedMoveTo: reference.
 	self file: reference.

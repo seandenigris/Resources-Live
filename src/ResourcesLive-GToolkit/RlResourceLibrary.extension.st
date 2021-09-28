@@ -1,6 +1,6 @@
-Extension { #name : #RlResourceLibrary }
+Extension { #name : 'RlResourceLibrary' }
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 RlResourceLibrary >> gtViewResourcesOn: aView [
 	<gtView>
 	^ aView columnedList
@@ -11,7 +11,7 @@ RlResourceLibrary >> gtViewResourcesOn: aView [
 		column: 'File' text: [ :res | res file fullName ]
 ]
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 RlResourceLibrary class >> gtViewSingletonOn: aView [
 	<gtClassView>
 	^ aView forward
