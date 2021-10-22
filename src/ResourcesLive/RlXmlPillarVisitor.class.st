@@ -1,5 +1,5 @@
 Class {
-	#name : 'RlXmlPillarVisitor',
-	#superclass : 'XMLNodeVisitor',
+	#name : #RlXmlPillarVisitor,
+	#superclass : #XMLNodeVisitor,
 	#category : 'ResourcesLive-EPUB'
 }

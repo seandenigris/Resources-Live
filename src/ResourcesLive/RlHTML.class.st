@@ -1,15 +1,15 @@
 Class {
-	#name : 'RlHTML',
-	#superclass : 'RlResource',
+	#name : #RlHTML,
+	#superclass : #RlResource,
 	#category : 'ResourcesLive-Core'
 }
 
-{ #category : 'file types' }
+{ #category : #'file types' }
 RlHTML class >> fileExtensions [
 	^ #('html')
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlHTML >> clip [
 	| tempFile command |
 	OSPlatform current isMacOSX ifFalse: [ self error: 'Only implemented on Mac OSX' ].
@@ -23,12 +23,12 @@ RlHTML >> clip [
 	"Implementation note: the first attempt was to pass the input via a HEREDOC, but that didn't seem to work with LibC"
 ]
 
-{ #category : 'utilities' }
+{ #category : #utilities }
 RlHTML >> edit [
 	LibC system: 'open -a MacVim "', self file fullName, '"'.
 ]
 
-{ #category : 'utilities' }
+{ #category : #utilities }
 RlHTML >> soup [
 	^ Soup fromString: self file contents
 ]

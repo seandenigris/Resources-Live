@@ -8,23 +8,23 @@ The OPF file, traditionally named `content.opf`, houses the EPUB book's metadata
 
 "
 Class {
-	#name : 'RlEPUB',
-	#superclass : 'RlResource',
+	#name : #RlEPUB,
+	#superclass : #RlResource,
 	#category : 'ResourcesLive-Core'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlEPUB class >> example [
 	<gtExample>
 	^ (FileLocator home / 'Dropbox (Personal)/Calibre Library/Chris Voss/Never Split the Difference_ Negotia (131)/Never Split the Difference_ Neg - Chris Voss.epub') asRlResource
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlEPUB class >> fileExtensions [
 	^ #('epub')
 ]
 
-{ #category : 'views' }
+{ #category : #views }
 RlEPUB >> gtArchiveFor: aView [
 	<gtView>
 	^ aView forward
@@ -34,7 +34,7 @@ RlEPUB >> gtArchiveFor: aView [
 		
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlEPUB >> metadataFile [
 	| opfFiles |
 	"NB: ZIP store doesn't have to be closed because as an in-memory store it doesn't open external resources, and shouldn't be here because it would save the unchanged zip archive"

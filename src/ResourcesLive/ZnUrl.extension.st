@@ -1,6 +1,6 @@
-Extension { #name : 'ZnUrl' }
+Extension { #name : #ZnUrl }
 
-{ #category : '*ResourcesLive' }
+{ #category : #'*ResourcesLive' }
 ZnUrl >> asRlResource [
 
 	| file |
@@ -12,9 +12,18 @@ ZnUrl >> asRlResource [
 		yourself
 ]
 
-{ #category : '*ResourcesLive' }
+{ #category : #'*ResourcesLive' }
 ZnUrl >> rlFilename [
-	^ self isFilePath
-		ifTrue: [ self file ]
-		ifFalse: [ self asString asFilename ]
+	| client |
+	self isFilePath ifTrue: [ ^ self file ].
+	client := ZnClient new
+		url: self;
+		head;
+		yourself.
+	^ String streamContents: [ :s |
+		s << self asString asFilename.
+		
+		"Account for URLs that are technically directories but return HTML"
+		client response contentType = ZnMimeType textHtml
+			ifTrue: [ s << '.html' ] ]
 ]

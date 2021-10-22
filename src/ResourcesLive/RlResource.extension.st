@@ -1,6 +1,6 @@
-Extension { #name : 'RlResource' }
+Extension { #name : #RlResource }
 
-{ #category : '*ResourcesLive-Morphic' }
+{ #category : #'*ResourcesLive-Morphic' }
 RlResource >> asMorph [
 	
 	| morph openButton builder controls |

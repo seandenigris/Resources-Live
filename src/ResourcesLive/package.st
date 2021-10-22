@@ -1,1 +1,1 @@
-Package { #name : 'ResourcesLive' }
+Package { #name : #ResourcesLive }

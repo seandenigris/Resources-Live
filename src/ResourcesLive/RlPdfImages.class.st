@@ -8,8 +8,8 @@ brew install poppler
 
 "
 Class {
-	#name : 'RlPdfImages',
-	#superclass : 'Object',
+	#name : #RlPdfImages,
+	#superclass : #Object,
 	#instVars : [
 		'inputFile',
 		'outputRoot'
@@ -17,12 +17,12 @@ Class {
 	#category : 'ResourcesLive-Utilities'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlPdfImages class >> binary [
 	^ '/usr/local/bin/pdfimages'
 ]
 
-{ #category : 'convenience' }
+{ #category : #convenience }
 RlPdfImages class >> convert: inputFile to: outputRoot [
 
 	^ self new
@@ -32,7 +32,7 @@ RlPdfImages class >> convert: inputFile to: outputRoot [
 		images
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlPdfImages class >> example [
 	<gtExample>
 	| inputJpeg tempFolder outputRoot images |
@@ -47,7 +47,7 @@ RlPdfImages class >> example [
 	] ensure: [ images first delete ].
 ]
 
-{ #category : 'converting' }
+{ #category : #converting }
 RlPdfImages >> commandString [
 
 	^ self commandTemplate
@@ -56,7 +56,7 @@ RlPdfImages >> commandString [
 			(#output -> self outputRoot asFileReference fullName)} asDictionary
 ]
 
-{ #category : 'converting' }
+{ #category : #converting }
 RlPdfImages >> commandTemplate [
 	"
 	Output format options:
@@ -71,7 +71,7 @@ RlPdfImages >> commandTemplate [
 	^ self class binary, ' -j -p "{input}" "{output}"'
 ]
 
-{ #category : 'views' }
+{ #category : #views }
 RlPdfImages >> gtCLIViewFor: aView [
 	<gtView>
 	^ aView text 
@@ -80,7 +80,7 @@ RlPdfImages >> gtCLIViewFor: aView [
 		
 ]
 
-{ #category : 'convenience' }
+{ #category : #convenience }
 RlPdfImages >> images [
 	^ self outputRoot parent filesMatching: self outputRoot basename, '*'
 	"Note: Image basenames are of the form `{root}-{page#}-{image#}`, where:
@@ -90,36 +90,36 @@ RlPdfImages >> images [
 	For example, for image 0 from page 1, if returned as a JPEG, would end in 001-000.jpg"
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlPdfImages >> input: convertibleToFile [
 	"convertibleToFile - should respond to #asFileReference"
 	inputFile := convertibleToFile
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlPdfImages >> inputFile [
 	^ inputFile
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlPdfImages >> outputRoot [
 	^ outputRoot
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlPdfImages >> outputRoot: convertibleToFile [
 	"Where to save. A suffix will be applied by the library.
 	convertibleToFile - should respond to #asFileReference"
 	outputRoot := convertibleToFile
 ]
 
-{ #category : 'converting' }
+{ #category : #converting }
 RlPdfImages >> run [
 	self outputRoot asFileReference parent ensureCreateDirectory. "pdfimages will fail if it doesn't exist"
 	self shell runWaitAndAssert: self commandString
 ]
 
-{ #category : 'converting' }
+{ #category : #converting }
 RlPdfImages >> shell [
 	"Hook to find all these roll-your-own shell things to replace with Pharo-Shell"
 	^ LibC

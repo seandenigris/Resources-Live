@@ -1,10 +1,10 @@
 Class {
-	#name : 'RlHTMLParser',
-	#superclass : 'SmaCCGLRParser',
+	#name : #RlHTMLParser,
+	#superclass : #SmaCCGLRParser,
 	#category : 'ResourcesLive-EPUB'
 }
 
-{ #category : 'generated' }
+{ #category : #generated }
 RlHTMLParser class >> ambiguousTransitions [
 ^#(
 #[ 0 6 0 21] 
@@ -22,12 +22,12 @@ RlHTMLParser class >> ambiguousTransitions [
 	).
 ]
 
-{ #category : 'generated-accessing' }
+{ #category : #'generated-accessing' }
 RlHTMLParser class >> cacheId [
 	^'2020-10-09T22:53:00.739177-04:00'
 ]
 
-{ #category : 'generated' }
+{ #category : #generated }
 RlHTMLParser class >> definitionComment [
 "/*
  [The ""BSD licence""]
@@ -327,7 +327,7 @@ ATTVALUE <SINGLE_QUOTE_STRING>
     ;"
 ]
 
-{ #category : 'generated' }
+{ #category : #generated }
 RlHTMLParser class >> reduceTable [
 ^#(
 	#(25 0 #reduceFor: 1613825 false ) 
@@ -383,22 +383,22 @@ RlHTMLParser class >> reduceTable [
 	).
 ]
 
-{ #category : 'generated' }
+{ #category : #generated }
 RlHTMLParser class >> scannerClass [
 	^RlHTMLScanner
 ]
 
-{ #category : 'generated' }
+{ #category : #generated }
 RlHTMLParser class >> startingStateForhtmlDocument [
 	^ 1
 ]
 
-{ #category : 'generated' }
+{ #category : #generated }
 RlHTMLParser class >> symbolNames [
 	^ #('<HTML_COMMENT>' '<HTML_CONDITIONAL_COMMENT>' '<XML_DECLARATION>' '<CDATA>' '<DTD>' '<SCRIPTLET>' '<SEA_WS>' '<SCRIPT_OPEN>' '<STYLE_OPEN>' '<TAG_OPEN>' '<HTML_TEXT>' '<TAG_CLOSE>' '<TAG_SLASH_CLOSE>' '<TAG_SLASH>' '<TAG_EQUALS>' '<TAG_NAME>' '<SCRIPT_BODY>' '<SCRIPT_SHORT_BODY>' '<STYLE_BODY>' '<STYLE_SHORT_BODY>' '<ATTVALUE_VALUE>' 'B e g i n' 'htmlDocument' '(scriptlet | <SEA_WS>)' '(scriptlet | <SEA_WS>)*' 'htmlElements*' 'htmlElements' 'htmlMisc*' 'htmlElement' 'htmlAttribute*' 'htmlContent' '((htmlElement | xhtmlCDATA | htmlComment) htmlChardata?)' '((htmlElement | xhtmlCDATA | htmlComment) htmlChardata?)*' 'htmlAttribute' 'htmlAttributeName' 'htmlAttributeValue' 'htmlTagName' 'htmlChardata' 'htmlMisc' 'htmlComment' 'xhtmlCDATA' 'dtd' 'xml' 'scriptlet' 'script' 'style' 'E O F' 'error')
 ]
 
-{ #category : 'generated' }
+{ #category : #generated }
 RlHTMLParser class >> transitionTable [
 ^#(
 #[1 0 6 0 1 0 6 0 2 0 6 0 3 0 6 0 5 0 6 0 6 0 6 0 7 0 6 0 8 0 6 0 9 0 6 0 10 0 9 0 23 0 13 0 25 0 6 0 47] 

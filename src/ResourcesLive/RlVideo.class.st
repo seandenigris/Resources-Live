@@ -1,18 +1,18 @@
 Class {
-	#name : 'RlVideo',
-	#superclass : 'RlResource',
+	#name : #RlVideo,
+	#superclass : #RlResource,
 	#traits : 'RlTPlayable',
 	#classTraits : 'RlTPlayable classTrait',
 	#category : 'ResourcesLive-Core'
 }
 
-{ #category : 'examples' }
+{ #category : #examples }
 RlVideo class >> example [
 	<gtExample>
 	^ (self exampleSupportFolder / 'gt.mov') asRlResource.
 ]
 
-{ #category : 'examples' }
+{ #category : #examples }
 RlVideo class >> exampleExtent [
 	<gtExample>
 	| extent |
@@ -22,12 +22,12 @@ RlVideo class >> exampleExtent [
 	^ extent
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlVideo class >> fileExtensions [
 	^ #('mov' 'mp4' 'm4v')
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlVideo >> animatedGifCreator [
 	^ SuFfmpeg convertingVideoToAnimatedGIF
 		argumentAt: #inputFile put: self asFileReference;
@@ -36,7 +36,7 @@ RlVideo >> animatedGifCreator [
 
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlVideo >> extent [
 	^ SuFfmpeg new
 		argumentAt: #inputFile put: self file;

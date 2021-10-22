@@ -6,12 +6,12 @@ NB. There is some info online about simply using cat, but that did not work for 
 
 "
 Class {
-	#name : 'RlMp3',
-	#superclass : 'RlResource',
+	#name : #RlMp3,
+	#superclass : #RlResource,
 	#category : 'ResourcesLive-Core'
 }
 
-{ #category : 'examples' }
+{ #category : #examples }
 RlMp3 class >> example [
 	<gtExample>
 	| result |
@@ -20,19 +20,19 @@ RlMp3 class >> example [
 	^ result
 ]
 
-{ #category : 'file types' }
+{ #category : #'file types' }
 RlMp3 class >> fileExtensions [
 	^ #('mp3')
 ]
 
-{ #category : 'utilities' }
+{ #category : #utilities }
 RlMp3 class >> merger [
 	^ SuMp3cat new.
 	
 	"Implementation note: NB. There is some info online about simply using cat, but that did not work for me. Others have had problems as well, apparently due to corrupted metainfo. Finder only played through the portion from the first file even though the combined file size was about right."
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 RlMp3 >> descriptionPlay [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -40,7 +40,7 @@ RlMp3 >> descriptionPlay [
 		yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 RlMp3 >> play [
 	LibC system: 'afplay ', self file fullName surroundedBySingleQuotes, ' &'.
 ]

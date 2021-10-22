@@ -1,10 +1,10 @@
 Class {
-	#name : 'RlWordDocX',
-	#superclass : 'RlResource',
+	#name : #RlWordDocX,
+	#superclass : #RlResource,
 	#category : 'ResourcesLive-Core'
 }
 
-{ #category : 'file types' }
+{ #category : #'file types' }
 RlWordDocX class >> fileExtensions [
 	^ #('docx')
 ]

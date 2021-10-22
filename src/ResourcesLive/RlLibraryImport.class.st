@@ -10,8 +10,8 @@ RlInPlaceImportStrategy withAllSubclasses
 
 "
 Class {
-	#name : 'RlLibraryImport',
-	#superclass : 'Object',
+	#name : #RlLibraryImport,
+	#superclass : #Object,
 	#instVars : [
 		'library',
 		'location',
@@ -21,38 +21,38 @@ Class {
 	#category : 'ResourcesLive-Importing'
 }
 
-{ #category : 'private' }
+{ #category : #private }
 RlLibraryImport >> asUrl [
 	"Make me polymorphic with URL to simplify the importation process for the library. In the use case considered (`#ensureResourceForUrl:`), `#resourceable` will always be a bare URL. It does not seem needed at this time to account for the possibility that it is already `aResource`"
 	^ self resourceable
 ]
 
-{ #category : 'private' }
+{ #category : #private }
 RlLibraryImport >> execute [
 	^ self strategy importFor: self.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlLibraryImport >> library [
 	^ library
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlLibraryImport >> library: anObject [
 	library := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlLibraryImport >> location [
 	^ location ifNil: [ Path workingDirectory ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlLibraryImport >> location: anObject [
 	location := anObject
 ]
 
-{ #category : 'printing' }
+{ #category : #printing }
 RlLibraryImport >> printOn: aStream [
 	aStream
 		nextPutAll: 'Import ';
@@ -61,18 +61,18 @@ RlLibraryImport >> printOn: aStream [
 		print: self location.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlLibraryImport >> resourceable [
 	^ resourceable
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlLibraryImport >> resourceable: convertibleToResource [
 	"convertibleToResource - must respond to #asRlResource, see implementors"
 	resourceable := convertibleToResource
 ]
 
-{ #category : 'api - polymorphism' }
+{ #category : #'api - polymorphism' }
 RlLibraryImport >> rlImportInto: aRlResourceLibrary [
 	"See method comment in Object (same message)"
 	^ self
@@ -80,12 +80,12 @@ RlLibraryImport >> rlImportInto: aRlResourceLibrary [
 		execute.
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlLibraryImport >> strategy [
 	^ strategy ifNil: [ self library defaultImportStrategy ]
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 RlLibraryImport >> strategy: anObject [
 	"See: RlInPlaceImportStrategy withAllSubclasses"
 	strategy := anObject
