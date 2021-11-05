@@ -20,7 +20,7 @@ Class {
 		'importTimestamp',
 		'metadata'
 	],
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #accessing }
@@ -198,6 +198,15 @@ RlResource >> moveFileTo: reference [
 { #category : #actions }
 RlResource >> open [
 	self file peOpen
+]
+
+{ #category : #accessing }
+RlResource >> openDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		gtIcon: BrGlamorousVectorIcons playinspect;
+		action: #open;
+		yourself
 ]
 
 { #category : #accessing }

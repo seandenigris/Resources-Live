@@ -13,7 +13,7 @@ RlInPlaceImportStrategy class >> example [
 	| file library |
 	file := Tempfile new.
 	library := RlResourceLibrary new.
-	library import
+	library importer
 		resourceable: file;
 		strategy: RlInPlaceImportStrategy;
 		execute.
