@@ -1,6 +1,6 @@
-Extension { #name : 'RlResourceLibrary' }
+Extension { #name : #RlResourceLibrary }
 
-{ #category : '*ResourcesLive-GToolkit' }
+{ #category : #'*ResourcesLive-GToolkit' }
 RlResourceLibrary >> gtViewResourcesOn: aView [
 	<gtView>
 	^ aView columnedList
@@ -8,10 +8,11 @@ RlResourceLibrary >> gtViewResourcesOn: aView [
 		priority: 5;
 		items: [ self resources ];
 		column: 'Type' text: [ :res | (res class name allButFirst: 2) normalizeCamelCase ] width: 125;
-		column: 'File' text: [ :res | res file fullName ]
+		column: 'File' text: [ :res | res file fullName ];
+		actionUpdateButtonTooltip: 'Update'.
 ]
 
-{ #category : '*ResourcesLive-GToolkit' }
+{ #category : #'*ResourcesLive-GToolkit' }
 RlResourceLibrary class >> gtViewSingletonOn: aView [
 	<gtClassView>
 	^ aView forward
