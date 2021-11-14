@@ -1,7 +1,7 @@
 Class {
 	#name : #RlPNG,
-	#superclass : #RlImage,
-	#category : 'ResourcesLive-Core'
+	#superclass : #RlPicture,
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #'file types' }

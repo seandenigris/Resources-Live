@@ -1,29 +1,29 @@
 Class {
-	#name : #RlImage,
+	#name : #RlPicture,
 	#superclass : #RlResource,
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #accessing }
-RlImage class >> fileExtensions [
+RlPicture class >> fileExtensions [
 	^ #()
 ]
 
 { #category : #testing }
-RlImage class >> isClassFor: file [
+RlPicture class >> isClassFor: file [
 	"I'm abstract"
-	^ self ~= RlImage and: [ super isClassFor: file ]
+	^ self ~= RlPicture and: [ super isClassFor: file ]
 ]
 
 { #category : #accessing }
-RlImage >> extent [
+RlPicture >> extent [
 	^ SuFfmpeg new
 		argumentAt: #inputFile put: self file;
 		extent
 ]
 
 { #category : #accessing }
-RlImage >> gtFigureFor: aView [
+RlPicture >> gtFigureFor: aView [
 	<gtView>
 	^ aView pannable
 		title: 'Picture';

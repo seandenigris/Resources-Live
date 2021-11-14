@@ -1,7 +1,7 @@
 Class {
 	#name : #RlJPEG,
-	#superclass : #RlImage,
-	#category : 'ResourcesLive-Core'
+	#superclass : #RlPicture,
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #examples }
