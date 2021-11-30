@@ -4,7 +4,7 @@ Extension { #name : #ZnUrl }
 ZnUrl >> asRlResource [
 
 	| file |
-	file := FileLocator imageDirectory / 'tmp' / self rlFilename.
+	file := Tempfile named: self rlFilename.
 	file parent ensureCreateDirectory.
 	self saveContentsToFile: file.
 	^ file asRlResource
@@ -14,14 +14,18 @@ ZnUrl >> asRlResource [
 
 { #category : #'*ResourcesLive' }
 ZnUrl >> rlFilename [
-	| client |
-	self isFilePath ifTrue: [ ^ self file ].
+	| client base |
+	base := self isFilePath 
+		ifTrue: [ 
+			self file asFileReference extension ifNotEmpty: [ ^ self file ].
+			self file ]
+		ifFalse: [ self asString asFilename ] .
 	client := ZnClient new
 		url: self;
 		head;
 		yourself.
 	^ String streamContents: [ :s |
-		s << self asString asFilename.
+		s << base.
 		
 		"Account for URLs that are technically directories but return HTML"
 		client response contentType = ZnMimeType textHtml
