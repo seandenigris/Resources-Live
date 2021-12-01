@@ -46,6 +46,11 @@ Class {
 	#category : #BaselineOfResourcesLive
 }
 
+{ #category : #testing }
+BaselineOfResourcesLive class >> isDynabook [
+	^ true
+]
+
 { #category : #baselines }
 BaselineOfResourcesLive >> baseline: spec [
 	<baseline>
