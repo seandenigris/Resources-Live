@@ -1,6 +1,6 @@
 # Resources Live
 
-TLDR: Free users to communicate with *objects* instead of managing *files*. Files conflate *what* a thing is with *where* it is. We take can of the boring location part for you. So you can "play an mp3" instead of "opening an mp3 file in a player app". Nicer, no?
+TLDR: Free users to communicate with *objects* instead of managing *files*. Files conflate *what* a thing is with *where* it is. We take care of the boring location part for you. So you can "play an mp3" instead of "opening an mp3 file in a player app". Nicer, no?
 	
 # Overview
 	
