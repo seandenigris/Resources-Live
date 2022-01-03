@@ -12,7 +12,9 @@ I represent electronic documents in a domain-centered, file system agnostic way.
 "
 Class {
 	#name : #RlResource,
-	#superclass : #MAObject,
+	#superclass : #Object,
+	#traits : 'MATPropertyOwner',
+	#classTraits : 'MATPropertyOwner classTrait',
 	#instVars : [
 		'originalFile',
 		'file',
