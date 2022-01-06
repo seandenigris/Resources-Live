@@ -8,7 +8,7 @@ Class {
 		'timestamp',
 		'displayString'
 	],
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #utilities }
@@ -92,17 +92,18 @@ RlEmail class >> verifyProperFiling [
 RlEmail >> displayString [
 	| msg |
 	displayString ifNotNil: [ ^ displayString ].
+	self file exists ifFalse: [ ^ 'Email - file does not exist' ].
+	
 	msg := self mailMessage.
-	^ String
-		streamContents: [ :str | 
-			str 
-				nextPutAll: self timestamp asDate yyyymmdd;
-				space;
-				nextPutAll: self timestamp asTime print24;
-				nextPutAll: ' [';
-				nextPutAll: msg from;
-				nextPutAll: '] ';
-				nextPutAll: msg subject withBlanksCondensed ].
+	^ String streamContents: [ :str | 
+		str 
+			nextPutAll: self timestamp asDate yyyymmdd;
+			space;
+			nextPutAll: self timestamp asTime print24;
+			nextPutAll: ' [';
+			nextPutAll: msg from;
+			nextPutAll: '] ';
+			nextPutAll: msg subject withBlanksCondensed ]
 ]
 
 { #category : #accessing }
