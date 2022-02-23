@@ -6,17 +6,21 @@ AbstractFileReference >> asRlResource [
 ]
 
 { #category : #'*ResourcesLive' }
-AbstractFileReference >> gtRlResourceFor: aView inContext: aContext [
+AbstractFileReference >> gtRlResourceFor: aView [
 	<gtView>
 	| resource |
 	(RlResource doesSpecificallyHandle: self)
 		ifFalse: [ ^ aView empty ].
 		
 	resource := self asRlResource.
-	^ aView composite
+	^ aView forward
 		title: resource displayName;
+		object: [ resource ];
 		priority: 1;
-		views: (resource gtViewsInContext: aContext)
+		view: #gtMetaFor:;
+		actionButtonIcon: BrGlamorousVectorIcons inspect 
+			tooltip: 'Inspect resource' 
+			action: [ :aButton | aButton phlow spawnObject: resource ]
 ]
 
 { #category : #'*ResourcesLive' }
