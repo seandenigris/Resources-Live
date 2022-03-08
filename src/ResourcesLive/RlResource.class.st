@@ -48,7 +48,7 @@ RlResource class >> isAbstract [
 
 { #category : #testing }
 RlResource class >> isClassFor: file [
-	^ (self fileExtensions includes: file extension) and: [ 
+	^ (self fileExtensions includes: file extension asLowercase) and: [ 
 		"This is inefficient, but not sure how to iterate subclasses depth-first. Asked on Discord - Pharo general channel 11/5/2020"
 		self allSubclasses noneSatisfy: [ :sc | sc isClassFor: file ] ]
 ]
