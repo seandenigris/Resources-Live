@@ -167,6 +167,16 @@ RlResource >> import [
 ]
 
 { #category : #accessing }
+RlResource >> importDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		gtIcon: BrGlamorousVectorIcons down;
+		comment: 'Import into Singleton Library';
+		action: #import;
+		yourself
+]
+
+{ #category : #accessing }
 RlResource >> importTimestamp [
 	^ importTimestamp
 ]
