@@ -1,0 +1,151 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "2d80bedc-4096-0d00-b3c7-358c0873fb10"
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "URLs"
+	},
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2022-03-10T10:56:21.184867-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2022-03-10T10:59:05.017158-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "d/8G/kCWDQCz0oldCHP7EA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "1. When you care primarily about the target of the URL (e.g. a file to download), you can simply import the URL into your resource library. Whatever the URL points to is downloaded and then *that* is what's imported."
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2022-03-10T10:56:53.860467-05:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2022-03-10T11:01:13.741426-05:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "dpX5/0CWDQCz03HyCHP7EA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "2. Where the URL itself is the primary object of interest, e.g. for a web page, you might just want to store the URL and possibly cache the target. This latter case, does not fall inside the scope of this project, which is about real digital artifacts. [Living Library](https://github.com/SeanDeNigris/Living-Library) provides {{gtClass:LlWebResource}} for this case."
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2022-03-10T10:55:59.565422-05:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2022-03-10T10:55:59.565422-05:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "UB+9/ECWDQCz0dpPCHP7EA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "There seem to be two interesting cases for URLs as resources:"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2022-03-10T10:47:02.784236-05:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2022-03-10T10:47:08.317136-05:00"
+		}
+	}
+}
