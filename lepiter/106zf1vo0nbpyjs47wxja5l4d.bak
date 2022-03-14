@@ -79,7 +79,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2022-03-10T11:00:54.128146-05:00"
+									"dateAndTimeString" : "2022-03-10T11:01:13.741426-05:00"
 								}
 							},
 							"uid" : {
@@ -89,7 +89,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "2. Where the URL itself is the primary object of interest, e.g. for a web page, you might just want to store the URL and possibly cache the target. This latter case, does not fall inside the scope of this project, which is about real digital artifacts. [Living Library](https://github.com/SeanDeNigris/Living-Library) p"
+							"string" : "2. Where the URL itself is the primary object of interest, e.g. for a web page, you might just want to store the URL and possibly cache the target. This latter case, does not fall inside the scope of this project, which is about real digital artifacts. [Living Library](https://github.com/SeanDeNigris/Living-Library) provides {{gtClass:LlWebResource}} for this case."
 						}
 					]
 				},
