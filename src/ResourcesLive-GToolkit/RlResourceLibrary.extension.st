@@ -3,11 +3,17 @@ Extension { #name : #RlResourceLibrary }
 { #category : #'*ResourcesLive-GToolkit' }
 RlResourceLibrary >> gtViewRecentResourcesOn: aView [
 	<gtView>
-	^ aView columnedList
+	^ (self gtViewResources: [ self resources last: 25 ] on: aView)
 		title: 'Recent' translated;
-		priority: 10;
-		items: [ self resources last: 25 ];
-		column: 'Type' text: [ :res | (res class name allButFirst: 2) normalizeCamelCase ] width: 125;
+		priority: 10
+]
+
+{ #category : #'*ResourcesLive-GToolkit' }
+RlResourceLibrary >> gtViewResources: aBlock on: aView [
+	
+	^ aView columnedList
+		items: aBlock;
+		column: 'Type' text: [ :res | res class name allButFirst: 2 ] width: 125;
 		column: 'File' text: [ :res | res file fullName ];
 		actionUpdateButtonTooltip: 'Update'.
 ]
@@ -15,13 +21,9 @@ RlResourceLibrary >> gtViewRecentResourcesOn: aView [
 { #category : #'*ResourcesLive-GToolkit' }
 RlResourceLibrary >> gtViewResourcesOn: aView [
 	<gtView>
-	^ aView columnedList
+	^ (self gtViewResources: [ self resources ] on: aView)
 		title: 'Resources' translated;
-		priority: 5;
-		items: [ self resources ];
-		column: 'Type' text: [ :res | (res class name allButFirst: 2) normalizeCamelCase ] width: 125;
-		column: 'File' text: [ :res | res file fullName ];
-		actionUpdateButtonTooltip: 'Update'.
+		priority: 5
 ]
 
 { #category : #'*ResourcesLive-GToolkit' }
