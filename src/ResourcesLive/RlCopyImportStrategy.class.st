@@ -5,7 +5,7 @@ I copy the resource's file into the library; leaving a copy in its original loca
 Class {
 	#name : #RlCopyImportStrategy,
 	#superclass : #RlInPlaceImportStrategy,
-	#category : 'ResourcesLive-Importing'
+	#category : #'ResourcesLive-Importing'
 }
 
 { #category : #accessing }
@@ -22,7 +22,8 @@ RlCopyImportStrategy >> prepareResource: resource [
 	destinationFile exists ifTrue: [ self error ].
 	destinationFile parent ensureCreateDirectory.
 	self importFile: sourceFile to: destinationFile.
-	resource
-		file: destinationFile;
-		originalFile: sourceFile asFileReference
+	resource file: destinationFile.
+	
+	(sourceFile isKindOf: Tempfile) ifTrue: [ ^ self ].
+	resource originalFile: sourceFile asFileReference
 ]
