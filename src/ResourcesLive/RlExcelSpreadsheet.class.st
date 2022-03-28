@@ -11,7 +11,7 @@ RlExcelSpreadsheet class >> fileExtensions [
 
 { #category : #accessing }
 RlExcelSpreadsheet >> csv [
-	self flag: 'must create manually for now'.
+	self flag: 'must create manually for now. There was a SO thread about it formerly being possible via python and not much other info'.
 	^ RlResource on: self file withoutExtension, 'csv'.
 ]
 

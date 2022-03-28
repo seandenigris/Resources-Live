@@ -6,7 +6,13 @@ Class {
 
 { #category : #'file types' }
 RlHTML class >> fileExtensions [
-	^ #('html')
+	^ #('html' 'shtml' 'dhtml')
+	
+	"SHTML is a file extension that lets the web server know the file should be processed as using Server Side Includes (SSI).
+
+(HTML is...you know what it is, and DHTML is Microsoft's name for Javascript+HTML+CSS or something). 
+
+	per https://stackoverflow.com/a/519629"
 ]
 
 { #category : #accessing }
