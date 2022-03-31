@@ -8,7 +8,7 @@ NB. There is some info online about simply using cat, but that did not work for 
 Class {
 	#name : #RlMp3,
 	#superclass : #RlResource,
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #examples }
@@ -33,14 +33,14 @@ RlMp3 class >> merger [
 ]
 
 { #category : #'as yet unclassified' }
-RlMp3 >> descriptionPlay [
+RlMp3 >> play [
+	LibC system: 'afplay ', self file fullName surroundedBySingleQuotes, ' &'.
+]
+
+{ #category : #accessing }
+RlMp3 >> playDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
 		action: #play;
 		yourself
-]
-
-{ #category : #'as yet unclassified' }
-RlMp3 >> play [
-	LibC system: 'afplay ', self file fullName surroundedBySingleQuotes, ' &'.
 ]
