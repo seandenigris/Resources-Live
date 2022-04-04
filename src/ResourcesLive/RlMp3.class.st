@@ -33,6 +33,21 @@ RlMp3 class >> merger [
 ]
 
 { #category : #'as yet unclassified' }
+RlMp3 >> currentTimeIn: container [
+	^ container currentTime
+]
+
+{ #category : #'as yet unclassified' }
+RlMp3 >> isPlayingIn: container [
+	^ container isPlaying
+]
+
+{ #category : #accessing }
+RlMp3 >> pauseIn: container [
+	container pause
+]
+
+{ #category : #'as yet unclassified' }
 RlMp3 >> play [
 	LibC system: 'afplay ', self file fullName surroundedBySingleQuotes, ' &'.
 ]
@@ -43,4 +58,9 @@ RlMp3 >> playDescription [
 	^ MAActionDescription new
 		action: #play;
 		yourself
+]
+
+{ #category : #'as yet unclassified' }
+RlMp3 >> seekTo: aDuration in: container [
+	container seekTo: aDuration
 ]
