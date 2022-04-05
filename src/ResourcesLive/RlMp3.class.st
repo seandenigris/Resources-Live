@@ -61,6 +61,16 @@ RlMp3 >> playDescription [
 ]
 
 { #category : #'as yet unclassified' }
+RlMp3 >> playbackSpeed: aNumber in: container [
+	container speed: aNumber
+]
+
+{ #category : #'as yet unclassified' }
+RlMp3 >> playbackSpeedIn: container [
+	^ container speed
+]
+
+{ #category : #'as yet unclassified' }
 RlMp3 >> seekTo: aDuration in: container [
 	container seekTo: aDuration
 ]
