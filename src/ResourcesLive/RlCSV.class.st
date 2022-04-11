@@ -17,6 +17,11 @@ RlCSV >> asArraysOfStrings [
 		r upToEnd ].
 ]
 
+{ #category : #accessing }
+RlCSV >> dataFrame [
+	^ #DataFrame asClass readFromCsv: self file
+]
+
 { #category : #'as yet unclassified' }
 RlCSV >> newRecordClassNamed: aSymbol inPackage: packageName [
 	| reader fieldNames |
