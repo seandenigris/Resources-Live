@@ -22,6 +22,14 @@ RlCSV >> dataFrame [
 	^ #DataFrame asClass readFromCsv: self file
 ]
 
+{ #category : #accessing }
+RlCSV >> dataFrameUsingReaderDo: aBlock [
+	| reader |
+	reader := #DataFrameCsvReader asClass new.
+	aBlock cull: reader.
+	^ #DataFrame asClass readFrom: self file using: reader.
+]
+
 { #category : #'as yet unclassified' }
 RlCSV >> newRecordClassNamed: aSymbol inPackage: packageName [
 	| reader fieldNames |
