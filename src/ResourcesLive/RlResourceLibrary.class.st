@@ -29,7 +29,7 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #'file services' }
@@ -251,29 +251,6 @@ RlResourceLibrary >> duplicates [
 	| groups |
 	groups := self resources groupedBy: [ :e | e file ifNotNil: [ :f | f basename ] ifNil: [ e hash ] ].
 	^  groups select: [ :v | v size > 1 ]
-]
-
-{ #category : #accessing }
-RlResourceLibrary >> ensureResourceForUrl: aUrlOrCommand [
-"Questions:
-	- What does it do if it finds the resource, but in a different location, and is using a move strategy? It could be dangerous to just move it out from underneath someone else
-"
-
-	| url |
-	self flag: 'maybe the argument has to be a command because how else would we treat predownloads consistently?'.
-	url := aUrlOrCommand asUrl.
-	^ self resources
-		detect: [ :r | r source equals: url ]
-		ifNone: [ 
-			| preDownload toImport resource |
-			preDownload := self inbox / url rlFilename.
-			toImport := preDownload exists
-				ifTrue: [ aUrlOrCommand copy resourceable: preDownload; yourself ]
-				ifFalse: [ aUrlOrCommand ].
-			resource := self import: toImport.
-			resource
-				source: url;
-				yourself ]
 ]
 
 { #category : #private }
