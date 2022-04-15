@@ -1,5 +1,9 @@
 "
 I represent a PDF.
+
+# Archiving
+PDF/A-2b is [apparently](https://www.pdftron.com/blog/pdfa-format/how-to-pick-right-version-of-pdfa/) the sweet spot between reliable retrieval and ease of creation.
+
 # Extracting Images
 The use case supported is when each page is an image e.g. a scanned book. The {{gtMethod:RlPDF>>#tesseractInputFile}} is tuned for OCR, while the {{gtMethod:RlPDF>>#vsImageFile}} exports for viewing.
 
@@ -10,7 +14,7 @@ Class {
 	#instVars : [
 		'imageCache'
 	],
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #accessing }
