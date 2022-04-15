@@ -20,7 +20,8 @@ Class {
 		'file',
 		'source',
 		'importTimestamp',
-		'metadata'
+		'metadata',
+		'library'
 	],
 	#category : #'ResourcesLive-Core'
 }
@@ -107,6 +108,13 @@ RlResource >> asRlResource [
 	^ self
 ]
 
+{ #category : #accessing }
+RlResource >> delete [
+	self library remove: self.
+	self library: nil.
+	self file delete.
+]
+
 { #category : #magritte }
 RlResource >> descriptionOpen [
 	<magritteActionDescription>
@@ -184,6 +192,18 @@ RlResource >> importTimestamp [
 { #category : #accessing }
 RlResource >> importTimestamp: anObject [
 	importTimestamp := anObject
+]
+
+{ #category : #accessing }
+RlResource >> library [
+
+	^ library
+]
+
+{ #category : #accessing }
+RlResource >> library: anObject [
+
+	library := anObject
 ]
 
 { #category : #accessing }
