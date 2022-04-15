@@ -170,7 +170,6 @@ RlResource >> file: anObject [
 
 { #category : #convenience }
 RlResource >> import [
-
 	RlResourceLibrary uniqueInstance import: self
 ]
 
