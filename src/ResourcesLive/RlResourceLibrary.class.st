@@ -184,7 +184,14 @@ RlResourceLibrary >> checkForMissingFiles [
 
 { #category : #utilities }
 RlResourceLibrary >> checkForOrphanFiles [
-	^ self folder allFiles select: [ :f | self resources noneSatisfy: [ :r | r file ifNil: [ false ] ifNotNil: [ :rf | rf resolve = f ] ] ].
+	^ self folder allFiles select: [ :f | 
+		f basename = '.DS_Store'
+			ifTrue: [ false ]
+			ifFalse: [ 
+				self resources noneSatisfy: [ :r | 
+					r file 
+						ifNil: [ false ] 
+						ifNotNil: [ :rf | rf resolve = f ] ] ] ].
 	
 	"
 	Useful snippets for dealing with returned files:
