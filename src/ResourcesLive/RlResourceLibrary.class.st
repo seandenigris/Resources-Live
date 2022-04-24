@@ -338,8 +338,9 @@ RlResourceLibrary >> lastID: aNumber [
 { #category : #private }
 RlResourceLibrary >> locationFor: resource in: location [
 
-	| sameFilename result targetFolder |
-	targetFolder := (self folder  / resource class name) ensureCreateDirectory rlAppend: location.
+	| sameFilename result targetFolder optimizedRoot |
+	optimizedRoot := self folder asFileReference. "FileLocators are slooow when there are many"
+	targetFolder := (optimizedRoot / resource class name) ensureCreateDirectory rlAppend: location.
 	sameFilename := targetFolder / resource file basename.
 	result := sameFilename exists
 		ifFalse: [ sameFilename ]
