@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'client'
 	],
-	#category : 'ResourcesLive-Importing'
+	#category : #'ResourcesLive-Importing'
 }
 
 { #category : #accessing }
@@ -48,5 +48,7 @@ RlInPlaceImportStrategy >> import [
 
 { #category : #accessing }
 RlInPlaceImportStrategy >> prepareResource: resource [ 
-	resource importTimestamp: DateAndTime rlImportTimestamp.
+	resource 
+		importTimestamp: DateAndTime rlImportTimestamp;
+		library: self client library.
 ]

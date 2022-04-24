@@ -32,7 +32,8 @@ AbstractFileReference >> rlAppend: location [
 	isFSMagicStringGrenade ifTrue: [ ^ self error: 'Appending / to aFileLoctor brings you to the root dir!' ].
 	
 	absoluteLocation := self resolve: location.
-	self assert: ((self contains: absoluteLocation ) or: [ self = absoluteLocation ]).
+	((self contains: absoluteLocation ) or: [ self = absoluteLocation ])
+		ifFalse: [ self error ].
 	
 	^ absoluteLocation
 ]
