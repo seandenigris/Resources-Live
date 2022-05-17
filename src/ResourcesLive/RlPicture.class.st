@@ -16,6 +16,11 @@ RlPicture class >> isClassFor: file [
 ]
 
 { #category : #accessing }
+RlPicture >> asForm [
+	^ Form fromFileNamed: self file
+]
+
+{ #category : #accessing }
 RlPicture >> extent [
 	^ SuFfmpeg new
 		argumentAt: #inputFile put: self file;
