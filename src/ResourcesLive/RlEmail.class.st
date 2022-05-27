@@ -6,7 +6,8 @@ Class {
 	#superclass : #RlResource,
 	#instVars : [
 		'timestamp',
-		'displayString'
+		'displayString',
+		'date'
 	],
 	#category : #'ResourcesLive-Core'
 }
@@ -89,6 +90,15 @@ RlEmail class >> verifyProperFiling [
 ]
 
 { #category : #accessing }
+RlEmail >> date [
+	date ifNotNil: [ ^ date ].
+	
+	^ self mailMessage ifNotNil: [ :mm | 
+		"Adapted from MailMessage>>#date"
+		date := Date fromSeconds: mm time + (Date year: 1980 day: 1 ) asSeconds ]
+]
+
+{ #category : #accessing }
 RlEmail >> displayString [
 	| msg |
 	displayString ifNotNil: [ ^ displayString ].
@@ -110,6 +120,8 @@ RlEmail >> displayString [
 RlEmail >> mailMessage [
 	| contents eml |
 	eml := self file.
+	eml exists ifFalse: [ ^ nil ].
+	
 	contents := eml readStreamEncoded: #iso88592 do: [ :str |
 		str encoder beLenient. 
 		str upToEnd ].
@@ -135,7 +147,7 @@ RlEmail >> properFilename [
 
 { #category : #accessing }
 RlEmail >> timestamp [
-	^ timestamp ifNil: [ self mailMessage timestamp ]
+	^ timestamp ifNil: [ timestamp := self mailMessage timestamp ]
 ]
 
 { #category : #accessing }
