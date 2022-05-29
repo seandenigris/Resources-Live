@@ -266,23 +266,35 @@ RlResourceLibrary >> folder [
 	^ folder ifNil: [ self class folder ]
 ]
 
-{ #category : #accessing }
+{ #category : #spotter }
 RlResourceLibrary >> gtGtSpotterFor: aStep [
 	<gtSearch>
+	^ self gtGtSpotterTitled: 'Resources' resources: [ self resources ] priority: 20 for: aStep
+]
+
+{ #category : #spotter }
+RlResourceLibrary >> gtGtSpotterRecentFor: aStep [
+	<gtSearch>
+	^ self gtGtSpotterTitled: 'Recent' resources: [ (self resources last: 25) reversed ] priority: 10 for: aStep
+]
+
+{ #category : #'private-spotter' }
+RlResourceLibrary >> gtGtSpotterTitled: aString resources: aBlock priority: aNumber for: aStep [
+	<gtSearch>
 	^ aStep listProcessor
-		priority: 5;
-		title: 'Resources';
-		allCandidates: [ self resources ];
+		priority: aNumber;
+		title: aString;
+		allCandidates: aBlock;
 		filter: GtFilterSubstrings;
 		candidatesLimit: 7;
 		itemName:[ :aResource | (aResource file relativeTo: self folder) fullName ] 
 ]
 
-{ #category : #accessing }
+{ #category : #spotter }
 RlResourceLibrary >> gtGtSpotterTypeFor: aStep [
 	<gtSearch>
 	^ aStep listProcessor
-		priority: 5;
+		priority: 30;
 		title: 'Types';
 		allCandidates: [ self resources collectAsSet: #class ];
 		filter: GtFilterSubstrings;
