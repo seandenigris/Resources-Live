@@ -180,6 +180,7 @@ RlResource >> importDescription [
 		gtIcon: BrGlamorousVectorIcons down;
 		comment: 'Import into Singleton Library';
 		action: #import;
+		enableBlock: [ :res | res library isNil ];
 		yourself
 ]
 
