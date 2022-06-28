@@ -80,6 +80,11 @@ RlResource class >> on: file [
 		yourself.
 ]
 
+{ #category : #accessing }
+RlResource class >> typeName [
+	^ (self name allButFirst: 'Rl' size) normalizeCamelCase
+]
+
 { #category : #converting }
 RlResource >> asFileReference [
 	^ self file
