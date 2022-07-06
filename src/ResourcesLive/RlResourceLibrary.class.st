@@ -228,20 +228,6 @@ RlResourceLibrary >> deleteAll [
 	resources removeAll
 ]
 
-{ #category : #magritte }
-RlResourceLibrary >> descriptionResources [
-	<magritteDescription>
-	<gtInspectorPresentationOrder: 10>
-		
-	^ MAToManyRelationDescription new
-			accessor: #resources;
-			label: 'Resources';
-			priority: 100;
-			default: OrderedCollection new; "no reason for an OC specifically, except it already is; via #initialize"
-			"classes: { RlEmail };"
-			yourself
-]
-
 { #category : #importing }
 RlResourceLibrary >> doesMoveByDefault [
 	^ doesMoveByDefault ifNil: [ true ]
@@ -388,6 +374,20 @@ RlResourceLibrary >> resources [
 { #category : #private }
 RlResourceLibrary >> resources: anObject [
 	resources := anObject
+]
+
+{ #category : #magritte }
+RlResourceLibrary >> resourcesDescription [
+	<magritteDescription>
+	<gtInspectorPresentationOrder: 10>
+		
+	^ MAToManyRelationDescription new
+			accessor: #resources;
+			label: 'Resources';
+			priority: 100;
+			default: OrderedCollection new; "no reason for an OC specifically, except it already is; via #initialize"
+			"classes: { RlEmail };"
+			yourself
 ]
 
 { #category : #private }
