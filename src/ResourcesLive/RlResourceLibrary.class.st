@@ -239,7 +239,6 @@ RlResourceLibrary >> descriptionResources [
 			priority: 100;
 			default: OrderedCollection new; "no reason for an OC specifically, except it already is; via #initialize"
 			"classes: { RlEmail };"
-			glmPresentation: #list;
 			yourself
 ]
 
