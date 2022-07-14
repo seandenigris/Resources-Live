@@ -28,6 +28,6 @@ ZnUrl >> rlFilename [
 		s << base.
 		
 		"Account for URLs that are technically directories but return HTML"
-		client response contentType = ZnMimeType textHtml
+		(client response contentType matches: ZnMimeType textHtml)
 			ifTrue: [ s << '.html' ] ]
 ]
