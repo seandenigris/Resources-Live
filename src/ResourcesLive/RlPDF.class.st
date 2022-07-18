@@ -70,7 +70,7 @@ RlPDF >> imageCache [
 
 { #category : #accessing }
 RlPDF >> imageFile [
-	| outputFile images |
+	| outputFile |
 	imageCache ifNotNil: [ ^ imageCache ].
 	outputFile := Tempfile withPrefix: 'rlpdf_' andSuffix: '.jpg'.
 	SuImageMagick convertForOCR
