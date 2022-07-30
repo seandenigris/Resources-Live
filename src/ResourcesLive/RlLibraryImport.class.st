@@ -18,7 +18,7 @@ Class {
 		'resourceable',
 		'strategy'
 	],
-	#category : 'ResourcesLive-Importing'
+	#category : #'ResourcesLive-Importing'
 }
 
 { #category : #private }
@@ -29,6 +29,11 @@ RlLibraryImport >> asUrl [
 
 { #category : #private }
 RlLibraryImport >> execute [
+	| isInLibrary isAlreadyImported |
+	isInLibrary := self library resources identityIncludes: self resourceable.
+	isAlreadyImported := isInLibrary and: [ self resourceable library == self library].
+	isAlreadyImported ifTrue: [ ^ self ].
+	
 	^ self strategy importFor: self.
 ]
 
