@@ -84,6 +84,16 @@ RlPDF >> ocr [
 ]
 
 { #category : #accessing }
+RlPDF >> possibleDates [
+	^ self hocr words 
+		inject: Set new 
+		into: [ :set :word | 
+			[ set add: word string asDate ] 
+				onErrorDo: [ ].
+			set ]
+]
+
+{ #category : #accessing }
 RlPDF >> wantsHOCR [
 	^ true
 ]
