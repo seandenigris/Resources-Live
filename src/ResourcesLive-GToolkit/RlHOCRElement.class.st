@@ -5,7 +5,7 @@ Class {
 		'selectionHandler',
 		'client'
 	],
-	#category : 'ResourcesLive-GToolkit'
+	#category : #'ResourcesLive-GToolkit'
 }
 
 { #category : #accessing }
@@ -93,7 +93,7 @@ RlHOCRElement >> client: anObject [
 	self removeChildren.
 	self size: client imageFile asRlResource extent.
 	self addImage.
-	self client wants_hOCR ifTrue: [ self add_hOCR ]. "If the client doesn't need OCR, don't waste time on it [1]"
+	self client wantsHOCR ifTrue: [ self add_hOCR ]. "If the client doesn't need OCR, don't waste time on it [1]"
 	self addShortcuts.
 	^ self
 	
