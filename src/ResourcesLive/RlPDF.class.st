@@ -11,9 +11,6 @@ The use case supported is when each page is an image e.g. a scanned book. The {{
 Class {
 	#name : #RlPDF,
 	#superclass : #RlResource,
-	#instVars : [
-		'imageCache'
-	],
 	#category : #'ResourcesLive-Core'
 }
 
@@ -59,31 +56,31 @@ RlPDF >> gtOCRFor: aView [
 { #category : #accessing }
 RlPDF >> hocr [
 	"See ${class:Hocr}$ comment"
-
-	^ Smalltalk tools ocr hocr: self.
-]
-
-{ #category : #accessing }
-RlPDF >> imageCache [
-	^ imageCache
+	^ self
+		propertyAt: #hocrCache
+		ifAbsentPut: [ Smalltalk tools ocr hocr: self ].
 ]
 
 { #category : #accessing }
 RlPDF >> imageFile [
 	| outputFile |
-	imageCache ifNotNil: [ ^ imageCache ].
+	self propertyAt: #imageCache ifPresent: [ :ic | ^ ic ].
+	
 	outputFile := Tempfile withPrefix: 'rlpdf_' andSuffix: '.jpg'.
 	SuImageMagick convertForOCR
 		argumentAt: #inputFile put: self file;
 		argumentAt: #outputFile put: outputFile;
 		argumentAt: #pageRange put: (1 to: 1);
 		run.
-	^ imageCache := outputFile
+		
+	^ self propertyAt: #imageCache put: outputFile
 ]
 
 { #category : #accessing }
 RlPDF >> ocr [
-	^ Smalltalk tools ocr ocr: self.
+	^ self
+		propertyAt: #ocrCache
+		ifAbsentPut: [ Smalltalk tools ocr ocr: self ]
 ]
 
 { #category : #accessing }
