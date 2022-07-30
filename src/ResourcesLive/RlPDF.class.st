@@ -84,6 +84,6 @@ RlPDF >> ocr [
 ]
 
 { #category : #accessing }
-RlPDF >> wants_hOCR [
+RlPDF >> wantsHOCR [
 	^ true
 ]
