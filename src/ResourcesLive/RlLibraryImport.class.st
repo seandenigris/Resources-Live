@@ -32,7 +32,7 @@ RlLibraryImport >> execute [
 	| isInLibrary isAlreadyImported |
 	isInLibrary := self library resources identityIncludes: self resourceable.
 	isAlreadyImported := isInLibrary and: [ self resourceable library == self library].
-	isAlreadyImported ifTrue: [ ^ self ].
+	isAlreadyImported ifTrue: [ ^ self resourceable ].
 	
 	^ self strategy importFor: self.
 ]
