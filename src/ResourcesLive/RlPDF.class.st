@@ -94,8 +94,7 @@ RlPDF >> hocr [
 			hocr := Smalltalk tools ocr hocr: self.
 			tFile := Tempfile named: self file base, '-hocr.xml'.
 			tFile writeStreamDo: [ :str | str nextPutAll: hocr string ].
-			cacheResource := self library import: tFile reference.
-			
+			cacheResource := self library import: tFile reference.			
 			self propertyAt: #hocrCache put: cacheResource.
 			hocr ].
 		
