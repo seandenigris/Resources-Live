@@ -88,7 +88,18 @@ RlPDF >> hocr [
 	"See ${class:Hocr}$ comment"
 	^ self
 		propertyAt: #hocrCache
-		ifAbsentPut: [ Smalltalk tools ocr hocr: self ].
+		ifPresent: [ :cacheResource | Hocr on: cacheResource contents ]
+		ifAbsent: [ 
+			| hocr tFile cacheResource |
+			hocr := Smalltalk tools ocr hocr: self.
+			tFile := Tempfile named: self file base, '-hocr.xml'.
+			tFile writeStreamDo: [ :str | str nextPutAll: hocr string ].
+			cacheResource := self library import: tFile reference.
+			
+			self propertyAt: #hocrCache put: cacheResource.
+			hocr ].
+		
+	
 ]
 
 { #category : #accessing }
