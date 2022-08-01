@@ -114,6 +114,11 @@ RlResource >> asRlResource [
 ]
 
 { #category : #accessing }
+RlResource >> contents [
+	^ self file contents
+]
+
+{ #category : #accessing }
 RlResource >> delete [
 	self library remove: self.
 	self library: nil.
