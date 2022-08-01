@@ -26,6 +26,36 @@ RlPDF class >> fileExtensions [
 ]
 
 { #category : #accessing }
+RlPDF >> datesRecognized [
+	
+	^ ((PP2DateParser new sea ==> #second) plus parse: self ocr) asSet
+	
+	"Previously tried several other algorithms:
+	
+	1. hocr word analysis, but seemed slow and missed dates across word boundaries e.g. 'March 12, 2022':
+	```smalltalk
+	self hocr words 
+		inject: Set new 
+		into: [ :set :word | 
+			[ set add: word string asDate ] 
+				onErrorDo: [ ].
+			set ]
+	```
+	
+	2. Python - didn't seem very accurate e.g. failed to find '...March 12, 2022...':
+	```python
+	import datefinder
+	matches = list(datefinder.find_dates(text))
+
+	def to_timestamp(dt):
+		import datetime
+		return int(dt.replace(tzinfo=datetime.timezone.utc).timestamp())
+	  
+	list(map(to_timestamp, matches))
+	```"
+]
+
+{ #category : #accessing }
 RlPDF >> gtFigureFor: aView [
 	<gtView>
 	^ aView pannable
@@ -81,16 +111,6 @@ RlPDF >> ocr [
 	^ self
 		propertyAt: #ocrCache
 		ifAbsentPut: [ Smalltalk tools ocr ocr: self ]
-]
-
-{ #category : #accessing }
-RlPDF >> possibleDates [
-	^ self hocr words 
-		inject: Set new 
-		into: [ :set :word | 
-			[ set add: word string asDate ] 
-				onErrorDo: [ ].
-			set ]
 ]
 
 { #category : #accessing }
