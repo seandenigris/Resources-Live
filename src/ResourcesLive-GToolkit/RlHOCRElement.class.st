@@ -9,6 +9,27 @@ Class {
 }
 
 { #category : #accessing }
+RlHOCRElement >> addHOCR [
+	self client hocr words do: [ :w | 
+		| wordElement |
+		wordElement := w asElement
+			border: BlBorder empty;
+			addEventHandlerOn: BlElementSelectionAcquiredEvent
+				do: [ :anEvent | 
+				anEvent target owner
+					border:
+						(BlBorder builder
+							width: 2;
+							paint: Color blue;
+							build) ];
+			addEventHandlerOn: BlElementSelectionLostEvent
+				do: [ :anEvent | anEvent target owner border: BlBorder empty ];
+			yourself.
+			self addChild: wordElement ].
+	self addEventHandler: self selectionHandler
+]
+
+{ #category : #accessing }
 RlHOCRElement >> addImage [
 	| image |
 	image := GtFileUtility
@@ -32,27 +53,6 @@ RlHOCRElement >> addShortcuts [
 			action: [ :anEvent :aShortcut | self applySelectedTextTo: desc ];
 			yourself.
 		self addShortcut: shortcut ]
-]
-
-{ #category : #accessing }
-RlHOCRElement >> add_hOCR [
-	self client hocr words do: [ :w | 
-		| wordElement |
-		wordElement := w asElement
-			border: BlBorder empty;
-			addEventHandlerOn: BlElementSelectionAcquiredEvent
-				do: [ :anEvent | 
-				anEvent target owner
-					border:
-						(BlBorder builder
-							width: 2;
-							paint: Color blue;
-							build) ];
-			addEventHandlerOn: BlElementSelectionLostEvent
-				do: [ :anEvent | anEvent target owner border: BlBorder empty ];
-			yourself.
-			self addChild: wordElement ].
-	self addEventHandler: self selectionHandler
 ]
 
 { #category : #accessing }
@@ -93,7 +93,7 @@ RlHOCRElement >> client: anObject [
 	self removeChildren.
 	self size: client imageFile asRlResource extent.
 	self addImage.
-	self client wantsHOCR ifTrue: [ self add_hOCR ]. "If the client doesn't need OCR, don't waste time on it [1]"
+	self client wantsHOCR ifTrue: [ self addHOCR ]. "If the client doesn't need OCR, don't waste time on it [1]"
 	self addShortcuts.
 	^ self
 	
