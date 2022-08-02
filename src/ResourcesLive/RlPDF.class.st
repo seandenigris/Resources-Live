@@ -125,5 +125,5 @@ RlPDF >> ocr [
 
 { #category : #accessing }
 RlPDF >> wantsHOCR [
-	^ true
+	^ false
 ]
