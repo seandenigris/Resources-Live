@@ -108,7 +108,10 @@ RlPDF >> hocr [
 { #category : #accessing }
 RlPDF >> imageFile [
 	| outputFile |
-	self propertyAt: #imageCache ifPresent: [ :ic | ^ ic ].
+	self propertyAt: #imageCache ifPresent: [ :ic | 
+		ic exists
+			ifTrue: [ ^ ic ]
+			ifFalse: [ self properties removeKey: #imageCache ] ].
 	
 	outputFile := Tempfile withPrefix: 'rlpdf_' andSuffix: '.jpg'.
 	SuImageMagick convertForOCR
