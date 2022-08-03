@@ -28,7 +28,11 @@ RlPDF class >> fileExtensions [
 { #category : #accessing }
 RlPDF >> datesRecognized [
 	
-	^ ((PP2DateParser new sea ==> #second) plus parse: self ocr) asSet
+	| parseResult |
+	parseResult := (Date pp2Parser sea ==> #second) plus parse: self ocr.
+	^ parseResult isPetit2Failure
+		ifFalse: [ parseResult asSet ]
+		ifTrue: [ #() ]
 	
 	"Previously tried several other algorithms:
 	
