@@ -32,7 +32,7 @@ RlPDF >> datesRecognized [
 	parseResult := (Date pp2Parser sea ==> #second) plus parse: self ocr.
 	^ parseResult isPetit2Failure
 		ifFalse: [ parseResult asSet ]
-		ifTrue: [ #() ]
+		ifTrue: [ Set new ]
 	
 	"Previously tried several other algorithms:
 	
