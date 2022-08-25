@@ -52,7 +52,7 @@ BaselineOfResourcesLive >> baseline: spec [
 			baseline: 'SimplePersistence' with: [
 				spec repository: 'github://seandenigris/Simple-Persistence' ];
 			baseline: 'Soup' with: [
-				spec repository: 'github://seandenigris/Soup-for-Pharo' ];
+				spec repository: 'github://seandenigris/Soup' ];
 			baseline: 'Superuser' with: [
 				spec repository: 'github://seandenigris/Superuser' ];
 			baseline: 'Tempfile' with: [
