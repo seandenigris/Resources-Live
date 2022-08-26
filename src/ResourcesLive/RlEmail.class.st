@@ -34,9 +34,9 @@ RlEmail class >> downloadFolder: remoteFolder from: server as: user [
 	self renameFilesIn: rootFolder / 'Downloads' / remoteFolder
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RlEmail class >> fileExtensions [
-	^ #('eml' 'emlx')
+	^ #('eml')
 ]
 
 { #category : #utilities }
