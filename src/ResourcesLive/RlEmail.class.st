@@ -117,6 +117,16 @@ RlEmail >> displayString [
 ]
 
 { #category : #accessing }
+RlEmail >> gtMessageFor: aView [
+	<gtView>
+	
+	^ aView textEditor
+		title: 'Message' translated;
+		priority: 50;
+		text: [ self mailMessage fullPrintString ]
+]
+
+{ #category : #accessing }
 RlEmail >> mailMessage [
 	| contents eml |
 	eml := self file.
