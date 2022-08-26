@@ -361,6 +361,14 @@ RlResourceLibrary >> nextID [
 	^ self lastID printStringHex
 ]
 
+{ #category : #importing }
+RlResourceLibrary >> processInbox [
+	
+	| notHidden |
+	notHidden := self inbox files reject: [ :e | e base isEmpty ].
+	notHidden do: [ :e | self import: e ]
+]
+
 { #category : #deleting }
 RlResourceLibrary >> remove: resource [
 	self resources remove: resource
