@@ -32,6 +32,48 @@ Class {
 	#category : #'ResourcesLive-Core'
 }
 
+{ #category : #examples }
+RlResourceLibrary class >> exampleFilenameConflict [
+	<gtExample>
+	
+	| lib fileToImport |
+	lib := self exampleImportResourceSubclass.
+		
+	fileToImport := (Tempfile named: lib resources atRandom basename) ensureCreateFile.
+	lib resources should include: [ :r | r file = (lib folder asFileReference / 'RlPDF' / (fileToImport basename, '-1')) ].
+
+]
+
+{ #category : #examples }
+RlResourceLibrary class >> exampleImportGenericFile [
+	<gtExample>
+	
+	| lib fileToImport |
+	lib := self new
+		basicFolder: Tempfile new ensureCreateDirectory;
+		yourself.
+		
+	fileToImport := Tempfile new ensureCreateFile.
+	lib import: fileToImport.
+	lib resources should include: [ :r | r file = (lib folder asFileReference / 'RlResource' / fileToImport basename) ].
+]
+
+{ #category : #examples }
+RlResourceLibrary class >> exampleImportResourceSubclass [
+	<gtExample>
+	
+	| lib fileToImport |
+	lib := self new
+		basicFolder: Tempfile new ensureCreateDirectory;
+		yourself.
+		
+	fileToImport := (Tempfile withSuffix: '.pdf') ensureCreateFile.
+	lib import: fileToImport.
+	lib resources should include: [ :r | r file = (lib folder asFileReference / 'RlPDF' / fileToImport basename) ].
+	
+	^ lib
+]
+
 { #category : #'file services' }
 RlResourceLibrary class >> fileReaderServicesForFile: fullName suffix: suffix [
 	<fileService>
@@ -290,7 +332,7 @@ RlResourceLibrary >> gtGtSpotterTypeFor: aStep [
 { #category : #convencience }
 RlResourceLibrary >> import: anObject [
 	"For the simplest case, when you don't care where the file ends up living on disk, you can just pass a file reference. For more control, pass a command object; RlLibraryImport is built in (see class comment) or define your own"
-	self flag: 'Now that we have #import that returns a command object, not sure we need this to take anything other than a resource as an argument, but maybe it''s important to allow the resource to customize its own import?'.
+	self flag: 'Now that we have #importer that returns a command object, not sure we need this to take anything other than a resource as an argument, but maybe it''s important to allow the resource to customize its own import?'.
 	^ anObject rlImportInto: self
 ]
 
@@ -335,18 +377,21 @@ RlResourceLibrary >> lastID: aNumber [
 { #category : #private }
 RlResourceLibrary >> locationFor: resource in: location [
 
-	| sameFilename result targetFolder optimizedRoot |
+	| targetFolder optimizedRoot fileSuffixNumber targetFile |
+	
+	fileSuffixNumber := 1.
 	optimizedRoot := self folder asFileReference. "FileLocators are slooow when there are many"
 	targetFolder := (optimizedRoot / resource class name) ensureCreateDirectory rlAppend: location.
-	sameFilename := targetFolder / resource file basename.
-	result := sameFilename exists
-		ifFalse: [ sameFilename ]
-		ifTrue: [ 
-			| uniqueBase |
-			uniqueBase := self nextID, ' (', sameFilename base, ')'.
-			self folder / uniqueBase, sameFilename extension ].
-	self assert: result exists not.
-	^ result
+	targetFile := targetFolder / resource file basename.
+	
+	[ targetFile exists ] 
+		whileTrue: [
+			| suffixedFileBase |
+			suffixedFileBase := resource file base, '-', fileSuffixNumber asString.
+			targetFile := targetFolder / suffixedFileBase, resource file extension.
+			fileSuffixNumber := fileSuffixNumber + 1. ].
+			
+	^ targetFile
 ]
 
 { #category : #private }
