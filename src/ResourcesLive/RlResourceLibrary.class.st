@@ -39,7 +39,7 @@ RlResourceLibrary class >> exampleFilenameConflict [
 	| lib fileToImport |
 	lib := self exampleImportResourceSubclass.
 		
-	fileToImport := (Tempfile named: lib resources atRandom basename) ensureCreateFile.
+	fileToImport := (Tempfile named: lib resources atRandom file basename) ensureCreateFile.
 	lib resources should include: [ :r | r file = (lib folder asFileReference / 'RlPDF' / (fileToImport basename, '-1')) ].
 
 ]
