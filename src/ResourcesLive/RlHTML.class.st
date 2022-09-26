@@ -15,6 +15,12 @@ RlHTML class >> fileExtensions [
 	per https://stackoverflow.com/a/519629"
 ]
 
+{ #category : #'file types' }
+RlHTML class >> mimeTypes [
+
+	^ { ZnMimeType textHtml}
+]
+
 { #category : #accessing }
 RlHTML >> clip [
 	| tempFile command |

@@ -36,6 +36,15 @@ RlResource class >> doesSpecificallyHandle: file [
 	^ self allSubclasses anySatisfy: [ :cls | cls isClassFor: file ]
 ]
 
+{ #category : #accessing }
+RlResource class >> extensionForMimeType: aMimeType [
+
+	^ self allSubclasses 
+		detect: [ :cls | cls mimeTypes includes: aMimeType ]
+		ifFound: [ :cls | cls fileExtensions first ]
+		ifNone: [ nil ]
+]
+
 { #category : #'file types' }
 RlResource class >> fileExtensions [
 	self subclassResponsibility
@@ -52,6 +61,12 @@ RlResource class >> isClassFor: file [
 	^ (self fileExtensions includes: file extension asLowercase) and: [ 
 		"This is inefficient, but not sure how to iterate subclasses depth-first. Asked on Discord - Pharo general channel 11/5/2020"
 		self allSubclasses noneSatisfy: [ :sc | sc isClassFor: file ] ]
+]
+
+{ #category : #'file types' }
+RlResource class >> mimeTypes [
+
+	^ {}
 ]
 
 { #category : #'code generation' }

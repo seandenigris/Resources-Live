@@ -25,6 +25,11 @@ RlPDF class >> fileExtensions [
 	^ #('pdf')
 ]
 
+{ #category : #'file types' }
+RlPDF class >> mimeTypes [
+	^ { ZnMimeType applicationPdf }
+]
+
 { #category : #accessing }
 RlPDF >> datesRecognized [
 	
