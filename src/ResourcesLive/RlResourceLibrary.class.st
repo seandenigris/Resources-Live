@@ -306,26 +306,24 @@ RlResourceLibrary >> gtGtSpotterRecentFor: aStep [
 ]
 
 { #category : #'private-spotter' }
-RlResourceLibrary >> gtGtSpotterTitled: aString resources: aBlock priority: aNumber for: aStep [
+RlResourceLibrary >> gtGtSpotterTitled: aString resources: aBlock priority: aNumber for: aSearch [
 	<gtSearch>
-	^ aStep listProcessor
+	^ aSearch list
 		priority: aNumber;
 		title: aString;
-		allCandidates: aBlock;
-		filter: GtFilterSubstrings;
-		candidatesLimit: 7;
-		itemName:[ :aResource | (aResource file relativeTo: self folder) fullName ] 
+		items: aBlock;
+		matchSubstrings;
+		itemName: [ :aResource | (aResource file relativeTo: self folder) fullName ]
 ]
 
 { #category : #spotter }
-RlResourceLibrary >> gtGtSpotterTypeFor: aStep [
+RlResourceLibrary >> gtGtSpotterTypeFor: aSearch [
 	<gtSearch>
-	^ aStep listProcessor
+	^ aSearch list
 		priority: 30;
 		title: 'Types';
-		allCandidates: [ self resources collectAsSet: #class ];
-		filter: GtFilterSubstrings;
-		candidatesLimit: 7;
+		items: [ self resources collectAsSet: #class ];
+		matchSubstrings;
 		send: [ :cls | self resources select: [ :r | r class = cls ] ]
 ]
 
