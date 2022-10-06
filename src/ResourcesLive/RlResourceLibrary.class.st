@@ -294,12 +294,6 @@ RlResourceLibrary >> folder [
 ]
 
 { #category : #spotter }
-RlResourceLibrary >> gtGtSpotterFor: aStep [
-	<gtSearch>
-	^ self gtGtSpotterTitled: 'Resources' resources: [ self resources ] priority: 20 for: aStep
-]
-
-{ #category : #spotter }
 RlResourceLibrary >> gtGtSpotterRecentFor: aStep [
 	<gtSearch>
 	^ self gtGtSpotterTitled: 'Recent' resources: [ (self resources last: 25) reversed ] priority: 10 for: aStep
@@ -325,6 +319,12 @@ RlResourceLibrary >> gtGtSpotterTypeFor: aSearch [
 		items: [ self resources collectAsSet: #class ];
 		matchSubstrings;
 		send: [ :cls | self resources select: [ :r | r class = cls ] ]
+]
+
+{ #category : #spotter }
+RlResourceLibrary >> gtSearchResourcesFor: aStep [
+	<gtSearch>
+	^ self gtGtSpotterTitled: 'Resources' resources: [ self resources ] priority: 20 for: aStep
 ]
 
 { #category : #convencience }
