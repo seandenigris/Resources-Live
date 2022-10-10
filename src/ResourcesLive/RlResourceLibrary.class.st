@@ -293,40 +293,6 @@ RlResourceLibrary >> folder [
 	^ folder ifNil: [ self class folder ]
 ]
 
-{ #category : #spotter }
-RlResourceLibrary >> gtGtSpotterRecentFor: aStep [
-	<gtSearch>
-	^ self gtGtSpotterTitled: 'Recent' resources: [ (self resources last: 25) reversed ] priority: 10 for: aStep
-]
-
-{ #category : #'private-spotter' }
-RlResourceLibrary >> gtGtSpotterTitled: aString resources: aBlock priority: aNumber for: aSearch [
-	<gtSearch>
-	^ aSearch list
-		priority: aNumber;
-		title: aString;
-		items: aBlock;
-		matchSubstrings;
-		itemName: [ :aResource | (aResource file relativeTo: self folder) fullName ]
-]
-
-{ #category : #spotter }
-RlResourceLibrary >> gtGtSpotterTypeFor: aSearch [
-	<gtSearch>
-	^ aSearch list
-		priority: 30;
-		title: 'Types';
-		items: [ self resources collectAsSet: #class ];
-		matchSubstrings;
-		send: [ :cls | self resources select: [ :r | r class = cls ] ]
-]
-
-{ #category : #spotter }
-RlResourceLibrary >> gtSearchResourcesFor: aStep [
-	<gtSearch>
-	^ self gtGtSpotterTitled: 'Resources' resources: [ self resources ] priority: 20 for: aStep
-]
-
 { #category : #convencience }
 RlResourceLibrary >> import: anObject [
 	"For the simplest case, when you don't care where the file ends up living on disk, you can just pass a file reference. For more control, pass a command object; RlLibraryImport is built in (see class comment) or define your own"
@@ -427,6 +393,18 @@ RlResourceLibrary >> resources: anObject [
 	resources := anObject
 ]
 
+{ #category : #'private-spotter' }
+RlResourceLibrary >> resources: aBlock searchTitled: aString priority: aNumber for: aSearch [
+	
+	self flag: 'waiting for streaming Spotter to support #matchSubstrings'.
+	^ aSearch list
+		priority: aNumber;
+		title: aString;
+		items: aBlock;
+		filterBySubstring;
+		itemName: [ :aResource | (aResource file relativeTo: self folder) fullName ]
+]
+
 { #category : #magritte }
 RlResourceLibrary >> resourcesDescription [
 	<magritteDescription>
@@ -441,6 +419,27 @@ RlResourceLibrary >> resourcesDescription [
 			yourself
 ]
 
+{ #category : #spotter }
+RlResourceLibrary >> resourcesSearchFor: aSearch [
+	<gtSearch>
+	^ self
+		resources: [ self resources ] 
+		searchTitled: 'Resources'
+		priority: 20 
+		for: aSearch
+]
+
+{ #category : #spotter }
+RlResourceLibrary >> resourcesSearchRecentFor: aSearch [
+	<gtSearch>
+	
+	^ self 
+		resources: [ (self resources last: 25) reversed ] 
+		searchTitled: 'Recent' 
+		priority: 10 
+		for: aSearch
+]
+
 { #category : #private }
 RlResourceLibrary >> temporaryFolder [
 
@@ -451,4 +450,18 @@ RlResourceLibrary >> temporaryFolder [
 RlResourceLibrary >> temporaryLocationFor: fileName [
 
 	^ self temporaryFolder / fileName.
+]
+
+{ #category : #spotter }
+RlResourceLibrary >> typeSearchFor: aSearch [
+	<gtSearch>
+	^ aSearch list
+		priority: 30;
+		title: 'Types';
+		items: [ self resources collectAsSet: #class ];
+		matchSubstrings;
+		itemActLogic: [ :cls :step :spotterElement |
+			| instances |
+			instances := self resources select: [ :r | r class = cls ].
+			spotterElement phlow spawnObject: instances ]
 ]
