@@ -106,10 +106,12 @@ RlEmail >> displayString [
 	
 	msg := self mailMessage.
 	^ String streamContents: [ :str | 
-		str 
-			nextPutAll: self timestamp asDate yyyymmdd;
-			space;
-			nextPutAll: self timestamp asTime print24;
+		self timestamp ifNotNil: [ :stamp |
+			str 
+				nextPutAll: stamp asDate yyyymmdd;
+				space;
+				nextPutAll: stamp asTime print24 ].
+		str
 			nextPutAll: ' [';
 			nextPutAll: msg from;
 			nextPutAll: '] ';
