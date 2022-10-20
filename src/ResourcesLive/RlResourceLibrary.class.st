@@ -458,7 +458,7 @@ RlResourceLibrary >> typeSearchFor: aSearch [
 	^ aSearch list
 		priority: 30;
 		title: 'Types';
-		items: [ self resources collectAsSet: #class ];
+		items: [ (self resources collectAsSet: #class) asOrderedCollection ];
 		matchSubstrings;
 		itemActLogic: [ :cls :step :spotterElement |
 			| instances |
