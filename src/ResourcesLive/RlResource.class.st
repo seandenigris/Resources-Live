@@ -40,7 +40,10 @@ RlResource class >> doesSpecificallyHandle: file [
 RlResource class >> extensionForMimeType: aMimeType [
 
 	^ self allSubclasses 
-		detect: [ :cls | cls mimeTypes includes: aMimeType ]
+		detect: [ :cls | 
+			cls mimeTypes anySatisfy: [ :clsMime |
+				clsMime main = aMimeType main 
+					and: [ clsMime sub = aMimeType sub ] ] ] 
 		ifFound: [ :cls | cls fileExtensions first ]
 		ifNone: [ nil ]
 ]
