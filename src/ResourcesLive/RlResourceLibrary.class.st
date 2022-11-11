@@ -33,6 +33,25 @@ Class {
 }
 
 { #category : #examples }
+RlResourceLibrary class >> example [
+	<gtExample>
+	
+	| exampleFolder |
+	exampleFolder := self package peIceRepository location / 'example support'.
+	
+	^ self
+		given: [ RlResourceLibrary new ]
+		when: [ :lib |
+			exampleFolder files do: [ :file |
+				lib importer
+					resourceable: file;
+					strategy: RlInPlaceImportStrategy;
+					execute ].
+				lib ]
+		then: [ :lib | lib resources size should equal: 4 ]
+]
+
+{ #category : #examples }
 RlResourceLibrary class >> exampleFilenameConflict [
 	<gtExample>
 	
