@@ -18,9 +18,7 @@ AbstractFileReference >> gtRlResourceFor: aView [
 		object: [ resource ];
 		priority: 1;
 		view: #gtMetaFor:;
-		actionButtonIcon: BrGlamorousVectorIcons inspect 
-			tooltip: 'Inspect resource' 
-			action: [ :aButton | aButton phlow spawnObject: resource ]
+		inspectButtonFor: resource
 ]
 
 { #category : #'*ResourcesLive' }
