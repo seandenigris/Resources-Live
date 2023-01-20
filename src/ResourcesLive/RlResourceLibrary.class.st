@@ -453,10 +453,18 @@ RlResourceLibrary >> resourcesSearchRecentFor: aSearch [
 	<gtSearch>
 	
 	^ self 
-		resources: [ (self resources last: 25) reversed ] 
+		resources: [ self tail reversed ] 
 		searchTitled: 'Recent' 
 		priority: 10 
 		for: aSearch
+]
+
+{ #category : #accessing }
+RlResourceLibrary >> tail [
+
+	| length |
+	length := self resources size min: 25.
+	^ self resources last: length
 ]
 
 { #category : #private }
