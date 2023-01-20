@@ -479,8 +479,7 @@ RlResourceLibrary >> typeSearchFor: aSearch [
 		title: 'Types';
 		items: [ (self resources collectAsSet: #class) asOrderedCollection ];
 		matchSubstrings;
-		itemActLogic: [ :cls :step :spotterElement |
+		send: [ :cls :step :spotterElement |
 			| instances |
-			instances := self resources select: [ :r | r class = cls ].
-			spotterElement phlow spawnObject: instances ]
+			instances := self resources select: [ :r | r class = cls ] ]
 ]
