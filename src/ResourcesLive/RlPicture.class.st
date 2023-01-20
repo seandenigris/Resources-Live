@@ -17,7 +17,8 @@ RlPicture class >> isClassFor: file [
 
 { #category : #accessing }
 RlPicture >> asForm [
-	^ Form fromFileNamed: self file
+	^ self file binaryReadStreamDo: [ :str |
+		Form fromBinaryStream: str ]
 ]
 
 { #category : #accessing }

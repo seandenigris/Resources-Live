@@ -14,3 +14,8 @@ RlJPEG class >> example [
 RlJPEG class >> fileExtensions [
 	^ #('jpg')
 ]
+
+{ #category : #'file types' }
+RlJPEG class >> mimeTypes [
+	^ { ZnMimeType imageJpeg }
+]
