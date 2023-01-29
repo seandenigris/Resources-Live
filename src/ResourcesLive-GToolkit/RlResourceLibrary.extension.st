@@ -3,7 +3,7 @@ Extension { #name : #RlResourceLibrary }
 { #category : #'*ResourcesLive-GToolkit' }
 RlResourceLibrary >> gtViewRecentResourcesOn: aView [
 	<gtView>
-	^ (self gtViewResources: [ self resources last: 25 ] on: aView)
+	^ (self gtViewResources: [ self tail reversed ] on: aView)
 		title: 'Recent' translated;
 		priority: 10
 ]
