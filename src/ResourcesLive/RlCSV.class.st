@@ -30,6 +30,15 @@ RlCSV >> dataFrameUsingReaderDo: aBlock [
 	^ #DataFrame asClass readFrom: self file using: reader.
 ]
 
+{ #category : #accessing }
+RlCSV >> neoCSVReaderDo: aBlock [
+
+	^ self file readStreamDo: [ :str | 
+		| r |
+		r := NeoCSVReader on: str .
+		aBlock value: r ].
+]
+
 { #category : #'as yet unclassified' }
 RlCSV >> newRecordClassNamed: aSymbol inPackage: packageName [
 	| reader fieldNames |
