@@ -158,8 +158,25 @@ RlEmail >> properFilename [
 ]
 
 { #category : #accessing }
+RlEmail >> recipients [
+
+	^ MailAddressParser addressesIn: self mailMessage to.
+]
+
+{ #category : #accessing }
+RlEmail >> subject [
+
+	^ self
+		propertyAt: #subjectCache
+		ifAbsentPut: [ self mailMessage subject ]
+]
+
+{ #category : #accessing }
 RlEmail >> timestamp [
-	^ timestamp ifNil: [ timestamp := self mailMessage timestamp ]
+
+	^ self
+		propertyAt: #timestampCache
+		ifAbsentPut: [ self mailMessage timestamp ]
 ]
 
 { #category : #accessing }
