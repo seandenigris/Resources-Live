@@ -9,12 +9,9 @@ RlCSV class >> fileExtensions [
 	^ #('csv')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RlCSV >> asArraysOfStrings [
-	^ self file readStreamDo: [ :str | 
-		| r |
-		r := NeoCSVReader on: str .
-		r upToEnd ].
+	^ self neoCSVReaderDo: [ :r | r upToEnd ].
 ]
 
 { #category : #accessing }
