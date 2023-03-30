@@ -196,6 +196,18 @@ RlResource >> file: anObject [
 	file := anObject
 ]
 
+{ #category : #accessing }
+RlResource >> gtContentsFor: aView [
+	<gtView>
+	
+	^ aView forward
+		title: 'Contents';
+		priority: 50;
+		object: [ self file ];
+		view: #gtContentsFor:;
+		yourself
+]
+
 { #category : #convenience }
 RlResource >> import [
 	RlResourceLibrary uniqueInstance import: self
@@ -348,10 +360,10 @@ RlResource >> subfolder: anObject [
 RlResource >> thumbnail [
 
 	| tempFilePath commandTemplate command thumbnail |
-	tempFilePath := RlResourceLibrary temporaryFolder fullNameFor: 'thumbnail.jpg'.
+	tempFilePath := self library temporaryFolder fullNameFor: 'thumbnail.jpg'.
 	commandTemplate := '/opt/local/bin/gs -dFirstPage=1 -dLastPage=1 -sDEVICE=jpeg -sOutputFile="{1}" -dBATCH -dNOPAUSE -q  "{2}"'.
 	command := commandTemplate format: { tempFilePath. file fullName }.
-	OSProcess command: command.
+	"OSProcess command: command."
 	thumbnail := Form fromFileNamed: tempFilePath.
 	^ thumbnail 
 ]
