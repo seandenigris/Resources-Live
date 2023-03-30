@@ -470,7 +470,7 @@ RlResourceLibrary >> tail [
 { #category : #private }
 RlResourceLibrary >> temporaryFolder [
 
-	^ temporaryFolder ifNil: [ self class temporaryFolder ]
+	^ temporaryFolder ifNil: [ self folder / 'tmp' ]
 ]
 
 { #category : #private }
