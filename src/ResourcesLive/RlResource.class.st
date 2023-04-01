@@ -235,6 +235,12 @@ RlResource >> importTimestamp: anObject [
 ]
 
 { #category : #accessing }
+RlResource >> initialize [
+	super initialize.
+	self ensureUUID
+]
+
+{ #category : #accessing }
 RlResource >> library [
 
 	^ library
