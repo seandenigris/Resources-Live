@@ -15,6 +15,16 @@ RlCSV >> asArraysOfStrings [
 ]
 
 { #category : #accessing }
+RlCSV >> asDictionaries [
+	"Requires a header, the columns of which will become the dictionary keys"
+
+	^ self neoCSVReaderDo: [ :rdr |
+		rdr
+			namedColumnsConfiguration;
+			upToEnd ].
+]
+
+{ #category : #accessing }
 RlCSV >> dataFrame [
 	^ #DataFrame asClass readFromCsv: self file
 ]
