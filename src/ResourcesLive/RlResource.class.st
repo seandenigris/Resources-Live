@@ -249,6 +249,16 @@ RlResource >> moveFileTo: reference [
 	self file: reference. "This line is needed due to FS bug: https://github.com/pharo-project/pharo/issues/4453"
 ]
 
+{ #category : #accessing }
+RlResource >> name [
+	^ self propertyAt: #name ifAbsent: [ ^ nil ]
+]
+
+{ #category : #accessing }
+RlResource >> name: aString [
+	^ self propertyAt: #name putRemovingNil: aString
+]
+
 { #category : #actions }
 RlResource >> open [
 	self file peOpen
