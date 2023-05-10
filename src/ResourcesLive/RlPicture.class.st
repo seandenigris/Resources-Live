@@ -24,8 +24,14 @@ RlPicture >> asForm [
 { #category : #accessing }
 RlPicture >> extent [
 	^ SuFfmpeg new
-		argumentAt: #inputFile put: self file;
+		argumentAt: #inputFile put: self extentFile;
 		extent
+]
+
+{ #category : #accessing }
+RlPicture >> extentFile [
+
+	^ self file
 ]
 
 { #category : #accessing }
@@ -36,8 +42,14 @@ RlPicture >> gtFigureFor: aView [
 		priority: 1;
 		stencil: [ 
 			| image |
-			image := GtFileUtility imageElementFromFileReference: self file.
+			image := GtFileUtility imageElementFromFileReference: self gtFileUtilityFile.
 			image
 				size: self extent;
 				yourself ]
+]
+
+{ #category : #accessing }
+RlPicture >> gtFileUtilityFile [
+
+	^ self file
 ]
