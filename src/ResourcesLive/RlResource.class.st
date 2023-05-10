@@ -143,30 +143,6 @@ RlResource >> delete [
 	self file delete.
 ]
 
-{ #category : #magritte }
-RlResource >> descriptionOpen [
-	<magritteActionDescription>
-	^ MAActionDescription new
-		action: #open;
-		yourself
-]
-
-{ #category : #magritte }
-RlResource >> descriptionPreview [
-	<magritteActionDescription>
-	^ MAActionDescription new
-		action: #preview;
-		yourself
-]
-
-{ #category : #magritte }
-RlResource >> descriptionShowInFinder [
-	<magritteActionDescription>
-	^ MAActionDescription new
-		action: #showInFinder;
-		yourself
-]
-
 { #category : #accessing }
 RlResource >> displayName [
 	^ (self className allButFirst: 2) piecesCutWhereCamelCase joinUsing: Character space
@@ -307,6 +283,14 @@ RlResource >> preview [
 	file preview
 ]
 
+{ #category : #magritte }
+RlResource >> previewDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		action: #preview;
+		yourself
+]
+
 { #category : #printing }
 RlResource >> printOn: aStream [
 	aStream
@@ -333,6 +317,14 @@ RlResource >> setFile: aDirectoryEntryFile [
 { #category : #actions }
 RlResource >> showInFinder [
 	file showInFinder
+]
+
+{ #category : #magritte }
+RlResource >> showInFinderDescription [
+	<magritteActionDescription>
+	^ MAActionDescription new
+		action: #showInFinder;
+		yourself
 ]
 
 { #category : #accessing }
