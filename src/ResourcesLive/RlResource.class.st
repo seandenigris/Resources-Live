@@ -304,7 +304,7 @@ RlResource >> previewDescription [
 { #category : #printing }
 RlResource >> printOn: aStream [
 	aStream
-		nextPutAll: self className;
+		nextPutAll: self displayName;
 		nextPut: $(.
 	self file ifNotNil: [ :f | aStream nextPutAll: f basename ].
 	aStream nextPut: $)
