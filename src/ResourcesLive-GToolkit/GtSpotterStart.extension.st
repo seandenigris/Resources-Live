@@ -4,14 +4,20 @@ Extension { #name : #GtSpotterStart }
 GtSpotterStart >> rlGtSearchResourcesFor: aSearch [
 	<gtSearch>
 	
+	| stringToResources |
+	stringToResources := [ :input |
+		| resourceable |
+		input asFileReference exists ifTrue: [ resourceable := input asFileReference ].
+		input isValidAbsoluteURL ifTrue: [ resourceable := input asUrl ].
+		resourceable
+			ifNil: [ {} ]
+			ifNotNil: [ { resourceable asRlResource } ] ].
+	
 	^ aSearch explicit
 		title: 'RlResource';
-		"itemName: [ :result | '+ ', result fullName ];"
 		priority: 100;
 		search: [ :aContext | 
 			| input |
 			input := aContext searchQuery trimBoth.
-			input asFileReference exists
-				ifTrue: [ { RlResource on: input asFileReference } asAsyncStream ]
-				ifFalse: [ {} asAsyncStream ] ]
+			(stringToResources value: input) asAsyncStream ]
 ]
