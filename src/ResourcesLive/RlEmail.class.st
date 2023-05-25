@@ -99,23 +99,28 @@ RlEmail >> date [
 ]
 
 { #category : #accessing }
-RlEmail >> displayString [
+RlEmail >> displayStringOn: aStream [
+
 	| msg |
-	displayString ifNotNil: [ ^ displayString ].
+	displayString ifNotNil: [ 
+		aStream nextPutAll: displayString.
+		^ self ].
+	
 	self file exists ifFalse: [ ^ 'Email - file does not exist' ].
 	
 	msg := self mailMessage.
-	^ String streamContents: [ :str | 
-		self timestamp ifNotNil: [ :stamp |
-			str 
-				nextPutAll: stamp asDate yyyymmdd;
-				space;
-				nextPutAll: stamp asTime print24 ].
-		str
-			nextPutAll: ' [';
-			nextPutAll: msg from;
-			nextPutAll: '] ';
-			nextPutAll: msg subject withBlanksCondensed ]
+	self timestamp ifNotNil: [ :stamp |
+		aStream 
+			nextPutAll: stamp asDate yyyymmdd;
+			space;
+			nextPutAll: stamp asTime print24 ].
+	aStream
+		nextPutAll: ' [';
+		nextPutAll: msg from;
+		nextPutAll: '] ';
+		nextPutAll: msg subject withBlanksCondensed.
+		
+	displayString := aStream contents.
 ]
 
 { #category : #accessing }
@@ -145,7 +150,7 @@ RlEmail >> printOn: aStream [
 	aStream
 		nextPutAll: 'Email ';
 		nextPut: $(;
-		nextPutAll: self properFilename;
+		nextPutAll: self displayString;
 		nextPut: $)
 ]
 
@@ -181,6 +186,6 @@ RlEmail >> timestamp [
 
 { #category : #accessing }
 RlEmail >> timestamp: anObject [
-	"We currently need the aability to manually set do to GH Issue #18"
+	"We currently need the ability to manually set do to GH Issue #18"
 	timestamp := anObject
 ]
