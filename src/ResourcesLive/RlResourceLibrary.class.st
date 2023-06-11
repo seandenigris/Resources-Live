@@ -127,10 +127,7 @@ RlResourceLibrary class >> import: aFileReference [
 
 { #category : #initialization }
 RlResourceLibrary class >> initialize [
-	"self initialize"
-
-	self folder ensureCreateDirectory.
-	self temporaryFolder ensureCreateDirectory.
+	
 	"FolderActions enable."
 ]
 
