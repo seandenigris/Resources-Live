@@ -23,7 +23,7 @@ RlRTF class >> fromMarkdown: aString [
 		argumentAt: #outputFile put: outputFile;
 		run.
 
-		^ outputFile asRlResource
+	^ outputFile asRlResource
 ]
 
 { #category : #accessing }
@@ -34,9 +34,9 @@ RlRTF >> gtContentsFor: aView [
 		title: 'Contents';
 		text: [ 
 			out := Tempfile withSuffix: '.md'.
-SuPandoc rtfToMarkdown
-	argumentAt: #inputFile put: self file;
-	argumentAt: #outputFile put: out;
-	run.
-out contents ]
+			SuPandoc rtfToMarkdown
+				argumentAt: #inputFile put: self file;
+				argumentAt: #outputFile put: out;
+				run.
+			out contents ]
 ]
