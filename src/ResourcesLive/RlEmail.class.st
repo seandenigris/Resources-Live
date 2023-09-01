@@ -130,7 +130,7 @@ RlEmail >> gtMessageFor: aView [
 	^ aView textEditor
 		title: 'Message' translated;
 		priority: 50;
-		text: [ self mailMessage bodyTextFormatted ]
+		text: [ self mailMessage bodyText ]
 ]
 
 { #category : #accessing }
