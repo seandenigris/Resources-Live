@@ -46,6 +46,22 @@ RlCSV >> neoCSVReaderDo: aBlock [
 		aBlock value: r ].
 ]
 
+{ #category : #accessing }
+RlCSV >> neoCSVReaderSelect: lineBlock thenDo: aBlock [
+
+	| recordLines cleanInputString |
+	recordLines := self file contents lines select: lineBlock.
+	cleanInputString := String streamContents: [ :str |
+		recordLines
+			do: [ :line | str << line ]
+			separatedBy: [ str crlf ] ].
+
+	^ cleanInputString readStreamDo: [ :str | 
+		| r |
+		r := NeoCSVReader on: str .
+		aBlock value: r ].
+]
+
 { #category : #'as yet unclassified' }
 RlCSV >> newRecordClassNamed: aSymbol inPackage: packageName [
 	| reader fieldNames |
