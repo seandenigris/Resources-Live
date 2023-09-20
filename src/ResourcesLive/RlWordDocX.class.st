@@ -1,7 +1,7 @@
 Class {
 	#name : #RlWordDocX,
-	#superclass : #RlResource,
-	#category : 'ResourcesLive-Core'
+	#superclass : #RlWordDoc,
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #'file types' }
