@@ -15,7 +15,7 @@ RlResourceLibrary >> gtViewResources: aBlock on: aView [
 		items: aBlock;
 		column: 'Type' text: [ :res | res class name allButFirst: 2 ] width: 125;
 		column: 'File' text: [ :res | res file fullName ];
-		actionUpdateButtonTooltip: 'Update'.
+		actionUpdateButton.
 ]
 
 { #category : #'*ResourcesLive-GToolkit' }
