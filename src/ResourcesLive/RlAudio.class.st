@@ -8,5 +8,5 @@ Class {
 
 { #category : #'file types' }
 RlAudio class >> fileExtensions [
-	^ #('m4a')
+	^ #('m4a' 'amr')
 ]
