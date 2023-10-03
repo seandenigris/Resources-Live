@@ -143,11 +143,6 @@ RlResource >> delete [
 	self file delete.
 ]
 
-{ #category : #accessing }
-RlResource >> displayName [
-	^ (self className allButFirst: 2) piecesCutWhereCamelCase joinUsing: Character space
-]
-
 { #category : #'as yet unclassified' }
 RlResource >> ensureFileCopiedInto: folder asBase: base [
 	| reference |
@@ -304,7 +299,7 @@ RlResource >> previewDescription [
 { #category : #printing }
 RlResource >> printOn: aStream [
 	aStream
-		nextPutAll: self displayName;
+		nextPutAll: self typeDisplayName;
 		nextPut: $(.
 	self file ifNotNil: [ :f | aStream nextPutAll: f basename ].
 	aStream nextPut: $)
