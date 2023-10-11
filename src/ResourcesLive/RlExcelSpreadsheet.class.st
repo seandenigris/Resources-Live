@@ -12,7 +12,28 @@ RlExcelSpreadsheet class >> fileExtensions [
 { #category : #accessing }
 RlExcelSpreadsheet >> csv [
 	self flag: 'must create manually for now. There was a SO thread about it formerly being possible via python and not much other info'.
-	^ RlResource on: self file withoutExtension, 'csv'.
+	
+	^ self 
+		propertyAt: #csv
+		ifAbsent: [ nil ].
+		
+	"Possibly relevant to future auto-find feature: 
+	xls file parent parent / 'RlCSV' / xls file base, 'csv'.
+spreadsheets do: [ :xls | 
+	(xls library tail last: 3)
+		detect: [ :cand | cand file base = xls file base ]
+		ifFound: [ :csv |
+			xls csv: csv.
+			csv propertyAt: #ExcelFile put: xls ] ]"
+]
+
+{ #category : #accessing }
+RlExcelSpreadsheet >> csv: anRlResource [
+	"See getter comment"
+	
+	^ self 
+		propertyAt: #csv
+		putRemovingNil: anRlResource
 ]
 
 { #category : #accessing }
