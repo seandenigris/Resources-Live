@@ -23,13 +23,17 @@ spreadsheets do: [ :xls |
 	(xls library tail last: 3)
 		detect: [ :cand | cand file base = xls file base ]
 		ifFound: [ :csv |
-			xls csv: csv.
-			csv propertyAt: #ExcelFile put: xls ] ]"
+			xls csv: csv ] ]"
 ]
 
 { #category : #accessing }
 RlExcelSpreadsheet >> csv: anRlResource [
 	"See getter comment"
+	
+	anRlResource ifNotNil: [ 
+		anRlResource 
+			propertyAt: #ExcelFile 
+			put: self ].
 	
 	^ self 
 		propertyAt: #csv
