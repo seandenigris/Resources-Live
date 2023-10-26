@@ -1,12 +1,12 @@
 Class {
 	#name : #RlHTML,
 	#superclass : #RlResource,
-	#category : 'ResourcesLive-Core'
+	#category : #'ResourcesLive-Core'
 }
 
 { #category : #'file types' }
 RlHTML class >> fileExtensions [
-	^ #('html' 'shtml' 'dhtml')
+	^ #('html' 'shtml' 'dhtml' 'htm')
 	
 	"SHTML is a file extension that lets the web server know the file should be processed as using Server Side Includes (SSI).
 
