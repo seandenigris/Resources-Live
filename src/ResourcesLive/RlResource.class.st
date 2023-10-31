@@ -254,6 +254,16 @@ RlResource >> name: aString [
 	^ self propertyAt: #name putRemovingNil: aString
 ]
 
+{ #category : #accessing }
+RlResource >> nameDescription [
+	<magritteDescription>
+	
+	^ MAStringDescription new
+		accessor: #name;
+		priority: 400;
+		yourself
+]
+
 { #category : #actions }
 RlResource >> open [
 	self file peOpen
