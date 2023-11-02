@@ -38,6 +38,11 @@ RlCSV >> dataFrameUsingReaderDo: aBlock [
 ]
 
 { #category : #accessing }
+RlCSV >> fieldNames [
+	^ self neoCSVReaderDo: #readHeader
+]
+
+{ #category : #accessing }
 RlCSV >> neoCSVReaderDo: aBlock [
 
 	^ self file readStreamDo: [ :str | 
