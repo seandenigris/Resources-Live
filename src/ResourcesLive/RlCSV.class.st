@@ -25,6 +25,17 @@ RlCSV >> asDictionaries [
 ]
 
 { #category : #accessing }
+RlCSV >> asOrderPreservingDictionaries [
+	"Requires a header, the columns of which will become the dictionary keys"
+
+	^ self neoCSVReaderDo: [ :rdr |
+		rdr
+			namedColumnsConfiguration;
+			recordClass: OrderPreservingDictionary;
+			upToEnd ].
+]
+
+{ #category : #accessing }
 RlCSV >> dataFrame [
 	^ #DataFrame asClass readFromCsv: self file
 ]
