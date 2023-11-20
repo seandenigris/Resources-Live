@@ -28,6 +28,8 @@ RlWordDoc >> asTxt [
 
 { #category : #accessing }
 RlWordDoc >> gtContentsFor: aView [
+
+	self file ifNil: [ ^ aView empty ].
 	
 	^ aView forward
 		title: 'Contents';
