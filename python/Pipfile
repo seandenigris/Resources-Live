@@ -1,0 +1,12 @@
+[[source]]
+'name' = 'pypi'
+'url' = 'https://pypi.org/simple'
+'verify_ssl' = true
+
+[dev-packages]
+
+[packages]
+python-docx = "*"
+
+[requires]
+python_version = '3.4' # Per https://python-docx.readthedocs.io/en/latest/user/install.html#dependencies , but tested and working on 3.10
