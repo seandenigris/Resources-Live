@@ -53,3 +53,15 @@ RlWordTable >> pythonInstance [
 RlWordTable >> pythonInstance: anObject [
 	pythonInstance := anObject
 ]
+
+{ #category : #accessing }
+RlWordTable >> row: rowIndex [
+
+	| row |
+	row := self newCommandFactory
+		bindingAt: #rowIndex put: rowIndex - 1;
+		sourceWithResult: 'self.rows[rowIndex]';
+		sendAndWait.
+	
+	^ RlWordTableRow fromProxy: row
+]

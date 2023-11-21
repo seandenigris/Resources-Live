@@ -1,3 +1,6 @@
+"
+Editing powered by [python-docx](https://python-docx.readthedocs.io/en/latest/)
+"
 Class {
 	#name : #RlWordDocX,
 	#superclass : #RlWordDoc,
