@@ -6,7 +6,7 @@ Class {
 
 { #category : #'file types' }
 RlExcelSpreadsheet class >> fileExtensions [
-	^ #('xlsx')
+	^ #('xls' 'xlsx')
 ]
 
 { #category : #accessing }
