@@ -18,7 +18,10 @@ AbstractFileReference >> gtRlResourceFor: aView [
 		object: [ resource ];
 		priority: 1;
 		view: #gtMetaFor:;
-		inspectButtonFor: resource
+		actionButtonIcon: BrGlamorousVectorIcons down
+			tooltip: 'Import into Singleton Library'
+			action: [ :aButton :aTab | resource import ] "enableBlock: [ :res | res library isNil ]";
+		inspectButtonFor: resource.
 ]
 
 { #category : #'*ResourcesLive' }
