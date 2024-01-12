@@ -27,16 +27,38 @@ RlRTF class >> fromMarkdown: aString [
 ]
 
 { #category : #accessing }
+RlRTF >> asMarkdown [
+
+	| out |
+	out := Tempfile withSuffix: '.md'.
+	SuPandoc rtfToMarkdown
+		argumentAt: #inputFile put: self file;
+		argumentAt: #outputFile put: out;
+		run.
+	^ out asRlResource
+]
+
+{ #category : #accessing }
+RlRTF >> asTxt [
+
+	| targetExtension tempFile |
+	targetExtension := 'txt'.
+	tempFile := Tempfile withSuffix: '.', targetExtension.
+
+	SuGenericUnixCommand new
+		template: 'textutil -convert {format} -output {destination} {source}';
+		argumentAt: #format put: targetExtension;
+		argumentAt: #source put: self file;
+		argumentAt: #destination put: tempFile;
+		execute.
+		
+	^ tempFile asRlResource
+]
+
+{ #category : #accessing }
 RlRTF >> gtContentsFor: aView [
 	
-	| out |
 	^ aView textEditor
 		title: 'Contents';
-		text: [ 
-			out := Tempfile withSuffix: '.md'.
-			SuPandoc rtfToMarkdown
-				argumentAt: #inputFile put: self file;
-				argumentAt: #outputFile put: out;
-				run.
-			out contents ]
+		text: [ self asMarkdown contents ]
 ]
