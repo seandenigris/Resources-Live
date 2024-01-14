@@ -8,3 +8,10 @@ Class {
 RlAppleDiskImage class >> fileExtensions [
 	^ #('dmg')
 ]
+
+{ #category : #accessing }
+RlAppleDiskImage >> verifySha256Checksum: aString [
+
+	self file sha256 = aString
+		ifFalse: [ self error: 'SHA256 does not match' ]
+]
