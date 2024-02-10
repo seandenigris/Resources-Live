@@ -27,7 +27,7 @@ RlWordDoc >> asTxt [
 ]
 
 { #category : #accessing }
-RlWordDoc >> gtContentsFor: aView [
+RlWordDoc >> contentsGtViewFor: aView [
 
 	self file ifNil: [ ^ aView empty ].
 	

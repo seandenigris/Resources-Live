@@ -137,6 +137,18 @@ RlResource >> contents [
 ]
 
 { #category : #accessing }
+RlResource >> contentsGtViewFor: aView [
+	<gtView>
+	
+	^ aView forward
+		title: 'Contents';
+		priority: 50;
+		object: [ self file ];
+		view: #gtContentsFor:;
+		yourself
+]
+
+{ #category : #accessing }
 RlResource >> delete [
 	self library remove: self.
 	self library: nil.
@@ -165,18 +177,6 @@ RlResource >> file [
 { #category : #accessing }
 RlResource >> file: anObject [
 	file := anObject
-]
-
-{ #category : #accessing }
-RlResource >> gtContentsFor: aView [
-	<gtView>
-	
-	^ aView forward
-		title: 'Contents';
-		priority: 50;
-		object: [ self file ];
-		view: #gtContentsFor:;
-		yourself
 ]
 
 { #category : #convenience }
@@ -295,7 +295,7 @@ RlResource >> originalFile: anObject [
 
 { #category : #actions }
 RlResource >> preview [
-	file preview
+	self file preview
 ]
 
 { #category : #magritte }
@@ -303,6 +303,18 @@ RlResource >> previewDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
 		action: #preview;
+		yourself
+]
+
+{ #category : #accessing }
+RlResource >> previewGtViewFor: aView [
+	"<gtView>"
+	
+	^ aView forward
+		title: 'Preview';
+		priority: 25;
+		object: [ self file ];
+		view: #previewGtViewFor:;
 		yourself
 ]
 

@@ -56,7 +56,7 @@ RlRTF >> asTxt [
 ]
 
 { #category : #accessing }
-RlRTF >> gtContentsFor: aView [
+RlRTF >> contentsGtViewFor: aView [
 	
 	^ aView textEditor
 		title: 'Contents';
