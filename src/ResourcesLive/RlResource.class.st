@@ -166,8 +166,7 @@ RlResource >> contentsGtViewFor: aView [
 
 { #category : #accessing }
 RlResource >> delete [
-	self library remove: self.
-	self library: nil.
+	self library ifNotNil: [ self removeFromLibrary ].
 	self file delete.
 ]
 
@@ -341,6 +340,12 @@ RlResource >> printOn: aStream [
 		nextPut: $(.
 	self file ifNotNil: [ :f | aStream nextPutAll: f basename ].
 	aStream nextPut: $)
+]
+
+{ #category : #accessing }
+RlResource >> removeFromLibrary [
+	self library remove: self.
+	self library: nil.
 ]
 
 { #category : #actions }
