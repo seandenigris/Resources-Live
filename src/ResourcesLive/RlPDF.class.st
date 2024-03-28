@@ -95,28 +95,26 @@ RlPDF >> gtOCRFor: aView [
 { #category : #accessing }
 RlPDF >> hocr [
 	"See ${class:Hocr}$ comment"
-	^ self
-		propertyAt: #hocrCache
+	^ self cache
+		at: #hocr
 		ifPresent: [ :cacheResource | Hocr on: cacheResource contents ]
-		ifAbsent: [ 
-			| hocr tFile cacheResource |
+		ifAbsentPut: [ 
+			| hocr tFile |
 			hocr := Smalltalk tools ocr hocr: self.
 			tFile := Tempfile named: self file base, '-hocr.xml'.
 			tFile writeStreamDo: [ :str | str nextPutAll: hocr string ].
-			cacheResource := self library import: tFile reference.			
-			self propertyAt: #hocrCache put: cacheResource.
-			hocr ].
-		
-	
+			tFile asRlResource ].
 ]
 
 { #category : #accessing }
 RlPDF >> imageFile [
 	| outputFile |
-	self propertyAt: #imageCache ifPresent: [ :ic | 
-		ic exists
-			ifTrue: [ ^ ic ]
-			ifFalse: [ self properties removeKey: #imageCache ] ].
+	self cache
+		at: #image
+		ifPresent: [ :cacheResource |
+			cacheResource exists
+				ifTrue: [ ^ cacheResource ]
+				ifFalse: [ self cache removeKey: #image ] ].
 	
 	outputFile := Tempfile withPrefix: 'rlpdf_' andSuffix: '.jpg'.
 	SuImageMagick convertForOCR
@@ -125,13 +123,13 @@ RlPDF >> imageFile [
 		argumentAt: #pageRange put: (1 to: 1);
 		run.
 		
-	^ self propertyAt: #imageCache put: outputFile
+	^ self cache at: #image put: outputFile asRlResource
 ]
 
 { #category : #accessing }
 RlPDF >> ocr [
-	^ self
-		propertyAt: #ocrCache
+	^ self cache
+		at: #ocr
 		ifAbsentPut: [ Smalltalk tools ocr ocr: self ]
 ]
 

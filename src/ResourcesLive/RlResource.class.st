@@ -132,6 +132,22 @@ RlResource >> asRlResource [
 ]
 
 { #category : #accessing }
+RlResource >> cache [
+
+	^ self
+		propertyAt: #cache
+		ifAbsentPut: [ RlCache new ]
+]
+
+{ #category : #accessing }
+RlResource >> cache: anRlCache [
+
+	^ self
+		propertyAt: #cache
+		putRemovingNil: anRlCache
+]
+
+{ #category : #accessing }
 RlResource >> contents [
 	^ self file contents
 ]
