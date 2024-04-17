@@ -194,6 +194,12 @@ RlResource >> file: anObject [
 	file := anObject
 ]
 
+{ #category : #actions }
+RlResource >> fileRenameTo: basenameString [
+
+	self moveFileTo: self file parent / basenameString
+]
+
 { #category : #convenience }
 RlResource >> import [
 	RlResourceLibrary uniqueInstance import: self
