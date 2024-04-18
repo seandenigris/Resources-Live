@@ -53,3 +53,10 @@ RlPicture >> gtFileUtilityFile [
 
 	^ self file
 ]
+
+{ #category : #accessing }
+RlPicture >> ocr [
+	^ self cache
+		at: #ocr
+		ifAbsentPut: [ Smalltalk tools ocr ocr: self ]
+]
