@@ -45,3 +45,15 @@ RlExcelSpreadsheet >> tabular [
 	self flag: 'not sure if we will actually use this, so not loading Tabular by default'.
 	^ #XLSXImporter asClass import: self
 ]
+
+{ #category : #accessing }
+RlExcelSpreadsheet >> tabularCSV [
+	
+	file := Tempfile withExtension: 'csv'.
+	file writeStreamDo: [ :str |
+		| writer |
+		writer := NeoCSVWriter on: str.
+		self tabular worksheets first rowsDo: [ :rowArray |
+			writer nextPut: rowArray ] ].
+	^ file
+]
