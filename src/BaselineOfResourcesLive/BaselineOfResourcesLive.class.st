@@ -57,6 +57,8 @@ BaselineOfResourcesLive >> baseline: spec [
 				spec repository: 'github://seandenigris/Soup' ];
 			baseline: 'Superuser' with: [
 				spec repository: 'github://seandenigris/Superuser' ];
+			baseline: 'Tabular' with: [
+				spec repository: 'github://seandenigris/Tabular' ];
 			baseline: 'Tempfile' with: [
 				spec repository: 'github://seandenigris/TempfileSt' ];
 			baseline: 'Tesseract' with: [
@@ -64,7 +66,7 @@ BaselineOfResourcesLive >> baseline: spec [
 					repository: 'github://seandenigris/Tesseract-St' ].
 		spec package: #ResourcesLive with: [
 			spec
-				requires: #('DynabookFoundation' 'Magritte' 'NeoCSV' "for RlCsvFile" 'PharoEnhancements' 'SimplePersistence' 'Soup' "for RlHTML" 'Superuser' 'Tempfile');
+				requires: #('DynabookFoundation' 'Magritte' 'NeoCSV' "for RlCsvFile" 'PharoEnhancements' 'SimplePersistence' 'Soup' "for RlHTML" 'Superuser' 'Tabular' 'Tempfile');
 				includes: #('Tesseract'). ]. ].
 	spec for: #'GToolkit' do: [	
 		spec 
