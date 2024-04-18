@@ -21,7 +21,8 @@ Class {
 		'source',
 		'importTimestamp',
 		'metadata',
-		'library'
+		'library',
+		'csvFile'
 	],
 	#category : #'ResourcesLive-Core'
 }
@@ -359,6 +360,21 @@ RlResource >> renameFileTo: aString [
 	| target |
 	target := self file parent / aString.
 	self moveFileTo: target
+]
+
+{ #category : #accessing }
+RlResource >> resourceClass: aClass [
+
+	| newObject shouldMoveFile fileDestination |
+	newObject := aClass newFrom: self.
+	self becomeForward: newObject.
+	
+	shouldMoveFile := self library isNotNil and: [ self library folder contains: self file ].
+	
+	shouldMoveFile ifFalse: [ ^ self ].
+	
+	fileDestination := self library locationFor: self in: Path workingDirectory.
+	self moveFileTo: fileDestination
 ]
 
 { #category : #private }
