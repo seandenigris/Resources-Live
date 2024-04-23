@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'pythonInstance'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : #'ResourcesLive-MS Word'
 }
 
 { #category : #accessing }
