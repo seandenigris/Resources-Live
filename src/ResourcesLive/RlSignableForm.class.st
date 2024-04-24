@@ -11,6 +11,14 @@ Class {
 	#category : #'ResourcesLive-Core'
 }
 
+{ #category : #'instance creation' }
+RlSignableForm class >> forClient: aClient [
+
+	^ self new
+		client: aClient;
+		yourself
+]
+
 { #category : #private }
 RlSignableForm class >> formClass [
 	self subclassResponsibility
