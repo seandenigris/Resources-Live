@@ -1,8 +1,23 @@
 Class {
 	#name : #RlPicture,
 	#superclass : #RlResource,
+	#classVars : [
+		'ExifReader'
+	],
 	#category : #'ResourcesLive-Core'
 }
+
+{ #category : #accessing }
+RlPicture class >> exifReader [
+
+	^ ExifReader
+]
+
+{ #category : #accessing }
+RlPicture class >> exifReader: anObject [
+
+	ExifReader := anObject
+]
 
 { #category : #accessing }
 RlPicture class >> fileExtensions [
@@ -19,6 +34,24 @@ RlPicture class >> isClassFor: file [
 RlPicture >> asForm [
 	^ self file binaryReadStreamDo: [ :str |
 		Form fromBinaryStream: str ]
+]
+
+{ #category : #accessing }
+RlPicture >> exif [
+
+	| exifJson |
+	exifJson := self class exifReader exifForFile: self file.
+	^ RlExif fromDictionary: exifJson
+]
+
+{ #category : #accessing }
+RlPicture >> exifGtViewFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'EXIF';
+		priority: 5;
+		object: [ self exif ];
+		view: #rawDataGtViewFor:context:
 ]
 
 { #category : #accessing }
