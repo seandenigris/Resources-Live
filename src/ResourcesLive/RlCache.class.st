@@ -42,7 +42,7 @@ RlCache >> at: aSymbol ifPresent: presentBlock ifAbsentPut: absentBlock [
 
 { #category : #caching }
 RlCache >> at: aSymbol put: anObject [
-	self propertyAt: aSymbol put: anObject
+	^ self propertyAt: aSymbol put: anObject
 ]
 
 { #category : #accessing }
