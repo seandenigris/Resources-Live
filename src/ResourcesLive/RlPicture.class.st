@@ -31,6 +31,11 @@ RlPicture class >> isClassFor: file [
 ]
 
 { #category : #accessing }
+RlPicture >> asElement [
+	^ GtFileUtility imageElementFromFileReference: self gtFileUtilityFile
+]
+
+{ #category : #accessing }
 RlPicture >> asForm [
 	^ self file binaryReadStreamDo: [ :str |
 		Form fromBinaryStream: str ]
@@ -74,9 +79,7 @@ RlPicture >> gtFigureFor: aView [
 		title: 'Picture';
 		priority: 1;
 		stencil: [ 
-			| image |
-			image := GtFileUtility imageElementFromFileReference: self gtFileUtilityFile.
-			image
+			self asElement
 				size: self extent;
 				yourself ]
 ]
