@@ -196,6 +196,17 @@ RlResource >> file: anObject [
 ]
 
 { #category : #actions }
+RlResource >> fileCopyTo: aFileReference [
+
+	| target |
+	target := aFileReference isDirectory
+		ifTrue: [ aFileReference / self file basename ]
+		ifFalse: [ aFileReference ].
+
+	self file copyTo: target
+]
+
+{ #category : #actions }
 RlResource >> fileRenameTo: basenameString [
 
 	self moveFileTo: self file parent / basenameString
