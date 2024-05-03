@@ -8,3 +8,8 @@ Class {
 RlPNG class >> fileExtensions [
 	^ #('png')
 ]
+
+{ #category : #accessing }
+RlPNG class >> mimeTypes [
+	^ { ZnMimeType imagePng }
+]
