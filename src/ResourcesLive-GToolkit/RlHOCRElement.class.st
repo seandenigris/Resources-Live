@@ -33,7 +33,7 @@ RlHOCRElement >> addHOCR [
 RlHOCRElement >> addImage [
 	| image |
 	image := GtFileUtility
-		imageElementFromFileReference: self client imageFile.
+		imageElementFromFileReference: self client imageResource file.
 	self addChild: image
 ]
 
@@ -91,7 +91,7 @@ RlHOCRElement >> client [
 RlHOCRElement >> client: anObject [
 	client := anObject.
 	self removeChildren.
-	self size: client imageFile asRlResource extent.
+	self size: client imageResource extent.
 	self addImage.
 	self client wantsHOCR ifTrue: [ self addHOCR ]. "If the client doesn't need OCR, don't waste time on it [1]"
 	self addShortcuts.

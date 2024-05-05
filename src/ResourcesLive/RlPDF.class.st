@@ -107,12 +107,12 @@ RlPDF >> hocr [
 ]
 
 { #category : #accessing }
-RlPDF >> imageFile [
+RlPDF >> imageResource [
 	| outputFile |
 	self cache
 		at: #image
 		ifPresent: [ :cacheResource |
-			cacheResource exists
+			cacheResource file exists
 				ifTrue: [ ^ cacheResource ]
 				ifFalse: [ self cache removeKey: #image ] ].
 	

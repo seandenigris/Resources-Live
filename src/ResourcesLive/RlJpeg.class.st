@@ -7,7 +7,7 @@ Class {
 { #category : #examples }
 RlJPEG class >> example [
 	<gtExample>
-	^ RlJPEG on: RlPDF exampleReceipt imageFile
+	^ RlPDF exampleReceipt imageResource
 ]
 
 { #category : #'file types' }
