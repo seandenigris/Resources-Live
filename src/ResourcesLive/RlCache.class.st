@@ -45,6 +45,12 @@ RlCache >> at: aSymbol put: anObject [
 	^ self propertyAt: aSymbol put: anObject
 ]
 
+{ #category : #'as yet unclassified' }
+RlCache >> removeKey: aSymbol [
+
+	^ self properties removeKey: #image
+]
+
 { #category : #accessing }
 RlCache >> reset [
 
