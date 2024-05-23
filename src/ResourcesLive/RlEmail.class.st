@@ -108,17 +108,21 @@ RlEmail >> displayStringOn: aStream [
 	
 	self file exists ifFalse: [ ^ 'Email - file does not exist' ].
 	
-	msg := self mailMessage.
-	self timestamp ifNotNil: [ :stamp |
-		aStream 
-			nextPutAll: stamp asDate yyyymmdd;
-			space;
-			nextPutAll: stamp asTime print24 ].
-	aStream
-		nextPutAll: ' [';
-		nextPutAll: msg from;
-		nextPutAll: '] ';
-		nextPutAll: msg subject withBlanksCondensed.
+	[ 
+		msg := self mailMessage.
+		self timestamp ifNotNil: [ :stamp |
+			aStream 
+				nextPutAll: stamp asDate yyyymmdd;
+				space;
+				nextPutAll: stamp asTime print24 ].
+		aStream
+			nextPutAll: ' [';
+			nextPutAll: msg from;
+			nextPutAll: '] ';
+			nextPutAll: msg subject withBlanksCondensed 
+	]
+		on: Error
+		do: [ ].
 		
 	displayString := aStream contents.
 ]
