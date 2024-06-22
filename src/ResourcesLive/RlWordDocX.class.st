@@ -43,6 +43,12 @@ RlWordDocX class >> modificationExample [
 ]
 
 { #category : #accessing }
+RlWordDocX class >> typeName [
+
+	^ 'DocX'
+]
+
+{ #category : #accessing }
 RlWordDocX >> addHeading: aString [
 
 	^ self newCommandFactory
