@@ -66,8 +66,24 @@ RlSignableForm >> formCopyingFile: aFile [
 ]
 
 { #category : #accessing }
+RlSignableForm >> formDescription [
+	<magritteDescription>
+	
+	^ MAToOneRelationDescription new
+		accessor: #form;
+		classes: { self class formClass };
+		yourself
+]
+
+{ #category : #accessing }
 RlSignableForm >> newFormFilename [
 	self subclassResponsibility
+]
+
+{ #category : #accessing }
+RlSignableForm >> saveAs: aSelector [
+
+	self client perform: aSelector asMutator with: self.
 ]
 
 { #category : #accessing }
