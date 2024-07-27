@@ -234,8 +234,8 @@ RlResource >> importTimestamp [
 ]
 
 { #category : #accessing }
-RlResource >> importTimestamp: anObject [
-	importTimestamp := anObject
+RlResource >> importTimestamp: aDateAndTime [
+	importTimestamp := aDateAndTime translateToUTC
 ]
 
 { #category : #accessing }
