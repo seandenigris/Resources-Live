@@ -1,3 +1,5 @@
+# Adapted from https://github.com/seandenigris/Pharo-Enhancements/blob/master/.github/workflows/ci.yaml
+
 name: CI
 
 # Controls when the action will run. 
