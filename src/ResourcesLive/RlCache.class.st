@@ -45,6 +45,13 @@ RlCache >> at: aSymbol put: anObject [
 	^ self propertyAt: aSymbol put: anObject
 ]
 
+{ #category : #fuel }
+RlCache >> fuelAccept: aGeneralMapper [
+	"Never serialize"
+	
+    ^ aGeneralMapper visitSubstitution: self by: nil
+]
+
 { #category : #'as yet unclassified' }
 RlCache >> removeKey: aSymbol [
 
