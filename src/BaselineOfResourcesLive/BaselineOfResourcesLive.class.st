@@ -43,37 +43,37 @@ BaselineOfResourcesLive >> baseline: spec [
 
 	spec for: #'common' do: [
 		spec
-			baseline: 'DynabookFoundation' with: [
+			baseline: #'DynabookFoundation' with: [
 				spec repository: 'github://seandenigris/Dynabook-Foundation' ];
-			baseline: 'Magritte' with: [ 
+			baseline: #'Magritte' with: [ 
 				spec repository: 'github://seandenigris/Magritte' ];
-			baseline: 'NeoCSV' with: [
+			baseline: #'NeoCSV' with: [
 				spec repository: 'github://seandenigris/NeoCSV' ];
-			baseline: 'PharoEnhancements' with: [
+			baseline: #'PharoEnhancements' with: [
 				spec repository: 'github://seandenigris/Pharo-Enhancements' ];
-			baseline: 'SimplePersistence' with: [
+			baseline: #'SimplePersistence' with: [
 				spec repository: 'github://seandenigris/Simple-Persistence' ];
-			baseline: 'Soup' with: [
+			baseline: #'Soup' with: [
 				spec repository: 'github://seandenigris/Soup' ];
-			baseline: 'Superuser' with: [
+			baseline: #'Superuser' with: [
 				spec repository: 'github://seandenigris/Superuser' ];
-			baseline: 'Tabular' with: [
+			baseline: #'Tabular' with: [
 				spec repository: 'github://seandenigris/Tabular' ];
-			baseline: 'Tempfile' with: [
+			baseline: #'Tempfile' with: [
 				spec repository: 'github://seandenigris/TempfileSt' ];
-			baseline: 'Tesseract' with: [
+			baseline: #'Tesseract' with: [
 				spec
 					repository: 'github://seandenigris/Tesseract-St' ].
 		spec package: #ResourcesLive with: [
 			spec
-				requires: #('DynabookFoundation' 'Magritte' 'NeoCSV' "for RlCsvFile" 'PharoEnhancements' 'SimplePersistence' 'Soup' "for RlHTML" 'Superuser' 'Tabular' 'Tempfile');
-				includes: #('Tesseract'). ]. ].
+				requires: #(DynabookFoundation Magritte NeoCSV "for RlCsvFile" PharoEnhancements SimplePersistence Soup "for RlHTML" Superuser Tabular Tempfile);
+				includes: #(Tesseract). ]. ].
 	spec for: #'GToolkit' do: [	
 		spec 
 			package: #'ResourcesLive-GToolkit' with: [
-				spec requires: #('ResourcesLive'). ];
+				spec requires: #(ResourcesLive). ];
 			package: #ResourcesLive with: [
-				spec includes: #('ResourcesLive-GToolkit') ]. ].
+				spec includes: #(#'ResourcesLive-GToolkit') ]. ].
 ]
 
 { #category : #accessing }
