@@ -1,1 +1,13 @@
-SmalltalkCISpec {  #loading : [    SCIMetacelloLoadSpec {      #baseline : 'ResourcesLive',      #directory : 'src',      #onConflict : #useIncoming    }  ],  #testing : {      #failOnZeroTests : false  }}
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'ResourcesLive',
+      #directory : 'src',
+      #onConflict : #useIncoming,
+      #registerInIceberg : true
+    }
+  ],
+  #testing : {
+      #failOnZeroTests : false
+  }
+}
