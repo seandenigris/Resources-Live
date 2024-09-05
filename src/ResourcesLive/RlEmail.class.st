@@ -89,6 +89,18 @@ RlEmail class >> verifyProperFiling [
 	misfiled ifNotEmpty: [ self error: 'Found misfiled emails!' ]
 ]
 
+{ #category : #'as yet unclassified' }
+RlEmail >> attachments [
+
+	^ self mailMessage attachmentParts collect: [ :part |
+		| tmpFile |
+		tmpFile := Tempfile named: part name.
+		part body saveToFile: tmpFile fullName.
+		tmpFile asRlResource
+			source: self;
+			yourself ]
+]
+
 { #category : #accessing }
 RlEmail >> date [
 	date ifNotNil: [ ^ date ].
@@ -127,13 +139,25 @@ RlEmail >> displayStringOn: aStream [
 	displayString := aStream contents.
 ]
 
+{ #category : #'as yet unclassified' }
+RlEmail >> gtAttachmentsFor: aView [
+	<gtView>
+	
+	self mailMessage attachmentParts ifEmpty: [ ^ aView empty ].
+	
+	^ aView list
+		title: 'Attachments';
+		priority: 35;
+		items: [ self attachments ]
+]
+
 { #category : #accessing }
 RlEmail >> gtMessageFor: aView [
 	<gtView>
 	
 	^ aView textEditor
 		title: 'Message' translated;
-		priority: 50;
+		priority: 25;
 		text: [ self mailMessage bodyText ]
 ]
 
