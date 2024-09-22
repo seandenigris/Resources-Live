@@ -168,7 +168,7 @@ RlResource >> contentsGtViewFor: aView [
 { #category : #accessing }
 RlResource >> delete [
 	self library ifNotNil: [ self removeFromLibrary ].
-	self file delete.
+	self file deleteAll.
 ]
 
 { #category : #'as yet unclassified' }
