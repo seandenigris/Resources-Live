@@ -12,6 +12,12 @@ Class {
 	#category : #'ResourcesLive-Core'
 }
 
+{ #category : #importing }
+RlEmail class >> allFromMailClientSelectionImport [
+
+	^ Smalltalk tools mailClient new selectedMessagesImport
+]
+
 { #category : #utilities }
 RlEmail class >> downloadFolder: remoteFolder from: server as: user [
 	
