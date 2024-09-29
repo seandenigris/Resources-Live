@@ -326,6 +326,21 @@ RlResource >> originalFile: anObject [
 	originalFile := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+RlResource >> postCopy [
+
+	| tf |
+	super postCopy.
+	
+	tf := Tempfile named: self file basename.
+	self fileCopyTo: tf.
+	self file: tf.
+	self library ifNotNil: [ :lib | lib import: self ].
+	
+	self uuid: nil; ensureUUID.
+	self lepiterPageID: nil.
+]
+
 { #category : #actions }
 RlResource >> preview [
 	self file preview
