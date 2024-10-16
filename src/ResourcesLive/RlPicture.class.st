@@ -42,6 +42,19 @@ RlPicture >> asForm [
 ]
 
 { #category : #accessing }
+RlPicture >> contentsGtViewFor: aView [
+	<gtView>
+	
+	^ aView pannable
+		title: 'Picture';
+		priority: 1;
+		stencil: [ 
+			self asElement
+				size: self extent;
+				yourself ]
+]
+
+{ #category : #accessing }
 RlPicture >> exif [
 
 	| exifJson |
@@ -70,18 +83,6 @@ RlPicture >> extent [
 RlPicture >> extentFile [
 
 	^ self file
-]
-
-{ #category : #accessing }
-RlPicture >> gtFigureFor: aView [
-	<gtView>
-	^ aView pannable
-		title: 'Picture';
-		priority: 1;
-		stencil: [ 
-			self asElement
-				size: self extent;
-				yourself ]
 ]
 
 { #category : #accessing }
