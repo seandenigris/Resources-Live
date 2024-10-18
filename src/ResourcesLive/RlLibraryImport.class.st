@@ -27,6 +27,12 @@ RlLibraryImport >> asUrl [
 	^ self resourceable
 ]
 
+{ #category : #accessing }
+RlLibraryImport >> beInPlace [
+
+	self strategy: RlInPlaceImportStrategy
+]
+
 { #category : #private }
 RlLibraryImport >> execute [
 	| isInLibrary isAlreadyImported |
@@ -39,7 +45,7 @@ RlLibraryImport >> execute [
 
 { #category : #accessing }
 RlLibraryImport >> library [
-	^ library
+	^ library ifNil: [ RlResourceLibrary uniqueInstance ]
 ]
 
 { #category : #accessing }
