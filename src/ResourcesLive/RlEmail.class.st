@@ -107,6 +107,28 @@ RlEmail >> attachments [
 			yourself ]
 ]
 
+{ #category : #'as yet unclassified' }
+RlEmail >> attachmentsGtViewFor: aView [
+	<gtView>
+	
+	self mailMessage attachmentParts ifEmpty: [ ^ aView empty ].
+	
+	^ aView list
+		title: 'Attachments';
+		priority: 35;
+		items: [ self attachments ]
+]
+
+{ #category : #accessing }
+RlEmail >> contentsGtViewFor: aView [
+	<gtView>
+	
+	^ aView textEditor
+		title: 'Message' translated;
+		priority: 25;
+		text: [ self mailMessage bodyText ]
+]
+
 { #category : #accessing }
 RlEmail >> date [
 	date ifNotNil: [ ^ date ].
@@ -143,28 +165,6 @@ RlEmail >> displayStringOn: aStream [
 		do: [ ].
 		
 	displayString := aStream contents.
-]
-
-{ #category : #'as yet unclassified' }
-RlEmail >> gtAttachmentsFor: aView [
-	<gtView>
-	
-	self mailMessage attachmentParts ifEmpty: [ ^ aView empty ].
-	
-	^ aView list
-		title: 'Attachments';
-		priority: 35;
-		items: [ self attachments ]
-]
-
-{ #category : #accessing }
-RlEmail >> gtMessageFor: aView [
-	<gtView>
-	
-	^ aView textEditor
-		title: 'Message' translated;
-		priority: 25;
-		text: [ self mailMessage bodyText ]
 ]
 
 { #category : #accessing }
