@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'timestamp',
 		'displayString',
-		'date'
+		'date',
+		'attachments'
 	],
 	#category : #'ResourcesLive-Core'
 }
@@ -97,6 +98,8 @@ RlEmail class >> verifyProperFiling [
 
 { #category : #'as yet unclassified' }
 RlEmail >> attachments [
+
+	attachments ifNotNil: [ ^ attachments ].
 
 	^ self mailMessage attachmentParts collect: [ :part |
 		| tmpFile |
