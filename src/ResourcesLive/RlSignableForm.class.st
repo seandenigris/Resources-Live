@@ -42,7 +42,10 @@ RlSignableForm >> client: anObject [
 { #category : #accessing }
 RlSignableForm >> form [
 	
-	^ form ifNil: [ self formCopyingFile: self blankFormFile. form ]
+	form ifNotNil: [ ^ form ].
+	
+	self formCopyingFile: self blankFormFile. 
+	^ form
 ]
 
 { #category : #accessing }
