@@ -203,6 +203,15 @@ RlEmail >> mailMessage [
 	^ MailMessage fromRfc822: contents
 ]
 
+{ #category : #'as yet unclassified' }
+RlEmail >> messageID [
+
+	^ self mailMessage 
+		fieldNamed: 'message-id' 
+		ifPresent: #mainValue 
+		ifAbsent: [ nil ]
+]
+
 { #category : #printing }
 RlEmail >> printOn: aStream [
 	aStream
