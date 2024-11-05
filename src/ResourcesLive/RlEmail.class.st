@@ -97,17 +97,38 @@ RlEmail class >> verifyProperFiling [
 ]
 
 { #category : #'as yet unclassified' }
+RlEmail >> attachmentRefreshFrom: attachmentPart [
+
+	| tmpFile resource |
+	tmpFile := Tempfile named: attachmentPart name.
+	
+	self attachmentsBasic
+		detect: [ :att | att file basename = attachmentPart name ]
+		ifFound: [ :att | resource := att ]
+		ifNone: [ 
+			resource := tmpFile asRlResource
+				source: self;
+				yourself.
+			self attachmentsBasic add: resource ].
+				
+	resource file ifExists: [ ^ self ].
+	
+	attachmentPart body saveToFile: tmpFile fullName.
+]
+
+{ #category : #'as yet unclassified' }
 RlEmail >> attachments [
 
-	attachments ifNotNil: [ ^ attachments ].
+	self mailMessage attachmentParts do: [ :part |
+		self attachmentRefreshFrom: part ].
+			
+	^ self attachmentsBasic
+]
 
-	^ self mailMessage attachmentParts collect: [ :part |
-		| tmpFile |
-		tmpFile := Tempfile named: part name.
-		part body saveToFile: tmpFile fullName.
-		tmpFile asRlResource
-			source: self;
-			yourself ]
+{ #category : #'as yet unclassified' }
+RlEmail >> attachmentsBasic [
+
+	^ attachments ifNil: [ attachments := OrderedCollection new ]
 ]
 
 { #category : #'as yet unclassified' }
