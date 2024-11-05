@@ -235,6 +235,22 @@ RlEmail >> recipients [
 	^ MailAddressParser addressesIn: self mailMessage to.
 ]
 
+{ #category : #'as yet unclassified' }
+RlEmail >> source [
+
+	^ self mailMessage text
+]
+
+{ #category : #accessing }
+RlEmail >> sourceGtViewFor: aView [
+	<gtView>
+	
+	^ aView textEditor
+		title: 'Source' translated;
+		priority: 30;
+		text: [ self source ]
+]
+
 { #category : #accessing }
 RlEmail >> subject [
 
