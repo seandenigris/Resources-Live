@@ -57,10 +57,8 @@ RlSignableForm >> form: anRlResource [
 { #category : #accessing }
 RlSignableForm >> formCopyingFile: aFile [
 
-	| copy resource |
-	copy := Tempfile named: self newFormFilename.
-	aFile copyTo: copy.
-	resource := self class formClass on: copy.
+	| resource |
+	resource := self class formClass onTempCopyOf: aFile named: self newFormFilename.
 	
 	self form: (resource 
 		import;

@@ -73,6 +73,18 @@ RlPDF >> datesRecognized [
 	```"
 ]
 
+{ #category : #'as yet unclassified' }
+RlPDF >> extractTextFields [
+
+	^ PBApplication uniqueInstance newCommandStringFactory
+		bindingAt: #file put: self file fullName;
+		script: 'from pypdf import PdfReader
+
+reader = PdfReader(file)';
+		resultExpression: 'reader.get_form_text_fields()';
+		sendAndWait.
+]
+
 { #category : #accessing }
 RlPDF >> gtHocrFor: aView [
 	<gtView>
