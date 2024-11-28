@@ -99,6 +99,16 @@ RlResource class >> on: file [
 		yourself.
 ]
 
+{ #category : #'instance creation' }
+RlResource class >> onTempCopyOf: aResourceable named: aString [
+	"Useful when you want to control the file name precisely, e.g. when copying a template or blank form. NB. it uses a temp file because it's convenient to have the file deleted if the resource is no longer needed and does not get imported into a library"
+
+	| copy |
+	copy := Tempfile named: aString.
+	aResourceable asRlResource file copyTo: copy.
+	^ self on: copy.
+]
+
 { #category : #accessing }
 RlResource class >> typeName [
 	^ (self name allButFirst: 'Rl' size) normalizeCamelCase
