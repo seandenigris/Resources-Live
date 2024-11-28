@@ -31,6 +31,15 @@ RlPDF class >> mimeTypes [
 ]
 
 { #category : #accessing }
+RlPDF >> contentsGtViewFor: aView [
+	<gtView>
+	^ aView pannable
+		title: 'Picture';
+		priority: 25;
+		stencil: [ self asElement ]
+]
+
+{ #category : #accessing }
 RlPDF >> datesRecognized [
 	
 	| parseResult |
@@ -65,20 +74,11 @@ RlPDF >> datesRecognized [
 ]
 
 { #category : #accessing }
-RlPDF >> gtFigureFor: aView [
-	<gtView>
-	^ aView pannable
-		title: 'Picture';
-		priority: 1;
-		stencil: [ self asElement ]
-]
-
-{ #category : #accessing }
 RlPDF >> gtHocrFor: aView [
 	<gtView>
 	^ aView forward
 		title: 'hOCR';
-		priority: 2;
+		priority: 33;
 		object: [ self hocr ];
 		view: #gtLinesFor:
 ]
@@ -88,7 +88,7 @@ RlPDF >> gtOCRFor: aView [
 	<gtView>
 	^ aView text
 		title: 'OCR';
-		priority: 3;
+		priority: 44;
 		text: [ self ocr ]
 ]
 
