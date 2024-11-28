@@ -7,6 +7,7 @@
 
 [packages]
 extract-msg = "*"
+pypdf = "*"
 python-docx = "*"
 
 [requires]
