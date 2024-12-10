@@ -39,6 +39,11 @@ RlSignableForm >> client: anObject [
 	client := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+RlSignableForm >> clientPropertyKey [
+	self subclassResponsibility
+]
+
 { #category : #accessing }
 RlSignableForm >> form [
 	
@@ -79,6 +84,12 @@ RlSignableForm >> formDescription [
 { #category : #accessing }
 RlSignableForm >> newFormFilename [
 	self subclassResponsibility
+]
+
+{ #category : #'as yet unclassified' }
+RlSignableForm >> save [
+
+	self saveAs: self clientPropertyKey
 ]
 
 { #category : #accessing }
