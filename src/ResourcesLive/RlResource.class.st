@@ -390,13 +390,6 @@ RlResource >> removeFromLibrary [
 	self library: nil.
 ]
 
-{ #category : #actions }
-RlResource >> renameFileTo: aString [
-	| target |
-	target := self file parent / aString.
-	self moveFileTo: target
-]
-
 { #category : #accessing }
 RlResource >> resourceClass: aClass [
 
