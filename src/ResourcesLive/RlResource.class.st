@@ -342,13 +342,12 @@ RlResource >> postCopy [
 	| tf |
 	super postCopy.
 	
+	self postCopyDbDomainObject.
+	
 	tf := Tempfile named: self file basename.
 	self fileCopyTo: tf.
 	self file: tf.
 	self library ifNotNil: [ :lib | lib import: self ].
-	
-	self uuid: nil; ensureUUID.
-	self lepiterPageID: nil.
 ]
 
 { #category : #actions }
