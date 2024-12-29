@@ -26,8 +26,8 @@ Class {
 		'doesMoveByDefault',
 		'lastID'
 	],
-	#classVars : [
-		'UniqueInstance'
+	#classInstVars : [
+		'uniqueInstance'
 	],
 	#category : #'ResourcesLive-Core'
 }
@@ -182,12 +182,12 @@ RlResourceLibrary class >> temporaryFolder [
 { #category : #'instance creation' }
 RlResourceLibrary class >> uniqueInstance [
 
-	^ UniqueInstance ifNil: [ UniqueInstance := self new ].
+	^ uniqueInstance ifNil: [ uniqueInstance := self new ].
 ]
 
 { #category : #accessing }
 RlResourceLibrary class >> uniqueInstance: anObject [
-	UniqueInstance := anObject
+	uniqueInstance := anObject
 ]
 
 { #category : #utilities }
