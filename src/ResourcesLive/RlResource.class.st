@@ -336,6 +336,16 @@ RlResource >> originalFile: anObject [
 	originalFile := anObject
 ]
 
+{ #category : #accessing }
+RlResource >> pathGtViewFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Path';
+		priority: 35;
+		object: [ self file ];
+		view: #gtPathFor:
+]
+
 { #category : #'as yet unclassified' }
 RlResource >> postCopy [
 
