@@ -61,6 +61,12 @@ RlMp3 >> playDescription [
 ]
 
 { #category : #'as yet unclassified' }
+RlMp3 >> playSlow [
+	
+	LibC system: 'afplay -r 0.5 ', self file fullName surroundedBySingleQuotes, ' &'.
+]
+
+{ #category : #'as yet unclassified' }
 RlMp3 >> playbackSpeed: aNumber in: container [
 	container speed: aNumber
 ]
