@@ -143,14 +143,16 @@ RlEmail >> attachmentsGtViewFor: aView [
 		items: [ self attachments ]
 ]
 
-{ #category : #accessing }
+{ #category : #'GT Views' }
 RlEmail >> contentsGtViewFor: aView [
 	<gtView>
 	
-	^ aView textEditor
+	^ aView forward
 		title: 'Message' translated;
 		priority: 25;
-		text: [ self mailMessage bodyText ]
+		object: [ self mailMessage ];
+		view: #bodyTextGtViewFor:;
+		yourself
 ]
 
 { #category : #accessing }
@@ -189,6 +191,18 @@ RlEmail >> displayStringOn: aStream [
 		do: [ ].
 		
 	displayString := aStream contents.
+]
+
+{ #category : #'GT Views' }
+RlEmail >> fieldsGtViewFor: aView [
+	<gtView>
+	
+	^ aView forward
+		title: 'Fields' translated;
+		priority: 30;
+		object: [ self mailMessage ];
+		view: #fieldsGtViewFor:;
+		yourself
 ]
 
 { #category : #accessing }
@@ -241,14 +255,16 @@ RlEmail >> source [
 	^ self mailMessage text
 ]
 
-{ #category : #accessing }
+{ #category : #'GT Views' }
 RlEmail >> sourceGtViewFor: aView [
 	<gtView>
 	
-	^ aView textEditor
+	^ aView forward
 		title: 'Source' translated;
 		priority: 30;
-		text: [ self source ]
+		object: [ self mailMessage ];
+		view: #sourceGtViewFor:;
+		yourself
 ]
 
 { #category : #accessing }
