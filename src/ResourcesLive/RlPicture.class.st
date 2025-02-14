@@ -41,6 +41,12 @@ RlPicture >> asForm [
 		Form fromBinaryStream: str ]
 ]
 
+{ #category : #'as yet unclassified' }
+RlPicture >> contents [
+
+	^ self ocr
+]
+
 { #category : #accessing }
 RlPicture >> contentsGtViewFor: aView [
 	<gtView>
