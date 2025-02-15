@@ -4,6 +4,8 @@ An eml file (aka mhtml) is described [here](https://en.wikipedia.org/wiki/MHTML)
 Class {
 	#name : #RlEmail,
 	#superclass : #RlResource,
+	#traits : 'PeTPythonWrapper',
+	#classTraits : 'PeTPythonWrapper classTrait',
 	#instVars : [
 		'timestamp',
 		'displayString',
@@ -94,6 +96,12 @@ RlEmail class >> verifyProperFiling [
 	| misfiled |
 	misfiled := RlResourceLibrary uniqueInstance resources select: [ :e | (e isKindOf: self) and: [ e file parent base ~= 'Read_Review' and: [e file parent base ~= ('20', (e file base first: 2)) ] ] ].
 	misfiled ifNotEmpty: [ self error: 'Found misfiled emails!' ]
+]
+
+{ #category : #'as yet unclassified' }
+RlEmail >> asPlainText [
+	
+	^ self mailMessage asPlainText
 ]
 
 { #category : #'as yet unclassified' }
@@ -241,6 +249,23 @@ RlEmail >> properFilename [
 	extension := '.eml'.
 	basename := self displayString collect: [ :c | (#($.$ ) includes: c) ifFalse: [ c ] ifTrue: [ $_ ] ].
 	^ (basename, extension) asFilename
+]
+
+{ #category : #'as yet unclassified' }
+RlEmail >> pythonInstance [
+
+	pythonInstance ifNotNil: [ ^ pythonInstance ].
+	
+	^ pythonInstance := PBApplication uniqueInstance newCommandStringFactory
+		bindingAt: #filename put: self file fullName;
+		script: 'from email.parser import BytesParser
+
+with open(filename, "rb") as fptr:
+	message = BytesParser().parse(fptr)';
+	    resultExpression: 'message';
+	    sendAndWait.
+	    
+	"Python code adapted from https://stackoverflow.com/a/45822930"
 ]
 
 { #category : #accessing }

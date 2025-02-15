@@ -21,6 +21,16 @@ RlHTML class >> mimeTypes [
 	^ { ZnMimeType textHtml}
 ]
 
+{ #category : #'as yet unclassified' }
+RlHTML >> asMarkdown [
+
+	^ PBApplication uniqueInstance newCommandStringFactory
+		bindingAt: #htmlString put: self contents;
+		script: 'import html2text';
+	    resultExpression: 'html2text.html2text(htmlString)';
+	    sendAndWait.
+]
+
 { #category : #accessing }
 RlHTML >> clip [
 	| tempFile command |
