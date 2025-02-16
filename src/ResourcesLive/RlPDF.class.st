@@ -30,6 +30,12 @@ RlPDF class >> mimeTypes [
 	^ { ZnMimeType applicationPdf }
 ]
 
+{ #category : #'as yet unclassified' }
+RlPDF >> asPlainText [
+
+	^ self ocr
+]
+
 { #category : #accessing }
 RlPDF >> contentsGtViewFor: aView [
 	<gtView>
