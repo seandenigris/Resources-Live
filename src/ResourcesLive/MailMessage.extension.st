@@ -1,6 +1,27 @@
 Extension { #name : #MailMessage }
 
 { #category : #'*ResourcesLive' }
+MailMessage >> asMarkdown [
+	
+	^ self bodyRlHtml asMarkdown.
+]
+
+{ #category : #'*ResourcesLive' }
+MailMessage >> asPlainText [
+	
+	^ self asMarkdown ifNil: [ self bodyTextFormatted ]
+]
+
+{ #category : #'*ResourcesLive' }
+MailMessage >> bodyRlHtml [
+	
+	| htmlString htmlPart |
+	htmlPart := self htmlPart ifNil: [ ^ nil ].
+	htmlString := htmlPart bodyText.
+	^ RlHTML fromString: htmlString
+]
+
+{ #category : #'*ResourcesLive' }
 MailMessage >> parseParts [
 	"private -- parse the parts of the message and store them into a collection"
 

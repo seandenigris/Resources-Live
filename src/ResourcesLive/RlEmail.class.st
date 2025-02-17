@@ -274,6 +274,12 @@ RlEmail >> recipients [
 	^ MailAddressParser addressesIn: self mailMessage to.
 ]
 
+{ #category : #acccessing }
+RlEmail >> senderEmail [
+
+	^ self mailMessage from asSuEmailAddress
+]
+
 { #category : #'as yet unclassified' }
 RlEmail >> source [
 
