@@ -24,6 +24,13 @@ RlSignableForm class >> formClass [
 	self subclassResponsibility
 ]
 
+{ #category : #accessing }
+RlSignableForm >> addNewForm [
+	
+	self formCopyingFile: self blankFormFile.
+	^ self form.
+]
+
 { #category : #private }
 RlSignableForm >> blankFormFile [
 	self subclassResponsibility
