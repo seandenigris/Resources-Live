@@ -1,3 +1,10 @@
+"
+If you store me in an instance variable, then you can ignore me when transmitting or serializing my client. For example, if serializing with fuel, you can implement on the class-side:
+```smalltalk
+fuelIgnoredInstanceVariableNames
+	^ #(cache)
+```
+"
 Class {
 	#name : #RlCache,
 	#superclass : #Object,
