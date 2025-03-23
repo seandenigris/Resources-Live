@@ -53,7 +53,7 @@ RlCSV >> fieldNames [
 	^ self neoCSVReaderDo: #readHeader
 ]
 
-{ #category : #accessing }
+{ #category : #reading }
 RlCSV >> neoCSVReaderDo: aBlock [
 
 	^ self file readStreamDo: [ :str | 
@@ -62,7 +62,7 @@ RlCSV >> neoCSVReaderDo: aBlock [
 		aBlock value: r ].
 ]
 
-{ #category : #accessing }
+{ #category : #reading }
 RlCSV >> neoCSVReaderSelect: lineBlock thenDo: aBlock [
 
 	| recordLines cleanInputString |
@@ -75,6 +75,15 @@ RlCSV >> neoCSVReaderSelect: lineBlock thenDo: aBlock [
 	^ cleanInputString readStreamDo: [ :str | 
 		| r |
 		r := NeoCSVReader on: str .
+		aBlock value: r ].
+]
+
+{ #category : #writing }
+RlCSV >> neoCSVWriterDo: aBlock [
+
+	^ self file writeStreamDo: [ :str | 
+		| r |
+		r := NeoCSVWriter on: str .
 		aBlock value: r ].
 ]
 
