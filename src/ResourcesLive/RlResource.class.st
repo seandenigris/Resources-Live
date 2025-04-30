@@ -122,6 +122,14 @@ RlResource class >> onTempCopyOf: aResourceable named: aString [
 	^ self on: copy.
 ]
 
+{ #category : #'instance creation' }
+RlResource class >> temp [
+
+	| file |
+	file := Tempfile withExtension: self fileExtensions first.
+	^ self on: file.
+]
+
 { #category : #accessing }
 RlResource class >> typeName [
 	^ (self name allButFirst: 'Rl' size) normalizeCamelCase
