@@ -20,7 +20,7 @@ RlShapeFile class >> initialize [
 { #category : #'as yet unclassified' }
 RlShapeFile class >> pyshpInstall [
 
-	PBApplication uniqueInstance installModule: 'pyshp'
+	PBApplication start installModule: 'pyshp'
 ]
 
 { #category : #'as yet unclassified' }
