@@ -14,7 +14,7 @@ AbstractFileReference >> gtRlResourceFor: aView [
 		
 	resource := self asRlResource.
 	^ aView forward
-		title: resource typeDisplayName;
+		title: resource typeDisplayName, ' (RL)';
 		object: [ resource ];
 		priority: 1;
 		view: #gtMetaFor:;
