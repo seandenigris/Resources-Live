@@ -166,9 +166,16 @@ RlResource >> asRlResource [
 { #category : #accessing }
 RlResource >> cache [
 
+	self
+		propertyAt: #cache
+		ifPresent: [ :val |
+			val ifNotNil: [ ^ val ] ].
+	
 	^ self
 		propertyAt: #cache
-		ifAbsentPut: [ RlCache new ]
+		put: RlCache new.
+		
+	"Implementation note: the logic is a bit convoluted because RlCache replaces itself with nil during Fuel serialization, so we have to account for nil as will as non-nil and missing key scenarios. If the cache was stored as an inst var, this would be much cleaner at the cost of an inst var that may or may not be used much"
 ]
 
 { #category : #accessing }
