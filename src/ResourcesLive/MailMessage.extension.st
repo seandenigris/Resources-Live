@@ -3,7 +3,7 @@ Extension { #name : #MailMessage }
 { #category : #'*ResourcesLive' }
 MailMessage >> asMarkdown [
 	
-	^ self bodyRlHtml asMarkdown.
+	^ self bodyRlHtml ifNotNil: #asMarkdown.
 ]
 
 { #category : #'*ResourcesLive' }
