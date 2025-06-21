@@ -82,7 +82,7 @@ RlPDF >> datesRecognized [
 { #category : #'as yet unclassified' }
 RlPDF >> extractTextFields [
 
-	^ PBApplication uniqueInstance newCommandStringFactory
+	^ PBApplication start newCommandStringFactory
 		bindingAt: #file put: self file fullName;
 		script: 'from pypdf import PdfReader
 
