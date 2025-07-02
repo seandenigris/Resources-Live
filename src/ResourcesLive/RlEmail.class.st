@@ -225,13 +225,17 @@ RlEmail >> mailMessage [
 	^ MailMessage fromRfc822: contents
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RlEmail >> messageID [
 
-	^ self mailMessage 
-		fieldNamed: 'message-id' 
-		ifPresent: #mainValue 
-		ifAbsent: [ nil ]
+	^ self cache
+		at: #'message-id'
+		ifPresent: [ :mid | mid ]
+		ifAbsentPut: [ 
+			self mailMessage
+				fieldNamed: 'message-id'
+				ifPresent: [ :field | field mainValue ]
+				ifAbsent: [ nil ] ]
 ]
 
 { #category : #printing }
