@@ -303,6 +303,13 @@ RlResourceLibrary >> duplicates [
 	^  groups select: [ :v | v size > 1 ]
 ]
 
+{ #category : #'as yet unclassified' }
+RlResourceLibrary >> emailIterator [
+
+	^ (self resources iterator 
+		| [ :e | e isKindOf: RlEmail ] selectIt) withCollectionAPI
+]
+
 { #category : #private }
 RlResourceLibrary >> folder [
 	"To change the folder, see #basicFolder: or #moveFolder:"

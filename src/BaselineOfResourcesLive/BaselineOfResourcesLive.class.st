@@ -45,6 +45,8 @@ BaselineOfResourcesLive >> baseline: spec [
 		spec
 			baseline: #'DynabookFoundation' with: [
 				spec repository: 'github://seandenigris/Dynabook-Foundation' ];
+			baseline: #'Iterators' with: [
+				spec repository: 'github://juliendelplanque/Iterators' ];
 			baseline: #'Magritte' with: [ 
 				spec repository: 'github://seandenigris/Magritte' ];
 			baseline: #'NeoCSV' with: [
@@ -66,7 +68,7 @@ BaselineOfResourcesLive >> baseline: spec [
 					repository: 'github://seandenigris/Tesseract-St' ].
 		spec package: #ResourcesLive with: [
 			spec
-				requires: #(DynabookFoundation Magritte NeoCSV "for RlCsvFile" PharoEnhancements SimplePersistence Soup "for RlHTML" Superuser Tabular Tempfile);
+				requires: #(DynabookFoundation Iterators Magritte NeoCSV "for RlCsvFile" PharoEnhancements SimplePersistence Soup "for RlHTML" Superuser Tabular Tempfile);
 				includes: #(Tesseract). ]. ].
 	spec for: #'GToolkit' do: [	
 		spec 
