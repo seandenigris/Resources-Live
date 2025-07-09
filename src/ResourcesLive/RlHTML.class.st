@@ -45,6 +45,15 @@ RlHTML >> clip [
 	"Implementation note: the first attempt was to pass the input via a HEREDOC, but that didn't seem to work with LibC"
 ]
 
+{ #category : #'GT Views' }
+RlHTML >> contentsGtViewFor: aView [
+
+	^ self class
+		markdown: self asMarkdown 
+		gtViewOn: aView 
+		do: []
+]
+
 { #category : #utilities }
 RlHTML >> edit [
 	LibC system: 'open -a MacVim "', self file fullName, '"'.
