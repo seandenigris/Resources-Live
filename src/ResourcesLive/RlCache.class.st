@@ -52,6 +52,14 @@ RlCache >> at: aSymbol put: anObject [
 	^ self propertyAt: aSymbol put: anObject
 ]
 
+{ #category : #'as yet unclassified' }
+RlCache >> at: aSymbol putRemovingNil: aValue [
+
+	^ self
+		propertyAt: aSymbol 
+		putRemovingNil: aValue
+]
+
 { #category : #fuel }
 RlCache >> fuelAccept: aGeneralMapper [
 	"Never serialize"
