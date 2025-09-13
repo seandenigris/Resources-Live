@@ -148,7 +148,8 @@ RlEmail >> attachmentsGtViewFor: aView [
 	^ aView list
 		title: 'Attachments';
 		priority: 35;
-		items: [ self attachments ]
+		items: [ self attachments ];
+		inspectButtonFor: [ self attachments ]
 ]
 
 { #category : #'GT Views' }
