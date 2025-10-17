@@ -310,6 +310,12 @@ RlResourceLibrary >> emailIterator [
 		| [ :e | e isKindOf: RlEmail ] selectIt) withCollectionAPI
 ]
 
+{ #category : #'as yet unclassified' }
+RlResourceLibrary >> emails [
+
+	^ self emailIterator
+]
+
 { #category : #private }
 RlResourceLibrary >> folder [
 	"To change the folder, see #basicFolder: or #moveFolder:"
