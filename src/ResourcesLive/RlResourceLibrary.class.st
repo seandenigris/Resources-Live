@@ -242,16 +242,23 @@ RlResourceLibrary >> checkForMissingFiles [
 
 { #category : #utilities }
 RlResourceLibrary >> checkForOrphanFiles [
-	^ self folder allFiles select: [ :f | 
-		f basename = '.DS_Store'
-			ifTrue: [ false ]
-			ifFalse: [ 
-				self resources noneSatisfy: [ :r | 
-					r file 
-						ifNil: [ false ] 
-						ifNotNil: [ :rf | rf resolve = f ] ] ] ].
+
+	| remainingResources |
 	
-	"
+	"Optimization: caching the resources and removing as we go led to a ~3x speedup"
+	remainingResources := self resources copy.
+
+	^ self folder allFiles
+		select: [ :f | 
+			f basename = '.DS_Store'
+				ifTrue: [ false ]
+				ifFalse: [ 
+					remainingResources 
+						detect: [ :r | r file isNotNil and: [  r file resolve = f ] ]
+						ifFound: [ :r | 
+							remainingResources remove: r.
+							false ]
+						ifNone: [ true ] ] ]	"
 	Useful snippets for dealing with returned files:
 	
 	orphans collect: #parent as: Set.
