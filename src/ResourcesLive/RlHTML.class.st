@@ -63,3 +63,14 @@ RlHTML >> edit [
 RlHTML >> soup [
 	^ Soup fromString: self file contents
 ]
+
+{ #category : #utilities }
+RlHTML >> xmlDocument [
+
+	^ self file readStreamDo: [ :str | 
+		(XMLDOMParser on: str)
+			"Common options for difficult files:
+			isValidating: false;
+			documentReadLimit: nil;"
+			parseDocument ]
+]
