@@ -1,6 +1,6 @@
-Extension { #name : #Tempfile }
+Extension { #name : 'Tempfile' }
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 Tempfile >> asRlResource [
 	^ RlResource on: self
 ]

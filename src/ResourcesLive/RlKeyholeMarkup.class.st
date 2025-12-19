@@ -1,10 +1,12 @@
 Class {
-	#name : #RlKeyholeMarkup,
-	#superclass : #RlXML,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlKeyholeMarkup',
+	#superclass : 'RlXML',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlKeyholeMarkup class >> fileExtensions [
 	^ #('kml')
 ]

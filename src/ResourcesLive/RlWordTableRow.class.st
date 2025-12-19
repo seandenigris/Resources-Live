@@ -1,13 +1,15 @@
 Class {
-	#name : #RlWordTableRow,
-	#superclass : #Object,
+	#name : 'RlWordTableRow',
+	#superclass : 'Object',
 	#instVars : [
 		'pythonInstance'
 	],
-	#category : #'ResourcesLive-MS Word'
+	#category : 'ResourcesLive-MS Word',
+	#package : 'ResourcesLive',
+	#tag : 'MS Word'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordTableRow class >> fromProxy: aPBProxy [
 
 	^ self new
@@ -15,7 +17,7 @@ RlWordTableRow class >> fromProxy: aPBProxy [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordTableRow >> at: columnIndex put: aString [
 
 	self newCommandFactory
@@ -25,19 +27,19 @@ RlWordTableRow >> at: columnIndex put: aString [
 		sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordTableRow >> newCommandFactory [
 	^ PBApplication uniqueInstance newCommandSourceFactory
 		addAllBindings: {#self -> self pythonInstance};
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordTableRow >> pythonInstance [
 	^ pythonInstance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordTableRow >> pythonInstance: anObject [
 	pythonInstance := anObject
 ]

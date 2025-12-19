@@ -1,6 +1,6 @@
-Extension { #name : #Object }
+Extension { #name : 'Object' }
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 Object >> rlImportInto: aRlResourceLibrary [
 	"Used internally by libraries during import to simplify API by making objects polymorphic"
 	

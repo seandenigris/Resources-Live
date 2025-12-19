@@ -1,53 +1,55 @@
 Class {
-	#name : #RlPicture,
-	#superclass : #RlResource,
+	#name : 'RlPicture',
+	#superclass : 'RlResource',
 	#classVars : [
 		'ExifReader'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture class >> exifReader [
 
 	^ ExifReader
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture class >> exifReader: anObject [
 
 	ExifReader := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture class >> fileExtensions [
 	^ #()
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RlPicture class >> isClassFor: file [
 	"I'm abstract"
 	^ self ~= RlPicture and: [ super isClassFor: file ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture >> asElement [
 	^ GtFileUtility imageElementFromFileReference: self gtFileUtilityFile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture >> asForm [
 	^ self file binaryReadStreamDo: [ :str |
 		Form fromBinaryStream: str ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlPicture >> contents [
 
 	^ self ocr
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture >> contentsGtViewFor: aView [
 	<gtView>
 	
@@ -60,7 +62,7 @@ RlPicture >> contentsGtViewFor: aView [
 				yourself ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture >> exif [
 
 	| exifJson |
@@ -68,7 +70,7 @@ RlPicture >> exif [
 	^ RlExif fromDictionary: exifJson
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture >> exifGtViewFor: aView [
 	<gtView>
 	^ aView forward
@@ -78,26 +80,26 @@ RlPicture >> exifGtViewFor: aView [
 		view: #rawDataGtViewFor:context:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture >> extent [
 	^ SuFfmpeg new
 		argumentAt: #inputFile put: self extentFile;
 		extent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture >> extentFile [
 
 	^ self file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture >> gtFileUtilityFile [
 
 	^ self file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPicture >> ocr [
 	^ self cache
 		at: #ocr

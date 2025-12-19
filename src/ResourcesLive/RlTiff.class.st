@@ -1,10 +1,12 @@
 Class {
-	#name : #RlTiff,
-	#superclass : #RlPicture,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlTiff',
+	#superclass : 'RlPicture',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlTiff class >> fileExtensions [
 	^ #('tif' 'tiff')
 ]

@@ -1,15 +1,17 @@
 Class {
-	#name : #RlExcelSpreadsheet,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlExcelSpreadsheet',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlExcelSpreadsheet class >> fileExtensions [
 	^ #('xls' 'xlsx')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlExcelSpreadsheet >> csv [
 	self flag: 'must create manually for now. There was a SO thread about it formerly being possible via python and not much other info'.
 	
@@ -26,7 +28,7 @@ spreadsheets do: [ :xls |
 			xls csv: csv ] ]"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlExcelSpreadsheet >> csv: anRlResource [
 	"See getter comment"
 	
@@ -40,13 +42,13 @@ RlExcelSpreadsheet >> csv: anRlResource [
 		putRemovingNil: anRlResource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlExcelSpreadsheet >> tabular [
 	self flag: 'not sure if we will actually use this, so not loading Tabular by default'.
 	^ #XLSXImporter asClass import: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlExcelSpreadsheet >> tabularCSV [
 	
 	file := Tempfile withExtension: 'csv'.

@@ -1,15 +1,17 @@
 Class {
-	#name : #RlAppleEmail,
-	#superclass : #RlEmail,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlAppleEmail',
+	#superclass : 'RlEmail',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlAppleEmail class >> fileExtensions [
 	^ #('emlx')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlAppleEmail >> mailMessage [
 	| contents emlx headerSize xmlFooterHeader lines messageLines messageString headerStart |
 	emlx := self file.

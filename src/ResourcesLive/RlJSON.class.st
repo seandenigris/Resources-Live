@@ -1,27 +1,29 @@
 Class {
-	#name : #RlJSON,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlJSON',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlJSON class >> fileExtensions [
 	^ #('json')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlJSON >> asArraysOfStrings [
 	^ self neoCSVReaderDo: [ :r | r upToEnd ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlJSON >> asDictionaries [
 
 	^ self neoJSONReaderDo: [ :rdr |
 		rdr upToEnd ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlJSON >> asOrderPreservingDictionaries [
 	"Requires a header, the columns of which will become the dictionary keys"
 
@@ -32,12 +34,12 @@ RlJSON >> asOrderPreservingDictionaries [
 			upToEnd ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlJSON >> dataFrame [
 	^ #DataFrame asClass readFromCsv: self file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlJSON >> dataFrameUsingReaderDo: aBlock [
 	| reader |
 	reader := #DataFrameCsvReader asClass new.
@@ -45,12 +47,12 @@ RlJSON >> dataFrameUsingReaderDo: aBlock [
 	^ #DataFrame asClass readFrom: self file using: reader.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlJSON >> fieldNames [
 	^ self neoCSVReaderDo: #readHeader
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 RlJSON >> neoCSVReaderSelect: lineBlock thenDo: aBlock [
 
 	| recordLines cleanInputString |
@@ -66,7 +68,7 @@ RlJSON >> neoCSVReaderSelect: lineBlock thenDo: aBlock [
 		aBlock value: r ].
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 RlJSON >> neoCSVWriterDo: aBlock [
 
 	^ self file writeStreamDo: [ :str | 
@@ -75,7 +77,7 @@ RlJSON >> neoCSVWriterDo: aBlock [
 		aBlock value: r ].
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 RlJSON >> neoJSONReaderDo: aBlock [
 
 	^ self file readStreamDo: [ :str | 
@@ -86,7 +88,7 @@ RlJSON >> neoJSONReaderDo: aBlock [
 			value: r ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlJSON >> newRecordClassNamed: aSymbol inPackage: packageName [
 	| reader fieldNames |
 	self flag: 'Seems incomplete; are fields supposed to be set up automatically?'.

@@ -1,15 +1,17 @@
 Class {
-	#name : #RlGitIgnore,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlGitIgnore',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlGitIgnore class >> fileExtensions [
 	^ #('gitignore')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlGitIgnore >> ignoreAllExcept: aCollection [
 
 	| header |

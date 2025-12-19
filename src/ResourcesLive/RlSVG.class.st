@@ -1,20 +1,22 @@
 Class {
-	#name : #RlSVG,
-	#superclass : #RlPicture,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlSVG',
+	#superclass : 'RlPicture',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlSVG class >> fileExtensions [
 	^ #('svg')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSVG class >> mimeTypes [
 	^ { ZnMimeType imageSvg }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlSVG >> as: anRlResourceClass [
 
 	| target |
@@ -26,7 +28,7 @@ RlSVG >> as: anRlResourceClass [
 	^ target asRlResource
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlSVG >> asPNG [
 
 	| target |

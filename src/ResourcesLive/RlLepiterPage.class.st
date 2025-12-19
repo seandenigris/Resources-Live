@@ -1,10 +1,12 @@
 Class {
-	#name : #RlLepiterPage,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlLepiterPage',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlLepiterPage class >> fileExtensions [
 	^ #('lepiter')
 ]

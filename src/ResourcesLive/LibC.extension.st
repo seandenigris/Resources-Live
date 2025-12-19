@@ -1,6 +1,6 @@
-Extension { #name : #LibC }
+Extension { #name : 'LibC' }
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 LibC class >> runWaitAndAssert: aString [
 	| returnValue |
 	returnValue := self system: aString.

@@ -1,29 +1,31 @@
 Class {
-	#name : #RlShapeFile,
-	#superclass : #RlResource,
+	#name : 'RlShapeFile',
+	#superclass : 'RlResource',
 	#traits : 'PeTPythonWrapper',
 	#classTraits : 'PeTPythonWrapper classTrait',
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlShapeFile class >> fileExtensions [
 	^ #('shp')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlShapeFile class >> initialize [
 
 	self pyshpInstall
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlShapeFile class >> pyshpInstall [
 
 	PBApplication start installModule: 'pyshp'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlShapeFile >> asJson [
 
 	^ PBApplication uniqueInstance newCommandStringFactory
@@ -33,7 +35,7 @@ RlShapeFile >> asJson [
 	    sendAndWait.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlShapeFile >> featuresAs: aClass [
 
 	^ self asJson 
@@ -42,7 +44,7 @@ RlShapeFile >> featuresAs: aClass [
 		ifAbsent: [ #() ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlShapeFile >> pythonInstance [
 
 	pythonInstance ifNotNil: [ ^ pythonInstance ].

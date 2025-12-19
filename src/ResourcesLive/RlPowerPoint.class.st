@@ -1,10 +1,12 @@
 Class {
-	#name : #RlPowerPoint,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlPowerPoint',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlPowerPoint class >> fileExtensions [
 	^ #('pptx')
 ]

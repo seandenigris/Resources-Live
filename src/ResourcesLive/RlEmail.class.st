@@ -2,8 +2,8 @@
 An eml file (aka mhtml) is described [here](https://en.wikipedia.org/wiki/MHTML)
 "
 Class {
-	#name : #RlEmail,
-	#superclass : #RlResource,
+	#name : 'RlEmail',
+	#superclass : 'RlResource',
 	#traits : 'PeTPythonWrapper',
 	#classTraits : 'PeTPythonWrapper classTrait',
 	#instVars : [
@@ -12,16 +12,18 @@ Class {
 		'date',
 		'attachments'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #importing }
+{ #category : 'importing' }
 RlEmail class >> allFromMailClientSelectionImport [
 
 	^ Smalltalk tools mailClient new selectedMessagesImport
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 RlEmail class >> downloadFolder: remoteFolder from: server as: user [
 	
 	| rootFolder commandTemplate command uniqueMessages allMessages |
@@ -43,12 +45,12 @@ RlEmail class >> downloadFolder: remoteFolder from: server as: user [
 	self renameFilesIn: rootFolder / 'Downloads' / remoteFolder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmail class >> fileExtensions [
 	^ #('eml')
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 RlEmail class >> importDownloadFolderNamed: folderName [
 	| folder archiveRootFolder emails |
 	folder := FileLocator home / 'Downloads' / 'Email Archive' / 'Downloads' / folderName.
@@ -70,7 +72,7 @@ RlEmail class >> importDownloadFolderNamed: folderName [
 	^ RlResourceLibrary uniqueInstance resources select: [ :e | e metadata includes: folderName ]
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 RlEmail class >> renameFilesIn: folder [
 	| filesToRename email |
 	filesToRename := folder files
@@ -90,7 +92,7 @@ RlEmail class >> renameFilesIn: folder [
 	^ folder filesMatching: '*_copy.eml'
 ]
 
-{ #category : #scripts }
+{ #category : 'scripts' }
 RlEmail class >> verifyProperFiling [
 	<script>
 	| misfiled |
@@ -98,13 +100,13 @@ RlEmail class >> verifyProperFiling [
 	misfiled ifNotEmpty: [ self error: 'Found misfiled emails!' ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlEmail >> asPlainText [
 	
 	^ self mailMessage asPlainText
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlEmail >> attachmentRefreshFrom: attachmentPart [
 
 	| tmpFile resource |
@@ -124,7 +126,7 @@ RlEmail >> attachmentRefreshFrom: attachmentPart [
 	attachmentPart body saveToFile: tmpFile fullName.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlEmail >> attachments [
 
 	self mailMessage attachmentParts do: [ :part |
@@ -133,13 +135,13 @@ RlEmail >> attachments [
 	^ self attachmentsBasic
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlEmail >> attachmentsBasic [
 
 	^ attachments ifNil: [ attachments := OrderedCollection new ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlEmail >> attachmentsGtViewFor: aView [
 	<gtView>
 	
@@ -152,7 +154,7 @@ RlEmail >> attachmentsGtViewFor: aView [
 		inspectButtonFor: [ self attachments ]
 ]
 
-{ #category : #'GT Views' }
+{ #category : 'GT Views' }
 RlEmail >> contentsGtViewFor: aView [
 	<gtView>
 	
@@ -164,7 +166,7 @@ RlEmail >> contentsGtViewFor: aView [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmail >> date [
 	date ifNotNil: [ ^ date ].
 	
@@ -173,7 +175,7 @@ RlEmail >> date [
 		date := Date fromSeconds: mm time + (Date year: 1980 day: 1 ) asSeconds ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmail >> displayStringOn: aStream [
 
 	| msg |
@@ -202,7 +204,7 @@ RlEmail >> displayStringOn: aStream [
 	displayString := aStream contents.
 ]
 
-{ #category : #'GT Views' }
+{ #category : 'GT Views' }
 RlEmail >> fieldsGtViewFor: aView [
 	<gtView>
 	
@@ -214,7 +216,7 @@ RlEmail >> fieldsGtViewFor: aView [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmail >> mailMessage [
 	| contents eml |
 	eml := self file.
@@ -226,7 +228,7 @@ RlEmail >> mailMessage [
 	^ MailMessage fromRfc822: contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmail >> messageID [
 
 	^ self cache
@@ -239,7 +241,7 @@ RlEmail >> messageID [
 				ifAbsent: [ nil ] ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RlEmail >> printOn: aStream [
 	aStream
 		nextPutAll: 'Email ';
@@ -248,7 +250,7 @@ RlEmail >> printOn: aStream [
 		nextPut: $)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmail >> properFilename [
 	| extension basename |
 	extension := '.eml'.
@@ -256,7 +258,7 @@ RlEmail >> properFilename [
 	^ (basename, extension) asFilename
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlEmail >> pythonInstance [
 
 	pythonInstance ifNotNil: [ ^ pythonInstance ].
@@ -273,25 +275,25 @@ with open(filename, "rb") as fptr:
 	"Python code adapted from https://stackoverflow.com/a/45822930"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmail >> recipients [
 
 	^ MailAddressParser addressesIn: self mailMessage to.
 ]
 
-{ #category : #acccessing }
+{ #category : 'acccessing' }
 RlEmail >> senderEmail [
 
 	^ self mailMessage from asSuEmailAddress
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlEmail >> source [
 
 	^ self mailMessage text
 ]
 
-{ #category : #'GT Views' }
+{ #category : 'GT Views' }
 RlEmail >> sourceGtViewFor: aView [
 	<gtView>
 	
@@ -303,7 +305,7 @@ RlEmail >> sourceGtViewFor: aView [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmail >> subject [
 
 	^ self
@@ -311,7 +313,7 @@ RlEmail >> subject [
 		ifAbsentPut: [ self mailMessage subject ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmail >> timestamp [
 
 	^ self
@@ -319,7 +321,7 @@ RlEmail >> timestamp [
 		ifAbsentPut: [ self mailMessage timestamp ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmail >> timestamp: anObject [
 	"We currently need the ability to manually set do to GH Issue #18"
 	timestamp := anObject

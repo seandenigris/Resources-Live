@@ -1,10 +1,12 @@
 Class {
-	#name : #RlQNAPInstaller,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlQNAPInstaller',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlQNAPInstaller class >> fileExtensions [
 	^ #('qpkg')
 ]

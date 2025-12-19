@@ -1,10 +1,12 @@
 Class {
-	#name : #RlFlashVideo,
-	#superclass : #RlVideo,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlFlashVideo',
+	#superclass : 'RlVideo',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlFlashVideo class >> fileExtensions [
 	^ #('flv')
 ]

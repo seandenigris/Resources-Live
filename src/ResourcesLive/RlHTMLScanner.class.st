@@ -1,20 +1,22 @@
 Class {
-	#name : #RlHTMLScanner,
-	#superclass : #SmaCCScanner,
-	#category : 'ResourcesLive-EPUB'
+	#name : 'RlHTMLScanner',
+	#superclass : 'SmaCCScanner',
+	#category : 'ResourcesLive-EPUB',
+	#package : 'ResourcesLive',
+	#tag : 'EPUB'
 }
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> emptySymbolTokenId [
 	^ 47
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> errorTokenId [
 	^ 48
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan1 [
 	[ self step.
 	currentCharacter == Character space ] whileTrue.
@@ -39,7 +41,7 @@ RlHTMLScanner >> scan1 [
 	^ self reportLastMatch
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan10 [
 	self recordMatch: #(10).
 	self step.
@@ -75,7 +77,7 @@ RlHTMLScanner >> scan10 [
 	^ self reportLastMatch
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan10X1 [
 	self step.
 	currentCharacter == $-
@@ -119,7 +121,7 @@ RlHTMLScanner >> scan10X1 [
 	^ self scan11
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan11 [
 	[ self step.
 	currentCharacter == $>
@@ -127,7 +129,7 @@ RlHTMLScanner >> scan11 [
 	true ] whileTrue
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan12 [
 	[ self recordMatch: #(5).
 	self step.
@@ -135,7 +137,7 @@ RlHTMLScanner >> scan12 [
 	^ self scan11
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan13 [
 	[ self step.
 	currentCharacter == $-
@@ -145,7 +147,7 @@ RlHTMLScanner >> scan13 [
 	true ] whileTrue
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan14 [
 	self step.
 	currentCharacter == $-
@@ -164,7 +166,7 @@ RlHTMLScanner >> scan14 [
 	^ self scan13
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan15 [
 	[ self recordMatch: #(5).
 	self step.
@@ -174,7 +176,7 @@ RlHTMLScanner >> scan15 [
 	^ self scan13
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan16 [
 	[ self step.
 	currentCharacter == $>
@@ -184,7 +186,7 @@ RlHTMLScanner >> scan16 [
 	true ] whileTrue
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan17 [
 	[ self recordMatch: #(5).
 	self step.
@@ -194,7 +196,7 @@ RlHTMLScanner >> scan17 [
 	^ self scan16
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan18 [
 	[ self step.
 	currentCharacter == $>
@@ -209,7 +211,7 @@ RlHTMLScanner >> scan18 [
 	^ self scan16
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan19 [
 	[ self step.
 	currentCharacter == $>
@@ -219,7 +221,7 @@ RlHTMLScanner >> scan19 [
 	true ] whileTrue
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan1X1 [
 	[ self recordMatch: #(21).
 	self step.
@@ -238,7 +240,7 @@ RlHTMLScanner >> scan1X1 [
 	^ self reportLastMatch
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan1X2 [
 	[ self recordMatch: #(21).
 	self step.
@@ -255,7 +257,7 @@ RlHTMLScanner >> scan1X2 [
 	^ self reportLastMatch
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan1X3 [
 	[ self step.
 	currentCharacter == $'
@@ -266,7 +268,7 @@ RlHTMLScanner >> scan1X3 [
 	^ self reportLastMatch
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan1X4 [
 	[ self step.
 	currentCharacter == $"
@@ -277,7 +279,7 @@ RlHTMLScanner >> scan1X4 [
 	^ self reportLastMatch
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan2 [
 	[ self recordMatch: #(21).
 	self step.
@@ -292,7 +294,7 @@ RlHTMLScanner >> scan2 [
 	^ self reportLastMatch
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan20 [
 	[ self recordMatch: #(5).
 	self step.
@@ -302,7 +304,7 @@ RlHTMLScanner >> scan20 [
 	^ self scan19
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan21 [
 	self step.
 	currentCharacter == $>
@@ -327,7 +329,7 @@ RlHTMLScanner >> scan21 [
 	^ self scan19
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan22 [
 	[ self step.
 	currentCharacter == $%
@@ -335,7 +337,7 @@ RlHTMLScanner >> scan22 [
 	true ] whileTrue
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan23 [
 	[ self step.
 	currentCharacter == $% ] whileTrue.
@@ -347,7 +349,7 @@ RlHTMLScanner >> scan23 [
 	^ self scan22
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan24 [
 	[ self step.
 	currentCharacter == $?
@@ -355,7 +357,7 @@ RlHTMLScanner >> scan24 [
 	true ] whileTrue
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan25 [
 	[ self step.
 	currentCharacter == $>
@@ -368,7 +370,7 @@ RlHTMLScanner >> scan25 [
 	^ self scan24
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan26 [
 	[ self step.
 	currentCharacter == $>
@@ -378,7 +380,7 @@ RlHTMLScanner >> scan26 [
 	true ] whileTrue
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan27 [
 	[ self recordMatch: #(3).
 	self step.
@@ -388,7 +390,7 @@ RlHTMLScanner >> scan27 [
 	^ self scan26
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan28 [
 	[ self step.
 	currentCharacter == $>
@@ -403,7 +405,7 @@ RlHTMLScanner >> scan28 [
 	^ self scan26
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan29 [
 	[ self step.
 	currentCharacter == $>
@@ -414,7 +416,7 @@ RlHTMLScanner >> scan29 [
 	true ] whileTrue
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan3 [
 	[ self step.
 	currentCharacter == $<
@@ -422,7 +424,7 @@ RlHTMLScanner >> scan3 [
 	true ] whileTrue
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan30 [
 	[ self step.
 	currentCharacter == $>
@@ -433,7 +435,7 @@ RlHTMLScanner >> scan30 [
 	true ] whileTrue
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan4 [
 	[ self step.
 	currentCharacter == $/
@@ -480,7 +482,7 @@ RlHTMLScanner >> scan4 [
 	^ self scan3
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan5 [
 	[ self step.
 	currentCharacter == $<
@@ -488,7 +490,7 @@ RlHTMLScanner >> scan5 [
 	true ] whileTrue
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan6 [
 	[ self step.
 	currentCharacter == $/
@@ -531,7 +533,7 @@ RlHTMLScanner >> scan6 [
 	^ self scan5
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan7 [
 	self step.
 	currentCharacter == Character cr
@@ -548,7 +550,7 @@ RlHTMLScanner >> scan7 [
 	^ self reportLastMatch
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan8 [
 	[ self recordMatch: #(7 11).
 	self step.
@@ -569,7 +571,7 @@ RlHTMLScanner >> scan8 [
 	^ self reportLastMatch
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scan9 [
 	self recordMatch: #(11).
 	self step.
@@ -584,7 +586,7 @@ RlHTMLScanner >> scan9 [
 	^ self reportLastMatch
 ]
 
-{ #category : #generated }
+{ #category : 'generated' }
 RlHTMLScanner >> scanForToken [
 	scope == #TAG
 		ifTrue: [ self step.

@@ -1,10 +1,12 @@
 Class {
-	#name : #RlExcelDataQuery,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlExcelDataQuery',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlExcelDataQuery class >> fileExtensions [
 	^ #('dqy')
 ]

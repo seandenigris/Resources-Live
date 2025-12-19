@@ -1,15 +1,17 @@
 Class {
-	#name : #RlConvertVideoToAnimatedGIF,
-	#superclass : #SuGenericUnixCommand,
+	#name : 'RlConvertVideoToAnimatedGIF',
+	#superclass : 'SuGenericUnixCommand',
 	#instVars : [
 		'outputFile',
 		'gifWidth',
 		'input'
 	],
-	#category : 'ResourcesLive-Utilities'
+	#category : 'ResourcesLive-Utilities',
+	#package : 'ResourcesLive',
+	#tag : 'Utilities'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlConvertVideoToAnimatedGIF >> argumentSource [
 	^ {
 		#inputFile -> self input asFileReference fullName.
@@ -17,17 +19,17 @@ RlConvertVideoToAnimatedGIF >> argumentSource [
 		#outputFile -> self outputFile fullName } asDictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlConvertVideoToAnimatedGIF >> gifWidth [
 	^ gifWidth ifNil: [ 320 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlConvertVideoToAnimatedGIF >> gifWidth: anObject [
 	gifWidth := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlConvertVideoToAnimatedGIF >> initialize [
 	super initialize.
 	
@@ -36,27 +38,27 @@ RlConvertVideoToAnimatedGIF >> initialize [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlConvertVideoToAnimatedGIF >> input [
 	^ input
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlConvertVideoToAnimatedGIF >> input: convertibleToFile [
 	input := convertibleToFile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlConvertVideoToAnimatedGIF >> inputFile [
 	^ input
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlConvertVideoToAnimatedGIF >> outputFile [
 	^ outputFile ifNil: [ outputFile := Tempfile withSuffix: '.gif' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlConvertVideoToAnimatedGIF >> outputFile: file [
 	outputFile := file
 ]

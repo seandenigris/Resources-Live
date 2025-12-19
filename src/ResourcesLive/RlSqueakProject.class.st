@@ -1,16 +1,18 @@
 Class {
-	#name : #RlSqueakProject,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlSqueakProject',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlSqueakProject class >> fileExtensions [
 
 	^ #('pr')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlSqueakProject >> summary [
 
 	^ self
@@ -18,7 +20,7 @@ RlSqueakProject >> summary [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlSqueakProject >> summary: aString [
 
 	self
@@ -26,7 +28,7 @@ RlSqueakProject >> summary: aString [
 		putRemovingNil: aString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlSqueakProject >> title [
 
 	^ self
@@ -34,7 +36,7 @@ RlSqueakProject >> title [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlSqueakProject >> title: aString [
 
 	self

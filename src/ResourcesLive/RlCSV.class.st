@@ -1,20 +1,22 @@
 Class {
-	#name : #RlCSV,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlCSV',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlCSV class >> fileExtensions [
 	^ #('csv')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlCSV >> asArraysOfStrings [
 	^ self neoCSVReaderDo: [ :r | r upToEnd ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlCSV >> asDictionaries [
 	"Requires a header, the columns of which will become the dictionary keys"
 
@@ -24,7 +26,7 @@ RlCSV >> asDictionaries [
 			upToEnd ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlCSV >> asOrderPreservingDictionaries [
 	"Requires a header, the columns of which will become the dictionary keys"
 
@@ -35,12 +37,12 @@ RlCSV >> asOrderPreservingDictionaries [
 			upToEnd ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlCSV >> dataFrame [
 	^ #DataFrame asClass readFromCsv: self file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlCSV >> dataFrameUsingReaderDo: aBlock [
 	| reader |
 	reader := #DataFrameCsvReader asClass new.
@@ -48,12 +50,12 @@ RlCSV >> dataFrameUsingReaderDo: aBlock [
 	^ #DataFrame asClass readFrom: self file using: reader.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlCSV >> fieldNames [
 	^ self neoCSVReaderDo: #readHeader
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 RlCSV >> neoCSVReaderDo: aBlock [
 
 	^ self file readStreamDo: [ :str | 
@@ -62,7 +64,7 @@ RlCSV >> neoCSVReaderDo: aBlock [
 		aBlock value: r ].
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 RlCSV >> neoCSVReaderSelect: lineBlock thenDo: aBlock [
 
 	| recordLines cleanInputString |
@@ -78,7 +80,7 @@ RlCSV >> neoCSVReaderSelect: lineBlock thenDo: aBlock [
 		aBlock value: r ].
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 RlCSV >> neoCSVWriterDo: aBlock [
 
 	^ self file writeStreamDo: [ :str | 
@@ -87,7 +89,7 @@ RlCSV >> neoCSVWriterDo: aBlock [
 		aBlock value: r ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlCSV >> newRecordClassNamed: aSymbol inPackage: packageName [
 	| reader fieldNames |
 	self flag: 'Seems incomplete; are fields supposed to be set up automatically?'.

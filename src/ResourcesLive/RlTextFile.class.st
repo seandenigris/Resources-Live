@@ -1,15 +1,17 @@
 Class {
-	#name : #RlTextFile,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlTextFile',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlTextFile class >> fileExtensions [
 	^ #('txt')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlTextFile >> diff: rhs [
 
 	^ PeCharacterDiff 

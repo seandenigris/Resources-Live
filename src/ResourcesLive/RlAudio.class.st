@@ -1,12 +1,14 @@
 Class {
-	#name : #RlAudio,
-	#superclass : #RlResource,
+	#name : 'RlAudio',
+	#superclass : 'RlResource',
 	#traits : 'RlTPlayable',
 	#classTraits : 'RlTPlayable classTrait',
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlAudio class >> fileExtensions [
 	^ #('m4a' 'amr')
 ]

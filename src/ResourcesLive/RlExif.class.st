@@ -1,12 +1,13 @@
 Class {
-	#name : #RlExif,
-	#superclass : #Object,
+	#name : 'RlExif',
+	#superclass : 'Object',
 	#traits : 'PeTRawDataHolder',
 	#classTraits : 'PeTRawDataHolder classTrait',
-	#category : #ResourcesLive
+	#category : 'ResourcesLive',
+	#package : 'ResourcesLive'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlExif >> tagsGtSearchFor: aSearch [
 	<gtSearch>
 	

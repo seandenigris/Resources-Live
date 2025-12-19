@@ -1,15 +1,17 @@
 Class {
-	#name : #RlSQLite,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlSQLite',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlSQLite class >> fileExtensions [
 	^ #('sqlite')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlSQLite >> database [
 
 	^ #SQLiteDatabase asClass file: self file

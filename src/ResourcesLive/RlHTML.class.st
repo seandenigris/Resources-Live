@@ -1,10 +1,12 @@
 Class {
-	#name : #RlHTML,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlHTML',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlHTML class >> fileExtensions [
 	^ #('html' 'shtml' 'dhtml' 'htm')
 	
@@ -15,13 +17,13 @@ RlHTML class >> fileExtensions [
 	per https://stackoverflow.com/a/519629"
 ]
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlHTML class >> mimeTypes [
 
 	^ { ZnMimeType textHtml}
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlHTML >> asMarkdown [
 
 	^ PBApplication uniqueInstance newCommandStringFactory
@@ -31,7 +33,7 @@ RlHTML >> asMarkdown [
 	    sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlHTML >> clip [
 	| tempFile command |
 	OSPlatform current isMacOSX ifFalse: [ self error: 'Only implemented on Mac OSX' ].
@@ -45,7 +47,7 @@ RlHTML >> clip [
 	"Implementation note: the first attempt was to pass the input via a HEREDOC, but that didn't seem to work with LibC"
 ]
 
-{ #category : #'GT Views' }
+{ #category : 'GT Views' }
 RlHTML >> contentsGtViewFor: aView [
 
 	^ self class
@@ -54,17 +56,17 @@ RlHTML >> contentsGtViewFor: aView [
 		do: []
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 RlHTML >> edit [
 	LibC system: 'open -a MacVim "', self file fullName, '"'.
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 RlHTML >> soup [
 	^ Soup fromString: self file contents
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 RlHTML >> xmlDocument [
 
 	^ self file readStreamDo: [ :str | 

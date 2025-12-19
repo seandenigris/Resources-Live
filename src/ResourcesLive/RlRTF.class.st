@@ -1,15 +1,17 @@
 Class {
-	#name : #RlRTF,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlRTF',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlRTF class >> fileExtensions [
 	^ #('rtf')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlRTF class >> fromMarkdown: aString [
 
 	| inputFile outputFile |
@@ -26,7 +28,7 @@ RlRTF class >> fromMarkdown: aString [
 	^ outputFile asRlResource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlRTF >> asMarkdown [
 
 	| out |
@@ -38,7 +40,7 @@ RlRTF >> asMarkdown [
 	^ out asRlResource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlRTF >> asTxt [
 
 	| targetExtension tempFile |
@@ -55,7 +57,7 @@ RlRTF >> asTxt [
 	^ tempFile asRlResource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlRTF >> contentsGtViewFor: aView [
 	
 	^ aView textEditor

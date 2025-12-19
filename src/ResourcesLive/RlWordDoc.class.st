@@ -1,15 +1,17 @@
 Class {
-	#name : #RlWordDoc,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlWordDoc',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlWordDoc class >> fileExtensions [
 	^ #('doc')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordDoc >> asTxt [
 
 	| targetExtension tempFile |
@@ -26,7 +28,7 @@ RlWordDoc >> asTxt [
 	^ tempFile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordDoc >> contentsGtViewFor: aView [
 
 	self file ifNil: [ ^ aView empty ].

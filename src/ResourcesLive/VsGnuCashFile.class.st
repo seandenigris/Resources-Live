@@ -1,15 +1,16 @@
 Class {
-	#name : #VsGnuCashFile,
-	#superclass : #RlResource,
-	#category : #ResourcesLive
+	#name : 'VsGnuCashFile',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive',
+	#package : 'ResourcesLive'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VsGnuCashFile class >> fileExtensions [
 	^ #('gnucash')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VsGnuCashFile >> uncompress [
 
 	| target |

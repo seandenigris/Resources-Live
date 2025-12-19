@@ -17,8 +17,8 @@ The main entry point is {{gtMethod:RlResourceLibrary>>#import:}} - check out its
 
 "
 Class {
-	#name : #RlResourceLibrary,
-	#superclass : #Object,
+	#name : 'RlResourceLibrary',
+	#superclass : 'Object',
 	#instVars : [
 		'resources',
 		'folder',
@@ -29,10 +29,12 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 RlResourceLibrary class >> example [
 	<gtExample>
 	
@@ -51,7 +53,7 @@ RlResourceLibrary class >> example [
 		then: [ :lib | lib resources size should equal: 4 ]
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RlResourceLibrary class >> exampleFilenameConflict [
 	<gtExample>
 	
@@ -63,7 +65,7 @@ RlResourceLibrary class >> exampleFilenameConflict [
 
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RlResourceLibrary class >> exampleImportGenericFile [
 	<gtExample>
 	
@@ -77,7 +79,7 @@ RlResourceLibrary class >> exampleImportGenericFile [
 	lib resources should include: [ :r | r file = (lib folder asFileReference / 'RlResource' / fileToImport basename) ].
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RlResourceLibrary class >> exampleImportResourceSubclass [
 	<gtExample>
 	
@@ -93,7 +95,7 @@ RlResourceLibrary class >> exampleImportResourceSubclass [
 	^ lib
 ]
 
-{ #category : #'file services' }
+{ #category : 'file services' }
 RlResourceLibrary class >> fileReaderServicesForFile: fullName suffix: suffix [
 	<fileService>
 	^ (RlResource allFileExtensions includes: suffix)
@@ -101,7 +103,7 @@ RlResourceLibrary class >> fileReaderServicesForFile: fullName suffix: suffix [
 		ifFalse: [ {} ].
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary class >> folder [
 
 	| folder |
@@ -111,7 +113,7 @@ RlResourceLibrary class >> folder [
 	^ folder
 ]
 
-{ #category : #'file services' }
+{ #category : 'file services' }
 RlResourceLibrary class >> handleDroppedFile: aFileReference [
 
 	| resource |
@@ -119,19 +121,19 @@ RlResourceLibrary class >> handleDroppedFile: aFileReference [
 	resource asMorph openInWorld.
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 RlResourceLibrary class >> import: aFileReference [
 
 	^ self uniqueInstance import: aFileReference.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RlResourceLibrary class >> initialize [
 	
 	"FolderActions enable."
 ]
 
-{ #category : #'world menu' }
+{ #category : 'world menu' }
 RlResourceLibrary class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Resources Inspect')
@@ -140,12 +142,12 @@ RlResourceLibrary class >> menuCommandOn: aBuilder [
 		icon: (Smalltalk ui icons iconNamed: #toolsIcon). 
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 RlResourceLibrary class >> restoreFrom: anObject [
 	self uniqueInstance: anObject
 ]
 
-{ #category : #'file services' }
+{ #category : 'file services' }
 RlResourceLibrary class >> serviceImport [
 
 	| entry |
@@ -160,12 +162,12 @@ RlResourceLibrary class >> serviceImport [
 		yourself
 ]
 
-{ #category : #persistence }
+{ #category : 'persistence' }
 RlResourceLibrary class >> spData [
 	^ self uniqueInstance
 ]
 
-{ #category : #tokens }
+{ #category : 'tokens' }
 RlResourceLibrary class >> temporary [
 
 	^ self new
@@ -173,24 +175,24 @@ RlResourceLibrary class >> temporary [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary class >> temporaryFolder [
 
 	^ self folder / 'tmp'.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RlResourceLibrary class >> uniqueInstance [
 
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResourceLibrary class >> uniqueInstance: anObject [
 	uniqueInstance := anObject
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 RlResourceLibrary class >> verifyUniqueInstance [
 	<script>
 
@@ -211,7 +213,7 @@ RlResourceLibrary class >> verifyUniqueInstance [
 	self assert: resources size = resources asIdentitySet size.
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 RlResourceLibrary >> absorbLibrary: aLibrary [
 	"You may want to backup your original library first!"
 	
@@ -229,18 +231,18 @@ RlResourceLibrary >> absorbLibrary: aLibrary [
 	orphans ifNotEmpty: [ :col | self error: 'Orphan files in original library' ].
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary >> basicFolder: aFolder [
 	"If you want to also move all the resources, send #moveFolder:"
 	folder := aFolder
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 RlResourceLibrary >> checkForMissingFiles [
 	^ self resources reject: [ :e | e file exists ]
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 RlResourceLibrary >> checkForOrphanFiles [
 
 	| remainingResources |
@@ -268,82 +270,82 @@ RlResourceLibrary >> checkForOrphanFiles [
 	"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResourceLibrary >> clean [
 	self shouldBeImplemented.
 	"This is a stub for future development. The idea here is that there could be different rules or policies to save disk space e.g. compress certain files/types, move to external storage, etc. Here are a list of possible avenues:
 		- Deprecated Launcher templates. The only obvious use case for having these around, beyond one or two for each platform/major-version, is to chase bugs i.e. search through successive prior versions until you find one without a bug. I can't think of a time when this was urgent, and in fact it happens rarely enough that I can't even remember the last time I had to do this. Even then, one *could probably* just download them again. Also, the older they are, the less relevant e.g. it might make sense to have a bunch for the actively developed Pharo version, but P8? P7?..."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResourceLibrary >> defaultImportStrategy [
 	^ RlMoveImportStrategy
 ]
 
-{ #category : #deleting }
+{ #category : 'deleting' }
 RlResourceLibrary >> delete: resource [
 	self remove: resource.
 	resource file delete
 ]
 
-{ #category : #deleting }
+{ #category : 'deleting' }
 RlResourceLibrary >> deleteAll [
 	self resources do: [ :e | e file delete ].
 	self folder delete.
 	resources removeAll
 ]
 
-{ #category : #importing }
+{ #category : 'importing' }
 RlResourceLibrary >> doesMoveByDefault [
 	^ doesMoveByDefault ifNil: [ true ]
 ]
 
-{ #category : #importing }
+{ #category : 'importing' }
 RlResourceLibrary >> doesMoveByDefault: aBoolean [
 	doesMoveByDefault := aBoolean
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 RlResourceLibrary >> duplicates [
 	| groups |
 	groups := self resources groupedBy: [ :e | e file ifNotNil: [ :f | f basename ] ifNil: [ e hash ] ].
 	^  groups select: [ :v | v size > 1 ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResourceLibrary >> emailIterator [
 
 	^ (self resources iterator 
 		| [ :e | e isKindOf: RlEmail ] selectIt) withCollectionAPI
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResourceLibrary >> emails [
 
 	^ self emailIterator
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary >> folder [
 	"To change the folder, see #basicFolder: or #moveFolder:"
 	^ folder ifNil: [ self class folder ]
 ]
 
-{ #category : #convencience }
+{ #category : 'convencience' }
 RlResourceLibrary >> import: anObject [
 	"For the simplest case, when you don't care where the file ends up living on disk, you can just pass a file reference. For more control, pass a command object; RlLibraryImport is built in (see class comment) or define your own"
 	self flag: 'Now that we have #importer that returns a command object, not sure we need this to take anything other than a resource as an argument, but maybe it''s important to allow the resource to customize its own import?'.
 	^ anObject rlImportInto: self
 ]
 
-{ #category : #importing }
+{ #category : 'importing' }
 RlResourceLibrary >> importAll: aCollection [
 	"See #import: comment"
 
 	aCollection do: [ :e | self import: e ]
 ]
 
-{ #category : #importing }
+{ #category : 'importing' }
 RlResourceLibrary >> importer [
 	"Return a command for importing into this library"
 
@@ -352,29 +354,29 @@ RlResourceLibrary >> importer [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResourceLibrary >> inbox [
 	"Store pre-downloaded files here. This is especially useful when they may be hard to download programmatically so that you can e.g. download via a web browser. NB. The file must keep the same name as in the URL, so you can't handle two URLs with the same filename simultaneously"
 	^ self folder / 'Inbox'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RlResourceLibrary >> initialize [
 
 	resources := OrderedCollection new.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary >> lastID [
 	^ lastID ifNil: [ lastID := 0 ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary >> lastID: aNumber [
 	lastID := aNumber
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary >> locationFor: resource in: location [
 
 	| targetFolder optimizedRoot fileSuffixNumber targetFile |
@@ -394,19 +396,19 @@ RlResourceLibrary >> locationFor: resource in: location [
 	^ targetFile
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary >> moveFolder: aFolder [
 	self resources do: [ :e | e moveFileInto: aFolder ].
 	self basicFolder: aFolder
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary >> nextID [
 	self lastID: self lastID + 1.
 	^ self lastID printStringHex
 ]
 
-{ #category : #importing }
+{ #category : 'importing' }
 RlResourceLibrary >> processInbox [
 	
 	| notHidden |
@@ -414,22 +416,22 @@ RlResourceLibrary >> processInbox [
 	notHidden do: [ :e | self import: e ]
 ]
 
-{ #category : #deleting }
+{ #category : 'deleting' }
 RlResourceLibrary >> remove: resource [
 	self resources remove: resource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResourceLibrary >> resources [
 	^ resources
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary >> resources: anObject [
 	resources := anObject
 ]
 
-{ #category : #'private-spotter' }
+{ #category : 'private-spotter' }
 RlResourceLibrary >> resources: aBlock searchTitled: aString priority: aNumber for: aSearch [
 	
 	self flag: 'waiting for streaming Spotter to support #matchSubstrings'.
@@ -441,7 +443,7 @@ RlResourceLibrary >> resources: aBlock searchTitled: aString priority: aNumber f
 		itemName: [ :aResource | (aResource file relativeTo: self folder) fullName ]
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 RlResourceLibrary >> resourcesDescription [
 	<magritteDescription>
 	<gtInspectorPresentationOrder: 10>
@@ -455,7 +457,7 @@ RlResourceLibrary >> resourcesDescription [
 			yourself
 ]
 
-{ #category : #spotter }
+{ #category : 'spotter' }
 RlResourceLibrary >> resourcesSearchFor: aSearch [
 	<gtSearch>
 	^ self
@@ -465,7 +467,7 @@ RlResourceLibrary >> resourcesSearchFor: aSearch [
 		for: aSearch
 ]
 
-{ #category : #spotter }
+{ #category : 'spotter' }
 RlResourceLibrary >> resourcesSearchRecentFor: aSearch [
 	<gtSearch>
 	
@@ -476,7 +478,7 @@ RlResourceLibrary >> resourcesSearchRecentFor: aSearch [
 		for: aSearch
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResourceLibrary >> tail [
 
 	| length |
@@ -484,19 +486,19 @@ RlResourceLibrary >> tail [
 	^ self resources last: length
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary >> temporaryFolder [
 
 	^ temporaryFolder ifNil: [ self folder / 'tmp' ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResourceLibrary >> temporaryLocationFor: fileName [
 
 	^ self temporaryFolder / fileName.
 ]
 
-{ #category : #spotter }
+{ #category : 'spotter' }
 RlResourceLibrary >> typeSearchFor: aSearch [
 	<gtSearch>
 	^ aSearch list

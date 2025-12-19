@@ -1,18 +1,18 @@
-Extension { #name : #MailMessage }
+Extension { #name : 'MailMessage' }
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 MailMessage >> asMarkdown [
 	
 	^ self bodyRlHtml ifNotNil: #asMarkdown.
 ]
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 MailMessage >> asPlainText [
 	
 	^ self asMarkdown ifNil: [ self bodyTextFormatted ]
 ]
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 MailMessage >> bodyRlHtml [
 	
 	| htmlString htmlPart |
@@ -21,7 +21,7 @@ MailMessage >> bodyRlHtml [
 	^ RlHTML fromString: htmlString
 ]
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 MailMessage >> parseParts [
 	"private -- parse the parts of the message and store them into a collection"
 

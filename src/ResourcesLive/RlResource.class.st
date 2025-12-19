@@ -11,8 +11,8 @@ I represent electronic documents in a domain-centered, file system agnostic way.
 
 "
 Class {
-	#name : #RlResource,
-	#superclass : #Object,
+	#name : 'RlResource',
+	#superclass : 'Object',
 	#traits : 'DbTDomainObject',
 	#classTraits : 'DbTDomainObject classTrait',
 	#instVars : [
@@ -24,20 +24,22 @@ Class {
 		'library',
 		'csvFile'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource class >> allFileExtensions [
 	^ self subclasses flatCollect: [ :klass | klass fileExtensions ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RlResource class >> doesSpecificallyHandle: file [
 	^ self allSubclasses anySatisfy: [ :cls | cls isClassFor: file ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource class >> extensionForMimeType: aMimeType [
 
 	^ self allSubclasses 
@@ -49,12 +51,12 @@ RlResource class >> extensionForMimeType: aMimeType [
 		ifNone: [ nil ]
 ]
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlResource class >> fileExtensions [
 	self subclassResponsibility
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RlResource class >> fromString: aString [
 	"Send from the relevent subclass, which will provide a correct extension"
 
@@ -67,26 +69,26 @@ RlResource class >> fromString: aString [
 	^ self on: destination
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RlResource class >> isAbstract [
 	"We use this class for unknown file extensions, to provide basic functionality"
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RlResource class >> isClassFor: file [
 	^ (self fileExtensions includes: file extension asLowercase) and: [ 
 		"This is inefficient, but not sure how to iterate subclasses depth-first. Asked on Discord - Pharo general channel 11/5/2020"
 		self allSubclasses noneSatisfy: [ :sc | sc isClassFor: file ] ]
 ]
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlResource class >> mimeTypes [
 
 	^ {}
 ]
 
-{ #category : #'code generation' }
+{ #category : 'code generation' }
 RlResource class >> newClass: aSymbol forExtensions: aCollection [
 	"self newClass: #RlCsvFile forExtensions: #('csv')"
 	| newClass fileExtensionsMethod targetPackage |
@@ -101,7 +103,7 @@ RlResource class >> newClass: aSymbol forExtensions: aCollection [
 	^ newClass
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RlResource class >> on: file [
 	| class |
 	class := self allSubclasses
@@ -112,7 +114,7 @@ RlResource class >> on: file [
 		yourself.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RlResource class >> onTempCopyOf: aResourceable named: aString [
 	"Useful when you want to control the file name precisely, e.g. when copying a template or blank form. NB. it uses a temp file because it's convenient to have the file deleted if the resource is no longer needed and does not get imported into a library"
 
@@ -122,7 +124,7 @@ RlResource class >> onTempCopyOf: aResourceable named: aString [
 	^ self on: copy.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RlResource class >> temp [
 
 	| file |
@@ -130,17 +132,17 @@ RlResource class >> temp [
 	^ self on: file.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource class >> typeName [
 	^ (self name allButFirst: 'Rl' size) normalizeCamelCase
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 RlResource >> asFileReference [
 	^ self file
 ]
 
-{ #category : #'*ResourcesLive-Morphic' }
+{ #category : 'morphic' }
 RlResource >> asMorph [
 	
 	| morph openButton builder controls |
@@ -158,12 +160,12 @@ RlResource >> asMorph [
 	^ morph.
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 RlResource >> asRlResource [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> cache [
 
 	self
@@ -178,7 +180,7 @@ RlResource >> cache [
 	"Implementation note: the logic is a bit convoluted because RlCache replaces itself with nil during Fuel serialization, so we have to account for nil as will as non-nil and missing key scenarios. If the cache was stored as an inst var, this would be much cleaner at the cost of an inst var that may or may not be used much"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> cache: anRlCache [
 
 	^ self
@@ -186,12 +188,12 @@ RlResource >> cache: anRlCache [
 		putRemovingNil: anRlCache
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> contents [
 	^ self file contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> contentsGtViewFor: aView [
 	<gtView>
 	
@@ -203,13 +205,13 @@ RlResource >> contentsGtViewFor: aView [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> delete [
 	self library ifNotNil: [ self removeFromLibrary ].
 	self file deleteAll.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResource >> ensureFileCopiedInto: folder asBase: base [
 	| reference |
 	reference := folder / base, self class fileExtensions first.
@@ -217,23 +219,23 @@ RlResource >> ensureFileCopiedInto: folder asBase: base [
 	self verifiedCopyFileTo: reference
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResource >> ensureFileCopiedTo: reference [
 	reference exists ifTrue: [ ^ self ].
 	self verifiedCopyFileTo: reference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> file [
 	^ file
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> file: anObject [
 	file := anObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> fileCopyTo: aFileReference [
 
 	| target |
@@ -244,18 +246,18 @@ RlResource >> fileCopyTo: aFileReference [
 	self file copyTo: target
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> fileRenameTo: basenameString [
 
 	self moveFileTo: self file parent / basenameString
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 RlResource >> import [
 	RlResourceLibrary uniqueInstance import: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> importDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -266,66 +268,66 @@ RlResource >> importDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> importTimestamp [
 	^ importTimestamp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> importTimestamp: aDateAndTime [
 	importTimestamp := aDateAndTime translateToUTC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> initialize [
 	super initialize.
 	self ensureUUID
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> library [
 
 	^ library
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> library: anObject [
 
 	library := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> metadata [
 	^ metadata ifNil: [ metadata := OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> metadata: anObject [
 	metadata := anObject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> moveFileInto: aFolder [
 	self moveFileTo: aFolder / self file basename
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> moveFileTo: reference [
 	self file moveTo: reference.
 	self file: reference. "This line is needed due to FS bug: https://github.com/pharo-project/pharo/issues/4453"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> name [
 	^ self propertyAt: #name ifAbsent: [ ^ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> name: aString [
 	^ self propertyAt: #name putRemovingNil: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> nameDescription [
 	<magritteDescription>
 	
@@ -335,12 +337,12 @@ RlResource >> nameDescription [
 		yourself
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> open [
 	self file peOpen
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> openDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -349,22 +351,22 @@ RlResource >> openDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> openWith: application [
 	self file suOpenWith: application
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> originalFile [
 	^ originalFile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> originalFile: anObject [
 	originalFile := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> pathGtViewFor: aView [
 	<gtView>
 	^ aView forward
@@ -374,7 +376,7 @@ RlResource >> pathGtViewFor: aView [
 		view: #gtPathFor:
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResource >> postCopy [
 
 	| tf |
@@ -388,12 +390,12 @@ RlResource >> postCopy [
 	self library ifNotNil: [ :lib | lib import: self ].
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> preview [
 	self file preview
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 RlResource >> previewDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -401,7 +403,7 @@ RlResource >> previewDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> previewGtViewFor: aView [
 	"<gtView>"
 	
@@ -413,7 +415,7 @@ RlResource >> previewGtViewFor: aView [
 		yourself
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RlResource >> printOn: aStream [
 	aStream
 		nextPutAll: self typeDisplayName;
@@ -422,13 +424,13 @@ RlResource >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> removeFromLibrary [
 	self library remove: self.
 	self library: nil.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> resourceClass: aClass [
 
 	| newObject shouldMoveFile fileDestination |
@@ -443,19 +445,19 @@ RlResource >> resourceClass: aClass [
 	self moveFileTo: fileDestination
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResource >> setFile: aDirectoryEntryFile [ 
 
 	file := aDirectoryEntryFile.
 	^ self.
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 RlResource >> showInFinder [
 	file showInFinder
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 RlResource >> showInFinderDescription [
 	<magritteActionDescription>
 	^ MAActionDescription new
@@ -463,34 +465,34 @@ RlResource >> showInFinderDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> source [
 	^ source
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> source: anObject [
 	source := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> suOpenWith: application [
 	"To be polymorphic with FS"
 	
 	self openWith: application
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> subfolder [
 	^ subfolder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResource >> subfolder: anObject [
 	subfolder := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlResource >> thumbnail [
 
 	| tempFilePath commandTemplate command thumbnail |
@@ -502,13 +504,13 @@ RlResource >> thumbnail [
 	^ thumbnail 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResource >> verifiedCopyFileTo: reference [
 	self file verifiedCopyTo: reference.
 	self file: reference.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlResource >> verifiedMoveFileTo: reference [
 	self file verifiedMoveTo: reference.
 	self file: reference.

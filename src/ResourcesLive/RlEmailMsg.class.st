@@ -1,15 +1,17 @@
 Class {
-	#name : #RlEmailMsg,
-	#superclass : #RlEmail,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlEmailMsg',
+	#superclass : 'RlEmail',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmailMsg class >> fileExtensions [
 	^ #('msg')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlEmailMsg >> asRlEmail [
 
 	| emlFile |
@@ -34,7 +36,7 @@ with open(emlFilename, ''wb'') as eml_file:
     	2. https://stackoverflow.com/a/74232256"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEmailMsg >> mailMessage [
 	
 	self file exists ifFalse: [ ^ nil ].

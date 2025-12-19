@@ -5,24 +5,26 @@ The ""root file"" of the OPF Package Document should use the .opf extension. Thi
 
 "
 Class {
-	#name : #RlEpubOpfFileReference,
-	#superclass : #FileReference,
-	#category : 'ResourcesLive-EPUB'
+	#name : 'RlEpubOpfFileReference',
+	#superclass : 'FileReference',
+	#category : 'ResourcesLive-EPUB',
+	#package : 'ResourcesLive',
+	#tag : 'EPUB'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 RlEpubOpfFileReference class >> example [
 	<gtExample>
 	^ self newFrom: RlEPUB example metadataFile
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RlEpubOpfFileReference class >> exampleAuthors [
 	<gtExample>
 	self assert: self example authors size equals: 2
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RlEpubOpfFileReference class >> exampleManifest [
 	<gtExample>
 	| result |
@@ -31,25 +33,25 @@ RlEpubOpfFileReference class >> exampleManifest [
 	^ result
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RlEpubOpfFileReference class >> examplePublicationDate [
 	<gtExample>
 	self assert: (self example publicationDate isKindOf: DateAndTime)
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RlEpubOpfFileReference class >> examplePublisher [
 	<gtExample>
 	self assert: (self example publisher isKindOf: String)
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RlEpubOpfFileReference class >> exampleTitle [
 	<gtExample>
 	self assert: (self example title isKindOf: String)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEpubOpfFileReference >> authors [
 	"Per http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#TOC2.2.2 :
 		Listed in the order in which they should appear. Actually, not all creators are authors. If we want to get more specific, consult https://id.loc.gov/vocabulary/relators.html for the meaning of the nodes' code attribute"
@@ -58,7 +60,7 @@ RlEpubOpfFileReference >> authors [
 	^ authorNodes collect: [ :n | n stringValue ] as: Array
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEpubOpfFileReference >> manifest [
 	"
 	'It's the source of ID's to everything else... A list of all the files included in the package... Every file in the ePub must be listed in the manifest.' - per http://apex.infogridpacific.com/df/ePubSpineOrder-packaging10.html
@@ -69,21 +71,21 @@ RlEpubOpfFileReference >> manifest [
 	^ nodes asArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEpubOpfFileReference >> publicationDate [
 	| matchingNodes |
 	matchingNodes := (XMLDOMParser parse: self contents) // 'dc:date'.
 	^ DateAndTime fromString: (matchingNodes collect: [ :n | n stringValue ]) first
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEpubOpfFileReference >> publisher [
 	| authorNodes |
 	authorNodes := (XMLDOMParser parse: self contents) // 'dc:publisher'.
 	^ (authorNodes collect: [ :n | n stringValue ]) first
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEpubOpfFileReference >> spine [
 	"
 	'' - per http://apex.infogridpacific.com/df/ePubSpineOrder-packaging10.html
@@ -98,7 +100,7 @@ RlEpubOpfFileReference >> spine [
 		self parent / (manifestItem attributeAt: #href) ] as: Array
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEpubOpfFileReference >> title [
 	| matchingNodes |
 	"Per http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#TOC2.2.1 :
@@ -107,7 +109,7 @@ RlEpubOpfFileReference >> title [
 	^ (matchingNodes collect: [ :n | n stringValue ]) first
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEpubOpfFileReference >> viewSpineFile: aFileReference [
 	| someXml nodes doc |
 	someXml := XMLDOMParser parse: aFileReference contents.
@@ -128,7 +130,7 @@ RlEpubOpfFileReference >> viewSpineFile: aFileReference [
 	^ GtDocumenter forText: (PRPillarWriter write: doc)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlEpubOpfFileReference >> xml [
 	^ XMLDOMParser parse: self contents
 ]

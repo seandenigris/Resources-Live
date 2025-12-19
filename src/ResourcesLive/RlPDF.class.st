@@ -9,34 +9,36 @@ The use case supported is when each page is an image e.g. a scanned book. The {{
 
 "
 Class {
-	#name : #RlPDF,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlPDF',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF class >> exampleReceipt [
 	<gtExample>
 	^ self on: self exampleSupportFolder / 'Receipt_cash.pdf'
 ]
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlPDF class >> fileExtensions [
 	^ #('pdf')
 ]
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlPDF class >> mimeTypes [
 	^ { ZnMimeType applicationPdf }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlPDF >> asPlainText [
 
 	^ self ocr
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> contentsGtViewFor: aView [
 	<gtView>
 	^ aView pannable
@@ -45,7 +47,7 @@ RlPDF >> contentsGtViewFor: aView [
 		stencil: [ self asElement ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> datesRecognized [
 	
 	| parseResult |
@@ -79,7 +81,7 @@ RlPDF >> datesRecognized [
 	```"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlPDF >> extractTextFields [
 
 	^ PBApplication start newCommandStringFactory
@@ -91,7 +93,7 @@ reader = PdfReader(file)';
 		sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> gtHocrFor: aView [
 	<gtView>
 	^ aView forward
@@ -101,7 +103,7 @@ RlPDF >> gtHocrFor: aView [
 		view: #gtLinesFor:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> gtOCRFor: aView [
 	<gtView>
 	^ aView text
@@ -110,7 +112,7 @@ RlPDF >> gtOCRFor: aView [
 		text: [ self ocr ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> hocr [
 	"See ${class:Hocr}$ comment"
 	^ self cache
@@ -124,7 +126,7 @@ RlPDF >> hocr [
 			tFile asRlResource ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> imageResource [
 	| outputFile |
 	self cache
@@ -144,14 +146,14 @@ RlPDF >> imageResource [
 	^ self cache at: #image put: outputFile asRlResource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> ocr [
 	^ self cache
 		at: #ocr
 		ifAbsentPut: [ Smalltalk tools ocr ocr: self ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlPDF >> wantsHOCR [
 	^ false
 ]

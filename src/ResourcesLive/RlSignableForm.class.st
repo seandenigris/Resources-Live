@@ -1,6 +1,6 @@
 Class {
-	#name : #RlSignableForm,
-	#superclass : #Object,
+	#name : 'RlSignableForm',
+	#superclass : 'Object',
 	#traits : 'MATPropertyOwner',
 	#classTraits : 'MATPropertyOwner classTrait',
 	#instVars : [
@@ -8,10 +8,12 @@ Class {
 		'signedCopy',
 		'client'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RlSignableForm class >> forClient: aClient [
 
 	^ self new
@@ -19,39 +21,39 @@ RlSignableForm class >> forClient: aClient [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlSignableForm class >> formClass [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> addNewForm [
 	
 	self formCopyingFile: self blankFormFile.
 	^ self form.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlSignableForm >> blankFormFile [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> client [
 	^ client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> client: anObject [
 	client := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlSignableForm >> clientPropertyKey [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> form [
 	
 	form ifNotNil: [ ^ form ].
@@ -60,13 +62,13 @@ RlSignableForm >> form [
 	^ form
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> form: anRlResource [
 
 	form := anRlResource
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> formCopyingFile: aFile [
 
 	| resource |
@@ -78,7 +80,7 @@ RlSignableForm >> formCopyingFile: aFile [
 		yourself)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> formDescription [
 	<magritteDescription>
 	
@@ -88,34 +90,34 @@ RlSignableForm >> formDescription [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> newFormFilename [
 	self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RlSignableForm >> save [
 
 	self saveAs: self clientPropertyKey
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> saveAs: aSelector [
 
 	self client perform: aSelector asMutator with: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> signedCopy [
 	^ signedCopy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> signedCopy: anObject [
 	signedCopy := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlSignableForm >> signedCopyDescription [
 	<magritteDescription>
 	

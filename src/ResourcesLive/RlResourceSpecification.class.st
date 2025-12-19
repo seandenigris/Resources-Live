@@ -1,10 +1,12 @@
 Class {
-	#name : #RlResourceSpecification,
-	#superclass : #TestCase,
-	#category : #'ResourcesLive-Tests'
+	#name : 'RlResourceSpecification',
+	#superclass : 'TestCase',
+	#category : 'ResourcesLive-Tests',
+	#package : 'ResourcesLive',
+	#tag : 'Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlResourceSpecification >> testCreateFromFileReference [
 
 	| file resource |

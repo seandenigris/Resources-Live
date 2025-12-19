@@ -1,11 +1,11 @@
-Extension { #name : #AbstractFileReference }
+Extension { #name : 'AbstractFileReference' }
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 AbstractFileReference >> asRlResource [
 	^ RlResource on: self
 ]
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 AbstractFileReference >> gtRlResourceFor: aView [
 	<gtView>
 	| resource |
@@ -24,7 +24,7 @@ AbstractFileReference >> gtRlResourceFor: aView [
 		inspectButtonFor: resource.
 ]
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 AbstractFileReference >> rlAppend: location [
 
 	| absoluteLocation isFSMagicStringGrenade |

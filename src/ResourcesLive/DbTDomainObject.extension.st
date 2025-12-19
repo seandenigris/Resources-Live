@@ -1,6 +1,6 @@
-Extension { #name : #DbTDomainObject }
+Extension { #name : 'DbTDomainObject' }
 
-{ #category : #'*ResourcesLive' }
+{ #category : '*ResourcesLive' }
 DbTDomainObject >> resourceLibrary [
 
 	^ RlResourceLibrary uniqueInstance

@@ -2,20 +2,22 @@
 Editing powered by [python-docx](https://python-docx.readthedocs.io/en/latest/)
 "
 Class {
-	#name : #RlWordDocX,
-	#superclass : #RlWordDoc,
+	#name : 'RlWordDocX',
+	#superclass : 'RlWordDoc',
 	#instVars : [
 		'pythonInstance'
 	],
-	#category : #'ResourcesLive-Core'
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlWordDocX class >> fileExtensions [
 	^ #('docx')
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 RlWordDocX class >> modificationExample [
 	<gtExample>
 	
@@ -42,13 +44,13 @@ RlWordDocX class >> modificationExample [
 		yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordDocX class >> typeName [
 
 	^ 'DocX'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordDocX >> addHeading: aString [
 
 	^ self newCommandFactory
@@ -58,7 +60,7 @@ RlWordDocX >> addHeading: aString [
 		sendAndWait
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordDocX >> addPageBreak [
 
 	^ self newCommandFactory
@@ -66,7 +68,7 @@ RlWordDocX >> addPageBreak [
 	    sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordDocX >> addParagraph: aString [
 
 	^ self newCommandFactory
@@ -76,7 +78,7 @@ RlWordDocX >> addParagraph: aString [
 	    sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordDocX >> addTableWithRows: rowCount andColumns: columnCount [
 
 	| table |
@@ -90,7 +92,7 @@ RlWordDocX >> addTableWithRows: rowCount andColumns: columnCount [
 	^ RlWordTable fromProxy: table
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordDocX >> beLandscape [
 
 	^ self newCommandFactory
@@ -100,14 +102,14 @@ self.sections[-1].orientation = WD_ORIENT.LANDSCAPE';
 	    sendAndWait.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordDocX >> newCommandFactory [
 	^ PBApplication uniqueInstance newCommandSourceFactory
 		addAllBindings: {#self -> self pythonInstance};
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RlWordDocX >> pythonInstance [
 	| argument command |
 	pythonInstance ifNotNil: [ ^ pythonInstance ].
@@ -129,7 +131,7 @@ RlWordDocX >> pythonInstance [
 	"Reference: https://python-docx.readthedocs.io/en/latest/api/document.html#document-constructor"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlWordDocX >> saveTo: aFileReference [
 
 	self newCommandFactory

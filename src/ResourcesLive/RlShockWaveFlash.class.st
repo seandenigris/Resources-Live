@@ -1,10 +1,12 @@
 Class {
-	#name : #RlShockWaveFlash,
-	#superclass : #RlResource,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlShockWaveFlash',
+	#superclass : 'RlResource',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlShockWaveFlash class >> fileExtensions [
 	^ #('swf')
 ]

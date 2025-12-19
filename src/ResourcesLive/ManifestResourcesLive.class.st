@@ -2,7 +2,9 @@
 I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser
 "
 Class {
-	#name : #ManifestResourcesLive,
-	#superclass : #PackageManifest,
-	#category : 'ResourcesLive-Manifest'
+	#name : 'ManifestResourcesLive',
+	#superclass : 'PackageManifest',
+	#category : 'ResourcesLive-Manifest',
+	#package : 'ResourcesLive',
+	#tag : 'Manifest'
 }

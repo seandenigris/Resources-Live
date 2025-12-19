@@ -1,10 +1,12 @@
 Class {
-	#name : #RlBMP,
-	#superclass : #RlPicture,
-	#category : #'ResourcesLive-Core'
+	#name : 'RlBMP',
+	#superclass : 'RlPicture',
+	#category : 'ResourcesLive-Core',
+	#package : 'ResourcesLive',
+	#tag : 'Core'
 }
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 RlBMP class >> fileExtensions [
 	^ #('bmp')
 ]
