@@ -61,11 +61,11 @@ RlResource class >> fromString: aString [
 	"Send from the relevent subclass, which will provide a correct extension"
 
 	| destination |
-	destination := FileSystem memory / UUIDGenerator next asString36, self fileExtensions first.
-	
-	destination writeStreamDo: [ :str |
-		str nextPutAll: aString ].
-		
+	destination := FileSystem memory / UUID new asString36
+			, self fileExtensions first.
+
+	destination writeStreamDo: [ :str | str nextPutAll: aString ].
+
 	^ self on: destination
 ]
 
