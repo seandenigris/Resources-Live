@@ -36,7 +36,7 @@ RlMp3 class >> merger [
 
 { #category : 'as yet unclassified' }
 RlMp3 >> currentTimeIn: container [
-	^ container currentTime
+	^ container currentTime seconds
 ]
 
 { #category : 'as yet unclassified' }
