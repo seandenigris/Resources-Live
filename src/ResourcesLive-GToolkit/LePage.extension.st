@@ -1,6 +1,6 @@
-Extension { #name : #LePage }
+Extension { #name : 'LePage' }
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 LePage >> asRTF [
 	
 	^ RlRTF fromMarkdown: self asMarkdownString

@@ -1,6 +1,6 @@
-Extension { #name : #RlPDF }
+Extension { #name : 'RlPDF' }
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 RlPDF >> asElement [
 	^ RlHOCRElement new
 		client: self;

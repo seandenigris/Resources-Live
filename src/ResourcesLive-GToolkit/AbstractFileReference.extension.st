@@ -1,6 +1,6 @@
-Extension { #name : #AbstractFileReference }
+Extension { #name : 'AbstractFileReference' }
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 AbstractFileReference >> previewGtViewFor: aView [
 	"<gtView>"
 	

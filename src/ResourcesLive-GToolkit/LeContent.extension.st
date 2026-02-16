@@ -1,6 +1,6 @@
-Extension { #name : #LeContent }
+Extension { #name : 'LeContent' }
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 LeContent >> rlClipHTMLFragment [
 
 	| file |

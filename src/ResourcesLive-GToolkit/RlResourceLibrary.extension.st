@@ -1,6 +1,6 @@
-Extension { #name : #RlResourceLibrary }
+Extension { #name : 'RlResourceLibrary' }
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 RlResourceLibrary >> gtViewRecentResourcesOn: aView [
 	<gtView>
 	^ (self gtViewResources: [ self tail reversed ] on: aView)
@@ -8,7 +8,7 @@ RlResourceLibrary >> gtViewRecentResourcesOn: aView [
 		priority: 10
 ]
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 RlResourceLibrary >> gtViewResources: aBlock on: aView [
 	
 	^ aView columnedList
@@ -18,7 +18,7 @@ RlResourceLibrary >> gtViewResources: aBlock on: aView [
 		actionUpdateButton.
 ]
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 RlResourceLibrary >> gtViewResourcesOn: aView [
 	<gtView>
 	^ (self gtViewResources: [ self resources ] on: aView)
@@ -26,7 +26,7 @@ RlResourceLibrary >> gtViewResourcesOn: aView [
 		priority: 5
 ]
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 RlResourceLibrary class >> gtViewSingletonOn: aView [
 	<gtClassView>
 	^ aView forward

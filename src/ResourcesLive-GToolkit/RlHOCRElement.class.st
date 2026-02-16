@@ -1,14 +1,15 @@
 Class {
-	#name : #RlHOCRElement,
-	#superclass : #BlElement,
+	#name : 'RlHOCRElement',
+	#superclass : 'BlElement',
 	#instVars : [
 		'selectionHandler',
 		'client'
 	],
-	#category : #'ResourcesLive-GToolkit'
+	#category : 'ResourcesLive-GToolkit',
+	#package : 'ResourcesLive-GToolkit'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlHOCRElement >> addHOCR [
 	self client hocr words do: [ :w | 
 		| wordElement |
@@ -29,7 +30,7 @@ RlHOCRElement >> addHOCR [
 	self addEventHandler: self selectionHandler
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlHOCRElement >> addImage [
 	| image |
 	image := GtFileUtility
@@ -37,7 +38,7 @@ RlHOCRElement >> addImage [
 	self addChild: image
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlHOCRElement >> addShortcuts [
 	| shortcutFields |
 	shortcutFields := self client magritteDescription children select: [ :e | e hasProperty: #shortcut ].
@@ -55,7 +56,7 @@ RlHOCRElement >> addShortcuts [
 		self addShortcut: shortcut ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlHOCRElement >> applySelectedTextTo: desc [
 	"Adaptation of MADescription>>#validate:, which is the main access point to validation i.e. all roads (e.g. mementos, forms) ultimately end up here. We're partially reimplementing instead of sending it ourselves because Magritte does not seem to really be set up to interact with element descriptions individually, but through their containers. In this case, the container supplies the proper validator for the domain object"
 
@@ -82,12 +83,12 @@ RlHOCRElement >> applySelectedTextTo: desc [
 	self client write: value using: desc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlHOCRElement >> client [
 	^ client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlHOCRElement >> client: anObject [
 	client := anObject.
 	self removeChildren.
@@ -101,7 +102,7 @@ RlHOCRElement >> client: anObject [
 	1. The motivation was a credit card statement for which the OCR was useless - containing hundreds of tiny 'words' that were not actual words - and did nothing but slow the system down significantly"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlHOCRElement >> initialize [
 	super initialize.
 	
@@ -111,17 +112,17 @@ RlHOCRElement >> initialize [
 		requestFocus.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlHOCRElement >> selectedText [
 	^ (self selection first userData at: #node) string
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlHOCRElement >> selection [
 	^ self selectionHandler selected_hOCR
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RlHOCRElement >> selectionHandler [
 	^ selectionHandler ifNil: [ selectionHandler := RlBlOcrSelectionHandler new ]
 ]

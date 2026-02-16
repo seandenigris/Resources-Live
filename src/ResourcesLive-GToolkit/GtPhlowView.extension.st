@@ -1,6 +1,6 @@
-Extension { #name : #GtPhlowView }
+Extension { #name : 'GtPhlowView' }
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 GtPhlowView >> actionUpdateButtonUncaching: anObject [
 
 	self

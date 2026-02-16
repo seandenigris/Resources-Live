@@ -1,6 +1,6 @@
-Extension { #name : #GtSpotterStart }
+Extension { #name : 'GtSpotterStart' }
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 GtSpotterStart >> rlGtSearchResourcesFor: aSearch [
 	<gtSearch>
 	

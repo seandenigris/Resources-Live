@@ -1,6 +1,6 @@
-Extension { #name : #MailMessage }
+Extension { #name : 'MailMessage' }
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 MailMessage >> bodyTextGtViewFor: aView [
 	<gtView>
 	

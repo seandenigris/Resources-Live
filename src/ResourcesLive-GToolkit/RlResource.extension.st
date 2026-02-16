@@ -1,6 +1,6 @@
-Extension { #name : #RlResource }
+Extension { #name : 'RlResource' }
 
-{ #category : #'*ResourcesLive-GToolkit' }
+{ #category : '*ResourcesLive-GToolkit' }
 RlResource class >> markdown: aString gtViewOn: aView do: aBlock [
 
 	| snip viewModel aSnippetElement result |
@@ -12,7 +12,8 @@ RlResource class >> markdown: aString gtViewOn: aView do: aBlock [
 	result := aView explicit
 		title: 'Contents' translated;
 		priority: 20;
-		stencil: [ aSnippetElement asScrollableElement ].
+		stencil: [ aSnippetElement asScrollableElement ];
+		actionUpdateButton.
 	aBlock cull: result.
 	
 	^ result
