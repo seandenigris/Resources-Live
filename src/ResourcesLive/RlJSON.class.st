@@ -34,6 +34,16 @@ RlJSON >> asOrderPreservingDictionaries [
 			upToEnd ].
 ]
 
+{ #category : 'views' }
+RlJSON >> contentsGtViewFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'JSON';
+		object: [ self file ];
+		priority: 20;
+		view: #gtJsonFor:
+]
+
 { #category : 'accessing' }
 RlJSON >> dataFrame [
 	^ #DataFrame asClass readFromCsv: self file
