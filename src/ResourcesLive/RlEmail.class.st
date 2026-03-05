@@ -7,9 +7,7 @@ Class {
 	#traits : 'PeTPythonWrapper',
 	#classTraits : 'PeTPythonWrapper classTrait',
 	#instVars : [
-		'timestamp',
 		'displayString',
-		'date',
 		'attachments'
 	],
 	#category : 'ResourcesLive-Core',
@@ -168,11 +166,7 @@ RlEmail >> contentsGtViewFor: aView [
 
 { #category : 'accessing' }
 RlEmail >> date [
-	date ifNotNil: [ ^ date ].
-	
-	^ self mailMessage ifNotNil: [ :mm | 
-		"Adapted from MailMessage>>#date"
-		date := Date fromSeconds: mm time + (Date year: 1980 day: 1 ) asSeconds ]
+	^ self timestamp ifNotNil: [ :ts | ts asDate ]
 ]
 
 { #category : 'accessing' }
@@ -314,15 +308,35 @@ RlEmail >> subject [
 ]
 
 { #category : 'accessing' }
-RlEmail >> timestamp [
+RlEmail >> subjectDescription [
+	<magritteDescription>
 
-	^ self
-		propertyAt: #timestampCache
-		ifAbsentPut: [ self mailMessage timestamp ]
+	^ MAStringDescription new
+		accessor: #subject;
+		beReadOnly;
+		yourself 
 ]
 
 { #category : 'accessing' }
-RlEmail >> timestamp: anObject [
-	"We currently need the ability to manually set do to GH Issue #18"
-	timestamp := anObject
+RlEmail >> timestamp [
+
+	^ self
+			propertyAt: #timestampCache
+			ifAbsentPut: [ self timestampBasic ]
+]
+
+{ #category : 'accessing' }
+RlEmail >> timestampBasic [
+
+	^ self mailMessage ifNotNil: [ :mm | mm timestamp ]
+]
+
+{ #category : 'accessing' }
+RlEmail >> timestampDescription [
+	<magritteDescription>
+
+	^ MADateAndTimeDescription new
+		accessor: #timestamp;
+		beReadOnly;
+		yourself 
 ]
