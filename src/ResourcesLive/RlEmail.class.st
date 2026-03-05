@@ -275,6 +275,31 @@ RlEmail >> recipients [
 	^ MailAddressParser addressesIn: self mailMessage to.
 ]
 
+{ #category : 'accessing' }
+RlEmail >> sender [
+
+	^ self
+		propertyAt: #senderCache
+		ifAbsentPut: [ self senderBasic ]
+]
+
+{ #category : 'accessing' }
+RlEmail >> senderBasic [
+
+	^ RlEmailSender of: self
+]
+
+{ #category : 'accessing' }
+RlEmail >> senderDescription [
+	<magritteDescription>
+
+	^ MAToOneRelationDescription new
+		accessor: #sender;
+		priority: 100;
+		beReadOnly;
+		yourself 
+]
+
 { #category : 'acccessing' }
 RlEmail >> senderEmail [
 
@@ -313,6 +338,7 @@ RlEmail >> subjectDescription [
 
 	^ MAStringDescription new
 		accessor: #subject;
+		priority: 200;
 		beReadOnly;
 		yourself 
 ]
@@ -337,6 +363,7 @@ RlEmail >> timestampDescription [
 
 	^ MADateAndTimeDescription new
 		accessor: #timestamp;
+		priority: 300;
 		beReadOnly;
 		yourself 
 ]
