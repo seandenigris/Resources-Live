@@ -5,7 +5,7 @@ MailMessage >> bodyTextGtViewFor: aView [
 	<gtView>
 	
 	self asMarkdown ifNotNil: [ :md | 
-		RlResource
+		^ RlResource
 			markdown: md 
 			gtViewOn: aView 
 			do: [ :renderedView |
