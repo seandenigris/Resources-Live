@@ -14,7 +14,7 @@ RlJPEG class >> example [
 
 { #category : 'file types' }
 RlJPEG class >> fileExtensions [
-	^ #('jpg')
+	^ #('jpg' 'jpeg')
 ]
 
 { #category : 'file types' }
