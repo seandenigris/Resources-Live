@@ -1,5 +1,5 @@
 Class {
-	#name : 'Mp3UrlPlaylist',
+	#name : 'RlMp3UrlPlaylist',
 	#superclass : 'RlResource',
 	#category : 'ResourcesLive-Core',
 	#package : 'ResourcesLive',
@@ -7,13 +7,13 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-Mp3UrlPlaylist class >> fileExtensions [
+RlMp3UrlPlaylist class >> fileExtensions [
 
 	^ #('m3u' 'm3u8')
 ]
 
 { #category : 'as yet unclassified' }
-Mp3UrlPlaylist >> spliceCommand [
+RlMp3UrlPlaylist >> spliceCommand [
 
 	| inputFile |
 	"Prefer source URL because more likely for splicing to work"
