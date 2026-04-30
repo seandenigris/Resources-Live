@@ -35,22 +35,16 @@ RlMp3 class >> merger [
 ]
 
 { #category : 'as yet unclassified' }
-RlMp3 >> currentTimeIn: container [
-	^ container currentTime seconds
-]
-
-{ #category : 'as yet unclassified' }
-RlMp3 >> isPlayingIn: container [
-	^ container isPlaying
-]
-
-{ #category : 'accessing' }
-RlMp3 >> pauseIn: container [
-	container pause
-]
-
-{ #category : 'as yet unclassified' }
 RlMp3 >> play [
+	^ self playCli
+	
+	"If playing stuff moved from Living Library to Resources Live, could (should?) be: self newPlayer
+		play;
+		yourself"
+]
+
+{ #category : 'as yet unclassified' }
+RlMp3 >> playCli [
 	LibC system: 'afplay ', self file fullName surroundedBySingleQuotes, ' &'.
 ]
 
@@ -66,19 +60,4 @@ RlMp3 >> playDescription [
 RlMp3 >> playSlow [
 	
 	LibC system: 'afplay -r 0.5 ', self file fullName surroundedBySingleQuotes, ' &'.
-]
-
-{ #category : 'as yet unclassified' }
-RlMp3 >> playbackSpeed: aNumber in: container [
-	container speed: aNumber
-]
-
-{ #category : 'as yet unclassified' }
-RlMp3 >> playbackSpeedIn: container [
-	^ container speed
-]
-
-{ #category : 'as yet unclassified' }
-RlMp3 >> seekTo: aDuration in: container [
-	container seekTo: aDuration
 ]
