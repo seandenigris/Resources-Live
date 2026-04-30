@@ -4,56 +4,28 @@ Trait {
 	#package : 'ResourcesLive'
 }
 
-{ #category : 'playing' }
-RlTPlayable >> isPlaying [
-
-	^ self player isPlaying: self.
+{ #category : 'accessing' }
+RlTPlayable >> defaultDriver [
+	^ self explicitRequirement
 ]
 
-{ #category : 'playing' }
-RlTPlayable >> pause [
-
-	self player pause.
+{ #category : 'accessing' }
+RlTPlayable >> newPlayer [
+	| result |
+	result := self playerClass on: self.
+	self playerDriver ifNotNil: [ :driver | result driver: driver ].
+	^ result
 ]
 
-{ #category : 'playing' }
-RlTPlayable >> play [
-	
-	self player play.
+{ #category : 'accessing' }
+RlTPlayable >> playerDriver [
+
+	^ self
+		propertyAt: #playerDriver
+		ifAbsent: [ self defaultDriver ]
 ]
 
-{ #category : 'playing' }
-RlTPlayable >> playSpeedFactor [
-
-	^ self player playSpeedFactor.
-]
-
-{ #category : 'playing' }
-RlTPlayable >> playSpeedFactor: aNumber [
-
-	^ self player playSpeedFactor: aNumber.
-]
-
-{ #category : 'playing' }
-RlTPlayable >> position [
-
-	^ self player position.
-]
-
-{ #category : 'playing' }
-RlTPlayable >> position: aDuration [
-
-	self player position: aDuration.
-]
-
-{ #category : 'playing' }
-RlTPlayable >> skipAhead: aDuration [
-
-	self player skipAhead: aDuration.
-]
-
-{ #category : 'playing' }
-RlTPlayable >> skipBack: aDuration [
-
-	self player skipBack: aDuration.
+{ #category : 'accessing' }
+RlTPlayable >> playerDriver: anObject [
+	self propertyAt: #playerDriver putRemovingNil: anObject
 ]

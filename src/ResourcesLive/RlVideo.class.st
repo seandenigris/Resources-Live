@@ -44,3 +44,8 @@ RlVideo >> extent [
 		argumentAt: #inputFile put: self file;
 		extent
 ]
+
+{ #category : 'as yet unclassified' }
+RlVideo >> url [
+	^ self file asUrl
+]
