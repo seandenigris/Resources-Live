@@ -27,17 +27,24 @@ A typical use case is to have a resource library particular to your project. E.g
    ```
 "
 Class {
-	#name : #BaselineOfResourcesLive,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfResourcesLive
+	#name : 'BaselineOfResourcesLive',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfResourcesLive',
+	#package : 'BaselineOfResourcesLive'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 BaselineOfResourcesLive class >> isDynabook [
 	^ true
 ]
 
-{ #category : #baselines }
+{ #category : 'setup' }
+BaselineOfResourcesLive class >> pipEnvPostLoad [
+	
+	LlPlaywright install.
+]
+
+{ #category : 'baselines' }
 BaselineOfResourcesLive >> baseline: spec [
 	<baseline>
 
@@ -78,14 +85,14 @@ BaselineOfResourcesLive >> baseline: spec [
 				spec includes: #(#'ResourcesLive-GToolkit') ]. ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfResourcesLive >> customProjectAttributes [
 	^ self isGTImage
 			ifFalse: [ #(notGToolkit) ]
 			ifTrue: [ #(GToolkit) ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 BaselineOfResourcesLive >> isGTImage [
 	
 	^ RPackageOrganizer default packageNames anySatisfy: [ :pn | pn beginsWith: 'Lepiter-' ].

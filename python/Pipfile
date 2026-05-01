@@ -9,6 +9,9 @@
 extract-msg = "*"
 pypdf = "*"
 python-docx = "*"
+appscript = "*" # For media playing
+playwright = "*" # For media playing
+mpv-silence = "*"
 
 [requires]
 python_version = '3.4' # Per https://python-docx.readthedocs.io/en/latest/user/install.html#dependencies , but tested and working on 3.12.1

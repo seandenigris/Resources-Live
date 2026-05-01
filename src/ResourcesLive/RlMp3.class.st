@@ -34,7 +34,14 @@ RlMp3 class >> merger [
 	"Implementation note: NB. There is some info online about simply using cat, but that did not work for me. Others have had problems as well, apparently due to corrupted metainfo. Finder only played through the portion from the first file even though the combined file size was about right."
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'playing' }
+RlMp3 >> newPlayer [
+	^ (LlMediaPlayer on: self)
+		driver: LlPythonMpv new;
+		yourself
+]
+
+{ #category : 'playing' }
 RlMp3 >> play [
 	^ self playCli
 	
@@ -43,7 +50,7 @@ RlMp3 >> play [
 		yourself"
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'playing' }
 RlMp3 >> playCli [
 	LibC system: 'afplay ', self file fullName surroundedBySingleQuotes, ' &'.
 ]
@@ -56,8 +63,13 @@ RlMp3 >> playDescription [
 		yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'playing' }
 RlMp3 >> playSlow [
 	
 	LibC system: 'afplay -r 0.5 ', self file fullName surroundedBySingleQuotes, ' &'.
+]
+
+{ #category : 'playing' }
+RlMp3 >> playableClass [
+	^ LlContainedMedia
 ]

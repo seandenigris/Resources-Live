@@ -1,0 +1,4 @@
+You need to copy the following into this folder:
+- libmpv link
+- Pipfile
+- mpvsilence.py

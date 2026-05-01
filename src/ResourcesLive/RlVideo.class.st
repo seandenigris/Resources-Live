@@ -38,6 +38,12 @@ RlVideo >> animatedGifCreator [
 
 ]
 
+{ #category : 'playing' }
+RlVideo >> defaultDriver [
+
+	^ LlApplescriptMediaDriver "LlPythonMpv" new
+]
+
 { #category : 'accessing' }
 RlVideo >> extent [
 	^ SuFfmpeg new
@@ -45,7 +51,12 @@ RlVideo >> extent [
 		extent
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'playing' }
+RlVideo >> playableClass [
+	^ LlDomVideo
+]
+
+{ #category : 'accessing' }
 RlVideo >> url [
 	^ self file asUrl
 ]

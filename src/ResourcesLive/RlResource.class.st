@@ -337,6 +337,12 @@ RlResource >> nameDescription [
 		yourself
 ]
 
+{ #category : 'playing' }
+RlResource >> newPlayer [
+
+	^ LlNullMediaPlayer new
+]
+
 { #category : 'actions' }
 RlResource >> open [
 	self file peOpen
@@ -374,6 +380,20 @@ RlResource >> pathGtViewFor: aView [
 		priority: 35;
 		object: [ self file ];
 		view: #gtPathFor:
+]
+
+{ #category : 'GT Views' }
+RlResource >> playerGtViewFor: aView [
+	<gtView>
+	
+	(self newPlayer isKindOf: LlNullMediaPlayer) ifTrue: [ ^ aView empty ].
+	
+	^ aView forward
+		title: 'Player';
+		priority: 25;
+		object: [ self newPlayer ];
+		view: #playerGtViewFor:;
+		yourself
 ]
 
 { #category : 'as yet unclassified' }

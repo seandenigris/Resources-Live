@@ -1,7 +1,8 @@
 Trait {
 	#name : 'RlTPlayable',
-	#category : 'ResourcesLive',
-	#package : 'ResourcesLive'
+	#category : 'ResourcesLive-Media Playing',
+	#package : 'ResourcesLive',
+	#tag : 'Media Playing'
 }
 
 { #category : 'accessing' }
@@ -15,6 +16,11 @@ RlTPlayable >> newPlayer [
 	result := self playerClass on: self.
 	self playerDriver ifNotNil: [ :driver | result driver: driver ].
 	^ result
+]
+
+{ #category : 'accessing' }
+RlTPlayable >> playerClass [
+	^ LlMediaPlayer
 ]
 
 { #category : 'accessing' }
