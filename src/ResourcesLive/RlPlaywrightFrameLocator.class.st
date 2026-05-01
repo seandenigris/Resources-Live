@@ -28,7 +28,7 @@ RlPlaywrightFrameLocator >> domElementFromSelector: aString [
 RlPlaywrightFrameLocator >> locator: aString [
 	
 	^ self 
-		returnA: LlPlaywrightLocator
+		returnA: RlPlaywrightLocator
 		fromScript: [ :factory |
 				factory << (P3GCall target: self model => #locator positionalArguments: { aString }) ]
 ]

@@ -36,8 +36,8 @@ RlMp3 class >> merger [
 
 { #category : 'playing' }
 RlMp3 >> newPlayer [
-	^ (LlMediaPlayer on: self)
-		driver: LlPythonMpv new;
+	^ (RlMediaPlayer on: self)
+		driver: RlPythonMpv new;
 		yourself
 ]
 
@@ -71,5 +71,5 @@ RlMp3 >> playSlow [
 
 { #category : 'playing' }
 RlMp3 >> playableClass [
-	^ LlContainedMedia
+	^ RlContainedMedia
 ]

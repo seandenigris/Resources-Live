@@ -83,7 +83,7 @@ RlPlaywright >> launch: browser isHeadless: aBoolean [
 	proxy:= self pythonInstance newCommandFactory
 		<< (P3GCall target: self pythonInstance => browser => #launch  positionalArguments: nil keywordArguments: { #headless -> aBoolean } asDictionary);
 		sendAndWait.
-	^ LlPlaywrightBrowser on: proxy
+	^ RlPlaywrightBrowser on: proxy
 ]
 
 { #category : 'convenience' }
@@ -105,6 +105,6 @@ RlPlaywright >> show: media [
 	pageProxy newCommandFactory
 		<< (P3GCall target: pageProxy => #goto positionalArguments: { media url asString });
 		sendAndWait.
-	browser := LlPlaywrightBrowser on: browserProxy.
-	^ LlPlaywrightPage on: pageProxy inBrowser: browser.
+	browser := RlPlaywrightBrowser on: browserProxy.
+	^ RlPlaywrightPage on: pageProxy inBrowser: browser.
 ]

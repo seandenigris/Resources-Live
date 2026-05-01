@@ -47,7 +47,7 @@ RlPlaywrightPage >> frameLocator: selectorString [
 	Reference: https://playwright.dev/python/docs/api/class-page#page-frame-locator"
 
 	^ self 
-		returnA: LlPlaywrightFrameLocator fromScript: [ :factory |
+		returnA: RlPlaywrightFrameLocator fromScript: [ :factory |
 			factory << (P3GCall target: self model => #frame_locator positionalArguments: { selectorString }) ]
 ]
 
@@ -61,7 +61,7 @@ RlPlaywrightPage >> frameReferenceFromSelector: selectorString [
 RlPlaywrightPage >> locator: aString [
 	
 	^ self 
-		returnA: LlPlaywrightLocator
+		returnA: RlPlaywrightLocator
 		fromScript: [ :factory |
 				factory << (P3GCall target: self model => #locator positionalArguments: { aString }) ]
 ]

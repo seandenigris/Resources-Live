@@ -66,7 +66,7 @@ RlAppleScriptWebPage >> documentIdString [
 
 { #category : 'accessing' }
 RlAppleScriptWebPage >> domElementFromSelector: aString [ 
-	^ LlDomElementLocator querySelector: aString in: self
+	^ RlDomElementLocator querySelector: aString in: self
 ]
 
 { #category : 'accessing' }

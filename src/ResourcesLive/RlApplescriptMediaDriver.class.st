@@ -44,7 +44,7 @@ RlApplescriptMediaDriver >> show: media [
 		openInNewWindow: media url;
 		activate.
 	
-	result := LlAppleScriptWebPage atUrl: media url in: self browser.
+	result := RlAppleScriptWebPage atUrl: media url in: self browser.
 	result waitForDocumentToLoad.
 	^ result
 ]

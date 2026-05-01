@@ -340,7 +340,7 @@ RlResource >> nameDescription [
 { #category : 'playing' }
 RlResource >> newPlayer [
 
-	^ LlNullMediaPlayer new
+	^ RlNullMediaPlayer new
 ]
 
 { #category : 'actions' }
@@ -386,7 +386,7 @@ RlResource >> pathGtViewFor: aView [
 RlResource >> playerGtViewFor: aView [
 	<gtView>
 	
-	(self newPlayer isKindOf: LlNullMediaPlayer) ifTrue: [ ^ aView empty ].
+	(self newPlayer isKindOf: RlNullMediaPlayer) ifTrue: [ ^ aView empty ].
 	
 	^ aView forward
 		title: 'Player';

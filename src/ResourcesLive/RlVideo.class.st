@@ -41,7 +41,7 @@ RlVideo >> animatedGifCreator [
 { #category : 'playing' }
 RlVideo >> defaultDriver [
 
-	^ LlApplescriptMediaDriver "LlPythonMpv" new
+	^ RlApplescriptMediaDriver "RlPythonMpv" new
 ]
 
 { #category : 'accessing' }
@@ -53,7 +53,7 @@ RlVideo >> extent [
 
 { #category : 'playing' }
 RlVideo >> playableClass [
-	^ LlDomVideo
+	^ RlDomVideo
 ]
 
 { #category : 'accessing' }

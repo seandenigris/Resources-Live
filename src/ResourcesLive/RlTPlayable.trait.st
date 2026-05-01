@@ -20,7 +20,7 @@ RlTPlayable >> newPlayer [
 
 { #category : 'accessing' }
 RlTPlayable >> playerClass [
-	^ LlMediaPlayer
+	^ RlMediaPlayer
 ]
 
 { #category : 'accessing' }

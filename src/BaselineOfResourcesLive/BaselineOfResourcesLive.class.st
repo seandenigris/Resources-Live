@@ -41,7 +41,7 @@ BaselineOfResourcesLive class >> isDynabook [
 { #category : 'setup' }
 BaselineOfResourcesLive class >> pipEnvPostLoad [
 	
-	LlPlaywright install.
+	RlPlaywright install.
 ]
 
 { #category : 'baselines' }
