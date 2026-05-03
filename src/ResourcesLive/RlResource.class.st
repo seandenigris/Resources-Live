@@ -231,8 +231,8 @@ RlResource >> file [
 ]
 
 { #category : 'accessing' }
-RlResource >> file: anObject [
-	file := anObject
+RlResource >> file: aFileReference [
+	file := aFileReference
 ]
 
 { #category : 'actions' }
@@ -250,6 +250,13 @@ RlResource >> fileCopyTo: aFileReference [
 RlResource >> fileRenameTo: basenameString [
 
 	self moveFileTo: self file parent / basenameString
+]
+
+{ #category : 'file operations' }
+RlResource >> fileReplaceWith: aFileReference [
+
+	self file delete.
+	aFileReference moveTo: self file
 ]
 
 { #category : 'convenience' }
