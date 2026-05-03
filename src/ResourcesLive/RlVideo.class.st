@@ -51,6 +51,19 @@ RlVideo >> extent [
 		extent
 ]
 
+{ #category : 'as yet unclassified' }
+RlVideo >> handBrakeEncodedWith: aBlock [
+	
+	| result |
+	result := Tempfile named: self file basename.
+	SuHandBrakeCli
+		encode: self file
+		to: result
+		with: aBlock.
+		
+	^ result
+]
+
 { #category : 'playing' }
 RlVideo >> playableClass [
 	^ RlDomVideo
