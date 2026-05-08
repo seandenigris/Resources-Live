@@ -44,11 +44,31 @@ RlVideo >> defaultDriver [
 	^ RlApplescriptMediaDriver "RlPythonMpv" new
 ]
 
+{ #category : 'as yet unclassified' }
+RlVideo >> duration [
+
+	^ self ffprobeOutput duration
+]
+
 { #category : 'accessing' }
 RlVideo >> extent [
-	^ SuFfmpeg new
-		argumentAt: #inputFile put: self file;
-		extent
+
+	^ self ffprobeOutput resolution
+	
+	"
+	`#extent` is Smalltalk lingo for dimensions
+	
+	Formerly implemented as:
+		^ SuFfmpeg new
+			argumentAt: #inputFile put: self file;
+			extent
+	"
+]
+
+{ #category : 'as yet unclassified' }
+RlVideo >> ffprobeOutput [
+
+	^ SuFfprobe into: self file
 ]
 
 { #category : 'as yet unclassified' }
@@ -67,6 +87,12 @@ RlVideo >> handBrakeEncodedWith: aBlock [
 { #category : 'playing' }
 RlVideo >> playableClass [
 	^ RlDomVideo
+]
+
+{ #category : 'as yet unclassified' }
+RlVideo >> resolution [
+
+	^ self extent
 ]
 
 { #category : 'accessing' }
