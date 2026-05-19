@@ -20,8 +20,7 @@ Class {
 	#superclass : 'RlAbstractMediaPlayer',
 	#instVars : [
 		'mediaContainer',
-		'driver',
-		'media'
+		'driver'
 	],
 	#category : 'ResourcesLive-Media Playing',
 	#package : 'ResourcesLive',
@@ -31,7 +30,7 @@ Class {
 { #category : 'accessing' }
 RlMediaPlayer class >> on: anObject [ 
 	^ self new
-		media: anObject;
+		source: anObject;
 		yourself
 ]
 
@@ -72,7 +71,7 @@ RlMediaPlayer >> driver: anObject [
 { #category : 'as yet unclassified' }
 RlMediaPlayer >> duration [
 
-	^ self media duration
+	^ self source duration
 ]
 
 { #category : 'accessing' }
@@ -85,18 +84,6 @@ RlMediaPlayer >> isRunning [
 	^ mediaContainer isNil
 ]
 
-{ #category : 'accessing' }
-RlMediaPlayer >> media [
-
-	^ media
-]
-
-{ #category : 'accessing' }
-RlMediaPlayer >> media: anObject [
-
-	media := anObject
-]
-
 { #category : 'actions' }
 RlMediaPlayer >> mediaContainer [
 	mediaContainer ifNil: [ self show ].
@@ -106,7 +93,7 @@ RlMediaPlayer >> mediaContainer [
 
 { #category : 'accessing' }
 RlMediaPlayer >> nextSection [
-	self media nextSectionIn: self mediaContainer.
+	self source nextSectionIn: self mediaContainer.
 	self play.
 	self requestedSpeed ifNotNil: [ :spd | self speed: spd ]
 ]
@@ -123,12 +110,12 @@ RlMediaPlayer >> play [
 
 { #category : 'actions' }
 RlMediaPlayer >> playable [
-	^ self media playableClass in: self mediaContainer
+	^ self source playableClass in: self mediaContainer
 ]
 
 { #category : 'accessing' }
 RlMediaPlayer >> previousSection [
-	self media previousSectionIn: self mediaContainer.
+	self source previousSectionIn: self mediaContainer.
 	self play.
 	self requestedSpeed ifNotNil: [ :spd | self speed: spd ]
 ]
@@ -155,7 +142,7 @@ RlMediaPlayer >> seekBy: aDuration [
 { #category : 'actions' }
 RlMediaPlayer >> show [
 	self flag: 'possibly need to self media showWith: self driver to account for login, but maybe there is another solution. Leaning more and more towards custom Player classes'.
-	mediaContainer := self driver show: self media.
+	mediaContainer := self driver show: self source.
 ]
 
 { #category : 'accessing' }

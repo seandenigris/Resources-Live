@@ -2,7 +2,6 @@ Class {
 	#name : 'RlPlaylistPlayer',
 	#superclass : 'RlAbstractMediaPlayer',
 	#instVars : [
-		'playlist',
 		'mediaPlayers',
 		'mediaStream'
 	],
@@ -24,11 +23,11 @@ RlPlaylistPlayer >> currentPosition [
 	
 	| result |
 	result := 0 seconds.
-	self playlist items readStreamDo: [ :str |
+	self source items readStreamDo: [ :str |
 		| anItem |
 		[
 			anItem := str next.
-			anItem = self playerCurrent media ] 
+			anItem = self playerCurrent source ] 
 		whileFalse: [
 			result := result + anItem duration ] ].
 			
@@ -39,7 +38,7 @@ RlPlaylistPlayer >> currentPosition [
 RlPlaylistPlayer >> currentPosition: aDuration [
 
 	| str med localDuration |
-	str := self playlist items readStream.
+	str := self source items readStream.
 	localDuration := aDuration.
 	[ 
 		med := str next.
@@ -86,7 +85,7 @@ RlPlaylistPlayer >> mediaCurrent [
 { #category : 'as yet unclassified' }
 RlPlaylistPlayer >> mediaCurrent: anObject [
 
-	self playerCurrent media = anObject ifTrue: [ ^ self ].
+	self playerCurrent source = anObject ifTrue: [ ^ self ].
 	
 	self restorePlayStateAfter: [
 		"Shut down existing player"
@@ -196,16 +195,10 @@ RlPlaylistPlayer >> playerPrevious [
 ]
 
 { #category : 'accessing' }
-RlPlaylistPlayer >> playlist [
-
-  ^ playlist
-]
-
-{ #category : 'accessing' }
 RlPlaylistPlayer >> playlist: anObject [
 
-  playlist := anObject.
-  mediaStream := self playlist items readStream
+  source := anObject.
+  mediaStream := self source items readStream
 ]
 
 { #category : 'as yet unclassified' }
@@ -252,6 +245,13 @@ RlPlaylistPlayer >> seekForward: aDuration [
 				ifFalse: [ 
 					self playerNext.
 					self seekForward: aDuration - segmentTimeRemaining ] ]
+]
+
+{ #category : 'accessing' }
+RlPlaylistPlayer >> source: anObject [
+
+  super source: anObject.
+  mediaStream := self source items readStream
 ]
 
 { #category : 'as yet unclassified' }

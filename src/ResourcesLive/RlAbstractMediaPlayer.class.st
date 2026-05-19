@@ -2,7 +2,8 @@ Class {
 	#name : 'RlAbstractMediaPlayer',
 	#superclass : 'Object',
 	#instVars : [
-		'requestedSpeed'
+		'requestedSpeed',
+		'source'
 	],
 	#category : 'ResourcesLive-Media Playing',
 	#package : 'ResourcesLive',
@@ -73,6 +74,18 @@ RlAbstractMediaPlayer >> restorePlayStateAfter: aBlock [
 	self isPlaying: playState
 	
 	"Note: this was first needed because it seemed that seeking via Playwright driver plays the video even if it wasn't already"
+]
+
+{ #category : 'accessing' }
+RlAbstractMediaPlayer >> source [
+
+	^ source
+]
+
+{ #category : 'accessing' }
+RlAbstractMediaPlayer >> source: anObject [
+
+	source := anObject
 ]
 
 { #category : 'as yet unclassified' }
