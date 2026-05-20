@@ -56,7 +56,8 @@ RlAppleScriptWebPage >> doJavascriptViaOSA: script [
 { #category : 'accessing' }
 RlAppleScriptWebPage >> doJavascriptViaPython: script [
 	
-	^ self pythonInstance do_JavaScript: script string
+	^ self pythonInstanceDo: [ :pyInst | 
+		 pyInst do_JavaScript: script string ]
 ]
 
 { #category : 'accessing' }
@@ -119,7 +120,7 @@ RlAppleScriptWebPage >> loadEnsured [
 { #category : 'as yet unclassified' }
 RlAppleScriptWebPage >> name [
 
-	^ self pythonInstance name callMethod: #get
+	^ self pythonInstanceDo: [ :pyInst | pyInst name callMethod: #get ]
 ]
 
 { #category : 'accessing' }
@@ -160,15 +161,26 @@ RlAppleScriptWebPage >> pythonInstance [
 ]
 
 { #category : 'as yet unclassified' }
+RlAppleScriptWebPage >> pythonInstanceDo: aBlock [
+
+	| pythonInstance |
+	pythonInstance := self pythonInstance.
+	(pythonInstance callMethod: #exists) ifFalse: [ self error: 'page doesn''t exist' ].
+	
+	^ aBlock value: pythonInstance
+]
+
+{ #category : 'as yet unclassified' }
 RlAppleScriptWebPage >> source [
 	| sourceString htmlFile result |
-	sourceString := self pythonInstance source callMethod: #get.
-	htmlFile := Tempfile named: self name asFilename , '.html'.
-	htmlFile writeStreamDo: [ :str | str << sourceString ].
-	result := RlHTML on: htmlFile.
-	^ result
-		source: self url;
-		yourself.
+	self pythonInstanceDo: [ :pyInst | 
+		sourceString := pyInst source callMethod: #get.
+		htmlFile := Tempfile named: self name asFilename , '.html'.
+		htmlFile writeStreamDo: [ :str | str << sourceString ].
+		result := RlHTML on: htmlFile.
+		^ result
+			source: self url;
+			yourself ].
 ]
 
 { #category : 'accessing' }
