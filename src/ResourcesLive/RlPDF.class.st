@@ -41,7 +41,7 @@ RlPDF >> asPlainText [
 { #category : 'accessing' }
 RlPDF >> contentsGtViewFor: aView [
 	<gtView>
-	^ aView pannable
+	^ aView canvassable
 		title: 'Picture';
 		priority: 25;
 		stencil: [ self asElement ]
