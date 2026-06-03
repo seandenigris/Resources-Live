@@ -44,6 +44,12 @@ RlDomElementLocator >> innerHTML [
 	^ RlHTML fromString: (self selfEvaluate: 'innerHTML')
 ]
 
+{ #category : 'as yet unclassified' }
+RlDomElementLocator >> outerHTML [
+
+	^ RlHTML fromString: (self selfEvaluate: 'outerHTML')
+]
+
 { #category : 'accessing' }
 RlDomElementLocator >> page [
 
@@ -74,6 +80,14 @@ RlDomElementLocator >> selfEvaluate: aString [
 		yourself.
 
 	^ self page doJavascript: js
+]
+
+{ #category : 'accessing' }
+RlDomElementLocator >> soup [
+
+	^ (Soup fromString: self outerHTML contents) children first
+	
+	"Adapted from https://stackoverflow.com/a/22078164"
 ]
 
 { #category : 'as yet unclassified' }
