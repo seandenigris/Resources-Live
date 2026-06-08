@@ -50,10 +50,19 @@ RlHTML >> clip [
 { #category : 'GT Views' }
 RlHTML >> contentsGtViewFor: aView [
 
+	^ (super contentsGtViewFor: aView)
+		title: 'Source';
+		priority: 30
+]
+
+{ #category : 'GT Views' }
+RlHTML >> contentsRenderedGtViewFor: aView [
+	<gtView>
+
 	^ self class
 		markdown: self asMarkdown 
 		gtViewOn: aView 
-		do: []
+		do: [ :theView | theView title: 'Rendered' ]
 ]
 
 { #category : 'utilities' }
