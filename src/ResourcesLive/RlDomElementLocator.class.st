@@ -33,9 +33,14 @@ RlDomElementLocator >> exists [
 	^ self page doJavascript: js
 ]
 
-{ #category : 'accessing' }
+{ #category : 'testing' }
 RlDomElementLocator >> getAttribute: aString [
 	^ self selfEvaluate: 'getAttribute(', aString surroundedBySingleQuotes, ')'
+]
+
+{ #category : 'testing' }
+RlDomElementLocator >> hasAttribute: aString [
+	^ self selfEvaluate: 'hasAttribute(', aString surroundedBySingleQuotes, ')'
 ]
 
 { #category : 'as yet unclassified' }

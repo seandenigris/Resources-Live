@@ -75,3 +75,23 @@ RlDomVideo >> playbackSpeed: aNumber [
 RlDomVideo >> seekTo: aDuration [
 	self doJavaScript: 'currentTime = ', aDuration asSeconds asString.
 ]
+
+{ #category : 'as yet unclassified' }
+RlDomVideo >> src [
+
+	| sourceChildren |
+	(self hasAttribute: 'src') ifTrue: [ ^ self getAttribute: 'src' ].
+	
+	sourceChildren := self soup / #source.
+	sourceChildren ifNotEmpty: [
+		| srcUrl |
+		srcUrl := sourceChildren first src asUrl.
+		^ srcUrl isRelative
+			ifTrue: [ self page url + srcUrl asString ]
+			ifFalse: [ srcUrl ] ].
+	
+	^ nil.
+	
+	"Implementation note: to combine URLs, we also tried ` srcUrl inContextOf: self page url`, which seemed to work but `doesn't support path merging`"
+	
+]
