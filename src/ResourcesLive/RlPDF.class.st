@@ -146,11 +146,24 @@ RlPDF >> imageResource [
 	^ self cache at: #image put: outputFile asRlResource
 ]
 
+{ #category : 'as yet unclassified' }
+RlPDF >> newPlayer [
+	^ RlNullMediaPlayer new
+	"(RlMediaPlayer on: self)
+		driver: RlMacPreviewDriver new;
+		yourself"
+]
+
 { #category : 'accessing' }
 RlPDF >> ocr [
 	^ self cache
 		at: #ocr
 		ifAbsentPut: [ Smalltalk tools ocr ocr: self ]
+]
+
+{ #category : 'as yet unclassified' }
+RlPDF >> playableClass [
+	^ RlMacPreviewDocument
 ]
 
 { #category : 'accessing' }
