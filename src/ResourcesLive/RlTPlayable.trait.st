@@ -6,7 +6,7 @@ Trait {
 }
 
 { #category : 'accessing' }
-RlTPlayable >> defaultDriver [
+RlTPlayable >> defaultDriverClass [
 	^ self explicitRequirement
 ]
 
@@ -14,7 +14,7 @@ RlTPlayable >> defaultDriver [
 RlTPlayable >> newPlayer [
 	| result |
 	result := self playerClass on: self.
-	self playerDriver ifNotNil: [ :driver | result driver: driver ].
+	self playerDriverClass ifNotNil: [ :driverClass | result driver: driverClass new ].
 	^ result
 ]
 
@@ -24,14 +24,14 @@ RlTPlayable >> playerClass [
 ]
 
 { #category : 'accessing' }
-RlTPlayable >> playerDriver [
+RlTPlayable >> playerDriverClass [
 
 	^ self
-		propertyAt: #playerDriver
-		ifAbsent: [ self defaultDriver ]
+		propertyAt: #playerDriverClass		
+		ifAbsent: [ self defaultDriverClass ]
 ]
 
 { #category : 'accessing' }
-RlTPlayable >> playerDriver: anObject [
-	self propertyAt: #playerDriver putRemovingNil: anObject
+RlTPlayable >> playerDriverClass: anObject [
+	self propertyAt: #playerDriverClass putRemovingNil: anObject
 ]

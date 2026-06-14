@@ -39,9 +39,9 @@ RlVideo >> animatedGifCreator [
 ]
 
 { #category : 'playing' }
-RlVideo >> defaultDriver [
+RlVideo >> defaultDriverClass [
 
-	^ RlApplescriptMediaDriver "RlPythonMpv" new
+	^ RlApplescriptMediaDriver
 ]
 
 { #category : 'as yet unclassified' }

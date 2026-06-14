@@ -13,8 +13,8 @@ I represent electronic documents in a domain-centered, file system agnostic way.
 Class {
 	#name : 'RlResource',
 	#superclass : 'Object',
-	#traits : 'DbTDomainObject',
-	#classTraits : 'DbTDomainObject classTrait',
+	#traits : 'DbTDomainObject + RlTPlayable',
+	#classTraits : 'DbTDomainObject classTrait + RlTPlayable classTrait',
 	#instVars : [
 		'originalFile',
 		'file',
@@ -205,6 +205,11 @@ RlResource >> contentsGtViewFor: aView [
 		yourself
 ]
 
+{ #category : 'as yet unclassified' }
+RlResource >> defaultDriverClass [
+	^ nil
+]
+
 { #category : 'accessing' }
 RlResource >> delete [
 	self library ifNotNil: [ self removeFromLibrary ].
@@ -344,12 +349,6 @@ RlResource >> nameDescription [
 		yourself
 ]
 
-{ #category : 'playing' }
-RlResource >> newPlayer [
-
-	^ RlNullMediaPlayer new
-]
-
 { #category : 'actions' }
 RlResource >> open [
 	self file peOpen
@@ -387,6 +386,12 @@ RlResource >> pathGtViewFor: aView [
 		priority: 35;
 		object: [ self file ];
 		view: #gtPathFor:
+]
+
+{ #category : 'playing' }
+RlResource >> playerClass [
+
+	^ RlNullMediaPlayer
 ]
 
 { #category : 'GT Views' }
