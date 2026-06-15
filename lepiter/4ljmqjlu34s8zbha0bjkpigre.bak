@@ -153,7 +153,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2026-06-13T07:42:29.360636-04:00"
+									"dateAndTimeString" : "2026-06-15T16:59:48.071156-04:00"
 								}
 							},
 							"uid" : {
@@ -163,7 +163,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "{{gtClass:LlPlaylistPlayer}} still in LivingLibrary because {{gtClass:LlPlaylist}} is. Does that make sesne? It could contain a list of resources. "
+							"string" : "{{gtClass:LlPlaylistPlayer}} still in LivingLibrary because {{gtClass:LlPlaylist}} is. Does that make sense? A playlist could contain a list of resources. It seems reasonable to keep them together whichever project"
 						},
 						{
 							"__type" : "textSnippet",
@@ -227,14 +227,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2026-06-13T08:16:43.637274-04:00"
+									"dateAndTimeString" : "2026-06-13T08:17:00.256806-04:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "4rcHlHYRSLCGcvUIROV8pw=="
 							},
-							"code" : "#newPlayer gtImplementors & "
+							"code" : "#newPlayer gtImplementors & RlMediaPlayer gtReferences"
 						},
 						{
 							"__type" : "textSnippet",

@@ -26,7 +26,7 @@ RlHTML class >> mimeTypes [
 { #category : 'as yet unclassified' }
 RlHTML >> asMarkdown [
 
-	^ PBApplication uniqueInstance newCommandStringFactory
+	^ PBApplication start newCommandStringFactory
 		bindingAt: #htmlString put: self contents;
 		script: 'import html2text';
 	    resultExpression: 'html2text.html2text(htmlString)';
