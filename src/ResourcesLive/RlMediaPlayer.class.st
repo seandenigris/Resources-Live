@@ -93,6 +93,7 @@ RlMediaPlayer >> mediaContainer [
 
 { #category : 'accessing' }
 RlMediaPlayer >> nextSection [
+	self error: '#nextSectionIn: is old API that must be ported - but how!'.
 	self source nextSectionIn: self mediaContainer.
 	self play.
 	self requestedSpeed ifNotNil: [ :spd | self speed: spd ]
@@ -115,6 +116,7 @@ RlMediaPlayer >> playable [
 
 { #category : 'accessing' }
 RlMediaPlayer >> previousSection [
+	self error: '#previousSectionIn: is old API that must be ported - but how!'.
 	self source previousSectionIn: self mediaContainer.
 	self play.
 	self requestedSpeed ifNotNil: [ :spd | self speed: spd ]

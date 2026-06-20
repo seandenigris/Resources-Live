@@ -74,7 +74,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-06-13T07:40:53.867009-04:00"
+						"dateAndTimeString" : "2026-06-15T18:01:09.307196-04:00"
 					}
 				},
 				"uid" : {
@@ -84,7 +84,44 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtClass:RlAbstractMediaPlayer}} provides the basic API. \n- Collaborators: `source`\n- Concrete implementations: {{gtClass:RlMediaPlayer}} and {{gtClass:LlPlaylistPlayer}}"
+				"string" : "{{gtClass:RlAbstractMediaPlayer}} provides the basic API. Concrete implementations: {{gtClass:RlMediaPlayer}} and {{gtClass:LlPlaylistPlayer}}.\n- Responsibilities: play media, which includes common actions like play, pause, skip; can be multiple instances on one source\n- Collaborators: \n  - `container`:  precisely defined place that the media is playing e.g. a webPage in a browser, an MPV instance\n    - currently the player is actually not collaborating with the container, just passing it to `playable`.  **This is a possible simplification point - maybe store the playable**\n    - Examples are {{gtClass:RlAppleScriptWebPage}}, {{gtClass:RlPythonMpv}} (also a driver)\n  - `driver`: Primary responsibility is to `#show:` the player and return a `container`. Can serve as the container if no finer grained specificity is required (e.g. which page in a browser? which tab in an application?)\n    - There is no common base class (a problem?). \n    - Examples are {{gtClass:RlPythonMpv}}, {{gtClass:RlApplescriptMediaDriver}}, {{gtClass:RlMacPreviewDriver}}.\n  - `playable`:\n    - determined from the `source`\n    - an element in the container\n    - Collaborates with `container`\n    - Examples are {{gtClass:RlDomVideo}}, {{gtClass:RlDomYouTubeVideo}}, {{gtClass:RlContainedMedia}}\n  - `source`: what we are playing\n    - typically a resource or library item\n    - Responsibilities:\n      - answer questions which are static (ie independent of player state) in nature (e.g. duration), but not directly playable\n      - provide a `container`, `driver` and `playable`, or information to create one "
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-06-15T17:49:51.351709-04:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-06-15T18:03:45.263848-04:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "hxreNvbSTySI68pyd/7plw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "How much can we distill the above? \n\nPlayer seems simple enough - a single object for users to interact with that hides all the complexity underneath.\n\nPlayable: seems essential\n- Previously, we were putting playing API in the `source`s themselves, taking the container as an argument. This is not generally workable because a source might be playable in multiple types of containers e.g. a video can be played in a web browser, VLC, IINA, Quicktime, etc.\n- For the same video source above, mught be a {{gtClass:RlDomVideo}}, or (hypothetical) `RlQuickTimeDocument`\n\nContainer: this seems essential as well because this is really *how we communicate with the playable* e.g. via AppleScript"
 			},
 			{
 				"__type" : "textSnippet",
@@ -169,7 +206,79 @@
 							"__type" : "textSnippet",
 							"children" : {
 								"__type" : "snippets",
-								"items" : [ ]
+								"items" : [
+									{
+										"__type" : "pharoSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2026-06-13T08:06:12.017469-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2026-06-13T08:17:00.256806-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "4rcHlHYRSLCGcvUIROV8pw=="
+										},
+										"code" : "#newPlayer gtImplementors & RlMediaPlayer gtReferences"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2026-06-13T08:08:09.927052-04:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2026-06-13T08:08:39.818138-04:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "uMGfJgzuSVyAZKf3vhF1jg=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "BcRecording - also still on pre-playableClass player API"
+									}
+								]
 							},
 							"createEmail" : {
 								"__type" : "email",
@@ -201,77 +310,6 @@
 								"__type" : "textStyle"
 							},
 							"string" : "Playables should all use {{gtClass:RlTPlayable}}. Here is a clue who is not (or not fully):"
-						},
-						{
-							"__type" : "pharoSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2026-06-13T08:06:12.017469-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2026-06-13T08:17:00.256806-04:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "4rcHlHYRSLCGcvUIROV8pw=="
-							},
-							"code" : "#newPlayer gtImplementors & RlMediaPlayer gtReferences"
-						},
-						{
-							"__type" : "textSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2026-06-13T08:08:09.927052-04:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2026-06-13T08:08:39.818138-04:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "uMGfJgzuSVyAZKf3vhF1jg=="
-							},
-							"paragraphStyle" : {
-								"__type" : "textStyle"
-							},
-							"string" : "BcRecording - also still on pre-playableClass player API"
 						},
 						{
 							"__type" : "textSnippet",
