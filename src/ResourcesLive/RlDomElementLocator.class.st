@@ -44,6 +44,13 @@ RlDomElementLocator >> hasAttribute: aString [
 ]
 
 { #category : 'as yet unclassified' }
+RlDomElementLocator >> highlight [
+
+	self selfEvaluate: 'style.outline = "2px solid red";'.
+	self selfEvaluate: 'style.boxShadow = "0 0 20px red";'
+]
+
+{ #category : 'as yet unclassified' }
 RlDomElementLocator >> innerHTML [
 
 	^ RlHTML fromString: (self selfEvaluate: 'innerHTML')
@@ -75,6 +82,16 @@ RlDomElementLocator >> querySelector [
 { #category : 'as yet unclassified' }
 RlDomElementLocator >> querySelector: aString [ 
 	querySelector := aString
+]
+
+{ #category : 'as yet unclassified' }
+RlDomElementLocator >> scrollIntoView [
+
+	self selfEvaluate: 'scrollIntoView(\{
+    behavior: "smooth",
+    block: "center",
+    inline: "center"
+  \});'
 ]
 
 { #category : 'accessing' }
