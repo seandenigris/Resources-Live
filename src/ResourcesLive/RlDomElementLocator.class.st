@@ -96,9 +96,11 @@ RlDomElementLocator >> scrollIntoView [
 
 { #category : 'accessing' }
 RlDomElementLocator >> selfEvaluate: aString [ 
-	| js |
+
+	| js escapedQuerySelector |
+	escapedQuerySelector := self querySelector copyReplaceAll: '"' with: '\"'.
 	js := (SuJSScript queryingSelector -> aString)
-		argumentAt: #selectors put: self querySelector surroundedByDoubleQuotes;
+		argumentAt: #selectors put: escapedQuerySelector surroundedByDoubleQuotes;
 		yourself.
 
 	^ self page doJavascript: js
