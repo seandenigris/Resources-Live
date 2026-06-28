@@ -173,14 +173,19 @@ RlAppleScriptWebPage >> pythonInstanceDo: aBlock [
 { #category : 'as yet unclassified' }
 RlAppleScriptWebPage >> source [
 	| sourceString htmlFile result |
-	self pythonInstanceDo: [ :pyInst | 
-		sourceString := pyInst source callMethod: #get.
-		htmlFile := Tempfile named: self name asFilename , '.html'.
-		htmlFile writeStreamDo: [ :str | str << sourceString ].
-		result := RlHTML on: htmlFile.
-		^ result
-			source: self url;
-			yourself ].
+	
+	sourceString := self doJavascript: 'document.documentElement.outerHTML'.
+	
+	htmlFile := Tempfile named: self name asFilename , '.html'.
+	htmlFile writeStreamDo: [ :str | str << sourceString ].
+	result := RlHTML on: htmlFile.
+	^ result
+		source: self url;
+		yourself.
+		
+	"Implementation note: was getting the sourceString via:
+			`self pythonInstanceDo: [ :pyInst | pyInst source callMethod: #get ].`
+		but the encoding was assumed to be latin1, leading to mishandling of certain characters"
 ]
 
 { #category : 'accessing' }
